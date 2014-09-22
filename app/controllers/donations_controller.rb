@@ -14,7 +14,7 @@ class DonationsController < ApplicationController
 
   # GET /donations/new
   def new
-    @donation = Donation.new
+    @donation = Donation.new(amount: 50)
   end
 
   # GET /donations/1/edit

@@ -13,23 +13,20 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :first_name %><br>
-    <%= f.text_field :first_name %>
-  </div>
-  <div class="field">
-    <%= f.label :last_name %><br>
-    <%= f.text_field :last_name %>
+    <%= f.label :name do %>Please enter the name you'd like to appear on our donations page.  Leave this blank if you'd rather be all mysterious.<% end %><br>
+    <%= f.text_field :name, :placeholder => "An Anonymous Donor", :class=>"text" %>
   </div>
 
+  <p>Use the slider below to choose how much to donate.</p>
   <div id="amount_slider"></div>
+  <h2 id="amount_display">$50</h2>
   <div class="field">
-    <%= f.label :amount %><br>
-    <%= f.text_field :amount %>
+    <%= f.hidden_field :amount %>
   </div>
 
 
 
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit "Donate Now!", :class => "button" %>
   </div>
 <% end %>

@@ -28,6 +28,7 @@ Techlahoma.Donations.init = function(){
     animate : true,
     slide   : function( event, ui ) {
       $('#donation_amount').val( ui.value );
+      $('#amount_display').text( "$" + ui.value );
     }
   });
   $('#new_donation').on('submit', function(e) {
