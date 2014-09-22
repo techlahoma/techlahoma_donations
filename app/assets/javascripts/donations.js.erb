@@ -1,0 +1,52 @@
+// Place all the behaviors and hooks related to the matching controller here.
+// All this logic will automatically be available in application.js.
+
+var Techlahoma = Techlahoma || {};
+
+Techlahoma.Donations = {};
+
+Techlahoma.Donations.handler = StripeCheckout.configure({
+  key: '<%= Rails.configuration.stripe[:publishable_key] %>',
+  image: '<%= asset_path 'bson-128.png' %>',
+  token: function(token) {
+    // Use the token to create the charge with a server-side script.
+    // You can access the token ID with `token.id`
+  }
+});
+
+Techlahoma.Donations.friendlyAmount = function(amount){
+  return "$" + amount;
+}
+
+
+Techlahoma.Donations.init = function(){
+  $( "#amount_slider" ).slider({
+    min     : 5,
+    max     : 500,
+    step    : 5,
+    value   : 50,
+    animate : true,
+    slide   : function( event, ui ) {
+      $('#donation_amount').val( ui.value );
+    }
+  });
+  $('#new_donation').on('submit', function(e) {
+    var amount = 20;
+    // Open Checkout with further options
+    Techlahoma.Donations.handler.open({
+      name: 'Donate to Techlahoma',
+      description: 'One time donation : ' + Techlahoma.Donations.friendlyAmount(amount),
+      amount: amount * 100
+    });
+    e.preventDefault();
+  });
+};
+
+
+$(function() {
+  if( $('#new_donation').length > 0 ){
+    Techlahoma.Donations.init();
+  }
+});
+
+  
