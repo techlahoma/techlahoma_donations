@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  resources :donations
+  resources :donations, :except => [:edit,:update,:delete]
   root 'donations#new'
 
   # The priority is based upon order of creation: first created -> highest priority.
