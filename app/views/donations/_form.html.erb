@@ -20,9 +20,9 @@
   <p>Use the slider below to choose how much to donate.</p>
   <div id="amount_slider"></div>
   <h2 id="amount_display">$50</h2>
-  <div class="field">
-    <%= f.hidden_field :amount %>
-  </div>
+  <%= f.hidden_field :amount %>
+  <%= f.hidden_field :token_id %>
+  <%= f.hidden_field :email %>
 
 
 

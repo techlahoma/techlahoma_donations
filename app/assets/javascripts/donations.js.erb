@@ -11,6 +11,10 @@ Techlahoma.Donations.handler = StripeCheckout.configure({
   token: function(token) {
     // Use the token to create the charge with a server-side script.
     // You can access the token ID with `token.id`
+    $('#donation_token_id').val(token.id);
+    $('#donation_email').val(token.email);
+    $('#new_donation').get(0).submit();
+
   }
 });
 
@@ -32,7 +36,7 @@ Techlahoma.Donations.init = function(){
     }
   });
   $('#new_donation').on('submit', function(e) {
-    var amount = 20;
+    var amount = $('#donation_amount').val();
     // Open Checkout with further options
     Techlahoma.Donations.handler.open({
       name: 'Donate to Techlahoma',
