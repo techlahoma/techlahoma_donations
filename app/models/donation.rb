@@ -4,6 +4,9 @@ class Donation < ActiveRecord::Base
     guid
   end
 
+  def donor_name
+    name.blank? ? "An Anonymous Donor" : name
+  end
   # Ideally the process of charging a card would happen
   # in the bakground and in a service object of some sort.
   # This is the quick and dirty method that doesn't require background workers.

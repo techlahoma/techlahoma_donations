@@ -1,26 +1,12 @@
 <h1>Listing donations</h1>
 
-<table>
-  <thead>
-    <tr>
-      <th>First name</th>
-      <th>Last name</th>
-      <th>Email</th>
-      <th>Amount</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+<table class="donors">
 
   <tbody>
     <% @donations.each do |donation| %>
       <tr>
-        <td><%= donation.first_name %></td>
-        <td><%= donation.last_name %></td>
-        <td><%= donation.email %></td>
-        <td><%= donation.amount %></td>
-        <td><%= link_to 'Show', donation %></td>
-        <td><%= link_to 'Edit', edit_donation_path(donation) %></td>
-        <td><%= link_to 'Destroy', donation, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td class="donor"><%= donation.donor_name %></td>
+        <td class="date"><%= donation.created_at.to_s(:short) %></td>
       </tr>
     <% end %>
   </tbody>

@@ -1,24 +1,8 @@
-<p id="notice"><%= notice %></p>
-
+<h1>Thank you!</h1>
 <p>
-  <strong>First name:</strong>
-  <%= @donation.first_name %>
+  Thank you for your donations of $<%= @donation.amount %>.
+</p>
+<p>
+  You'll be listed on our donors page as <%= @donation.donor_name %>
 </p>
 
-<p>
-  <strong>Last name:</strong>
-  <%= @donation.last_name %>
-</p>
-
-<p>
-  <strong>Email:</strong>
-  <%= @donation.email %>
-</p>
-
-<p>
-  <strong>Amount:</strong>
-  <%= @donation.amount %>
-</p>
-
-<%= link_to 'Edit', edit_donation_path(@donation) %> |
-<%= link_to 'Back', donations_path %>

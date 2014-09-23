@@ -11,10 +11,12 @@
 
 <div class="body-wrap">
   <div class="body-wrap-inner">
+    <%= image_tag 'techlahoma_logo.png' %>
     <%= yield %>
   </div>
 </div>
 
+<script src="https://checkout.stripe.com/checkout.js"></script>
 <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
 </body>
 </html>

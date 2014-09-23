@@ -1,3 +1,17 @@
 // Place all the styles related to the donations controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+//
+table.donors{
+  width:100%;
+
+  td.donor{
+    width:50%;
+    text-align:right;
+    font-weight:bold;
+  }
+
+  td.date{
+    text-align:left;
+  }
+}
