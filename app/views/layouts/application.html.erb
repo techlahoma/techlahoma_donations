@@ -9,7 +9,9 @@
 <body>
 
 <div class="body-wrap">
-  <%= yield %>
+  <div class="body-wrap-inner">
+    <%= yield %>
+  </div>
 </div>
 
 <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>

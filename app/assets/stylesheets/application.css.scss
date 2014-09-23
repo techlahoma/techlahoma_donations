@@ -16,8 +16,13 @@
  */
 
 $dark-grey: #292829;
+$bluish: #5bb8f0;
 body{
   background:$dark-grey;
+  line-height:2em;
+}
+
+p{
   line-height:2em;
 }
 
@@ -25,20 +30,35 @@ input.text{
   border-radius:4px;
   border:1px solid #ddd;
   font-size:1.5em;
-  padding:5px 10px;
-  width:480px;
+  padding:5px 1%;
+  width:98%;
 }
 
 input.button{
   width:100%;
-  font-size:1.5em;
-  padding:5px auto;
+  font-size:2em;
+  padding:20px;
+  border:1px solid $dark-grey;
+  background:$bluish;
+  color:white;
+  border-radius:6px;
 }
 
 .body-wrap{
-  max-width:500px;
+  max-width:600px;
   margin:50px auto;
   background:white;
-  padding:50px;
+  padding:0px;
   border-radius:6px;
+  border:1px solid white;
+}
+
+.body-wrap-inner{
+  border:1px solid white;
+  margin:50px;
+  text-align:center;
+
+  img{
+    max-width:100%;
+  }
 }
