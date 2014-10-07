@@ -15,7 +15,10 @@ gem 'uglifier', '>= 1.3.0'
 # gem 'therubyracer',  platforms: :ruby
 #
 # For deploying to heroku
-gem 'rails_12factor', group: :production
+group :production do
+  gem 'rails_12factor'
+  gem 'heroku-deflater'
+end
 
 # For the money.
 gem 'stripe', '~> 1.15.0'
