@@ -22,9 +22,16 @@ class Donation < ActiveRecord::Base
 
   # Ideally this would happen in a background thread.
   # This is the quick and dirty method that doesn't require sidekiq or anyting yet.
-  after_create :send_thank_you_email
+  after_create :send_thank_you_email, :notify_slack, :notify_techlahomies
   def send_thank_you_email
     DonationMailer.thank_you_email(self).deliver
+  end
+
+  def notify_slack
+    Chat.slack_message("New Donation: #{self.amount} by #{self.email}")
+  end
+  def notify_techlahomies
+    p 'email techlahoma@gmail.com about donation posting'
   end
 
   before_create :populate_guid
