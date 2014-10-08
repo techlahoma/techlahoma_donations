@@ -53,8 +53,11 @@ GEM
     kgio (2.9.2)
     mail (2.6.1)
       mime-types (>= 1.16, < 3)
+    metaclass (0.0.4)
     mime-types (2.3)
     minitest (5.4.1)
+    mocha (1.1.0)
+      metaclass (~> 0.0.1)
     multi_json (1.10.1)
     netrc (0.7.7)
     pg (0.17.1)
@@ -140,6 +143,7 @@ DEPENDENCIES
   heroku-deflater
   jbuilder (~> 2.0)
   jquery-rails
+  mocha
   pg
   quiet_assets
   rails (= 4.1.6)

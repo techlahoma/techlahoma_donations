@@ -43,7 +43,8 @@ group :development, :test do
   gem 'quiet_assets'
   gem 'spring'
   gem 'thin'
-
+  gem 'mocha'
+  
   gem 'dotenv-rails'
   gem 'foreman' # for the procfile
 end
