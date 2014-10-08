@@ -43,6 +43,8 @@ group :development, :test do
   gem 'quiet_assets'
   gem 'spring'
   gem 'thin'
+  
+  gem 'stripe-ruby-mock', require: false
   gem 'mocha'
   
   gem 'dotenv-rails'
