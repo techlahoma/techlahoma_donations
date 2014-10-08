@@ -20,6 +20,13 @@ class Donation < ActiveRecord::Base
     )
   end
 
+  # Ideally this would happen in a background thread.
+  # This is the quick and dirty method that doesn't require sidekiq or anyting yet.
+  after_create :send_thank_you_email
+  def send_thank_you_email
+    DonationMailer.thank_you_email(self).deliver
+  end
+
   before_create :populate_guid
 
   private
