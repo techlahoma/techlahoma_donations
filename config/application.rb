@@ -19,5 +19,14 @@ module TechlahomaDonations
     # The default locale is :en and all translations from config/locales/*.rb,yml are auto loaded.
     # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
     # config.i18n.default_locale = :de
+    config.action_mailer.smtp_settings = {
+      :port =>           '587',
+      :address =>        'smtp.mandrillapp.com',
+      :user_name =>      ENV['MANDRILL_USERNAME'],
+      :password =>       ENV['MANDRILL_APIKEY'],
+      :domain =>         'heroku.com',
+      :authentication => :plain
+    }
+    config.action_mailer.delivery_method = :smtp
   end
 end
