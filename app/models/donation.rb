@@ -10,7 +10,7 @@ class Donation < ActiveRecord::Base
   # Ideally the process of charging a card would happen
   # in the bakground and in a service object of some sort.
   # This is the quick and dirty method that doesn't require background workers.
-  after_create :charge_the_token
+  after_create :charge_the_token,  :send_thank_you_email, :notify_slack, :notify_techlahomies
   def charge_the_token
     charge = Stripe::Charge.create(
       amount:      (amount * 100).to_i,
@@ -20,9 +20,6 @@ class Donation < ActiveRecord::Base
     )
   end
 
-  # Ideally this would happen in a background thread.
-  # This is the quick and dirty method that doesn't require sidekiq or anyting yet.
-  after_create :send_thank_you_email, :notify_slack, :notify_techlahomies
   def send_thank_you_email
     DonationMailer.thank_you_email(self).deliver
   end
@@ -42,6 +39,6 @@ class Donation < ActiveRecord::Base
   end
 
 
-  
+
 
 end
