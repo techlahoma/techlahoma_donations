@@ -1,5 +1,5 @@
 source 'https://rubygems.org'
-ruby '2.1.3'
+ruby '2.1.4'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 4.1.6'
@@ -43,10 +43,10 @@ group :development, :test do
   gem 'quiet_assets'
   gem 'spring'
   gem 'thin'
-  
+
   gem 'stripe-ruby-mock', require: false
   gem 'mocha'
-  
+
   gem 'dotenv-rails'
   gem 'foreman' # for the procfile
 end
@@ -54,13 +54,3 @@ end
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
-
-# Use unicorn as the app server
-# gem 'unicorn'
-
-# Use Capistrano for deployment
-# gem 'capistrano-rails', group: :development
-
-# Use debugger
-# gem 'debugger', group: [:development, :test]
-
