@@ -4,6 +4,7 @@ class DonationsControllerTest < ActionController::TestCase
   setup do
     @donation = donations(:one)
     StripeMock.start
+    Chat.stubs(:slack_message).returns(true)
   end
   teardown do
     StripeMock.stop
@@ -26,7 +27,7 @@ class DonationsControllerTest < ActionController::TestCase
           email: 'johnny@appleseed.com',
           :card => 'valid_card_token'
         })
-        
+
     assert_difference('Donation.count') do
       post :create, donation: { amount: @donation.amount, email: @donation.email, first_name: @donation.first_name, last_name: @donation.last_name, token_id: customer.id }
     end

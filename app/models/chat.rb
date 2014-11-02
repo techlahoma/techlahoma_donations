@@ -6,10 +6,10 @@ class Chat
       notifier = regularteam
       notifier.ping Slack::Notifier::LinkFormatter.format(message)
   end
-  
+
     private
     def self.regularteam
-      Slack::Notifier.new "nerdbeers", ENV["SLACK_API"],
+      Slack::Notifier.new ENV["SLACK_URL"],
                                   channel: '#techlahoma', username: 'Donations'
     end
 end
