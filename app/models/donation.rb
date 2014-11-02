@@ -25,7 +25,7 @@ class Donation < ActiveRecord::Base
   end
 
   def notify_slack
-    Chat.slack_message("New Donation: #{self.amount} by #{self.email}")
+    Chat.slack_message("New Donation: $#{self.amount.to_i} by #{self.email}")
   end
   def notify_techlahomies
     p 'email techlahoma@gmail.com about donation posting'
