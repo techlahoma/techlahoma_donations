@@ -27,6 +27,9 @@ end
 # For the money.
 gem 'stripe', '~> 1.15.0'
 
+#exceptions
+gem 'rollbar'
+
 gem 'unicorn', '~> 4.8.3'
 
 # Use jquery as the JavaScript library
