@@ -1,5 +1,5 @@
 source 'https://rubygems.org'
-ruby '2.1.4'
+ruby '2.1.5'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 4.1.6'
@@ -47,7 +47,7 @@ group :development, :test do
   gem 'spring'
   gem 'thin'
 
-  gem 'stripe-ruby-mock', require: false
+  gem 'stripe-ruby-mock', '~> 1.10.1.7', require: false
   gem 'mocha'
 
   gem 'dotenv-rails'
