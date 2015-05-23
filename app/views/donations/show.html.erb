@@ -1,6 +1,6 @@
 <h1>Thank you!</h1>
 <p>
-  Thank you for your donations of $<%= @donation.amount %>.
+  Thank you for your donation of <%= number_to_currency(@donation.amount) %>
 </p>
 <p>
   You'll be listed on our donors page as <%= @donation.donor_name %>
