@@ -1,5 +1,5 @@
 source 'https://rubygems.org'
-ruby '2.2.2'
+ruby '2.2.3'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 4.1.6'
@@ -53,7 +53,5 @@ group :development, :test do
   gem 'dotenv-rails'
   gem 'foreman' # for the procfile
 end
-
-
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
