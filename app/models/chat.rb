@@ -10,7 +10,7 @@ class Chat
     private
     def self.regularteam
       Slack::Notifier.new ENV["SLACK_URL"],
-                                  channel: '#techlahoma', username: 'Donations'
+                                  channel: '#techlahoma-mgmt', username: 'DonationBot'
     end
 end
 
