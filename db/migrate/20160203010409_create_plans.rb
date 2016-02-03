@@ -3,8 +3,10 @@ class CreatePlans < ActiveRecord::Migration
     create_table :plans do |t|
       t.integer :amount
       t.string :interval
+      t.integer :interval_count, :default => 1
       t.string :name
       t.string :stripe_id
+
 
       t.timestamps
     end

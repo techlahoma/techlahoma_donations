@@ -31,6 +31,7 @@ class Admin::PlansController < ApplicationController
         format.html { redirect_to [:admin,@plan], notice: 'Plan was successfully created.' }
         format.json { render :show, status: :created, location: @plan }
       else
+        puts @plan.errors.as_json
         format.html { render :new }
         format.json { render json: @plan.errors, status: :unprocessable_entity }
       end

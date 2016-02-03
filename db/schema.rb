@@ -31,6 +31,7 @@ ActiveRecord::Schema.define(version: 20160203010409) do
   create_table "plans", force: true do |t|
     t.integer  "amount"
     t.string   "interval"
+    t.integer  "interval_count", default: 1
     t.string   "name"
     t.string   "stripe_id"
     t.datetime "created_at"

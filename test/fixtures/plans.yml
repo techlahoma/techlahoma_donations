@@ -3,11 +3,13 @@
 one:
   amount: 1
   interval: MyString
+  interval_count: 1
   name: MyString
   stripe_id: MyString
 
 two:
   amount: 1
   interval: MyString
+  interval_count: 1
   name: MyString
   stripe_id: MyString
