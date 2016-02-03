@@ -14,11 +14,8 @@ class SubscriptionsController < ApplicationController
 
   # GET /subscriptions/new
   def new
-    @subscription = Subscription.new
-  end
-
-  # GET /subscriptions/1/edit
-  def edit
+    @plan = params[:plan_id] ? Plan.find(params[:plan_id]) : Plan.first
+    @subscription = Subscription.new(:plan => @plan, :amount => @plan.amount)
   end
 
   # POST /subscriptions
@@ -37,20 +34,6 @@ class SubscriptionsController < ApplicationController
     end
   end
 
-  # PATCH/PUT /subscriptions/1
-  # PATCH/PUT /subscriptions/1.json
-  def update
-    respond_to do |format|
-      if @subscription.update(subscription_params)
-        format.html { redirect_to @subscription, notice: 'Subscription was successfully updated.' }
-        format.json { render :show, status: :ok, location: @subscription }
-      else
-        format.html { render :edit }
-        format.json { render json: @subscription.errors, status: :unprocessable_entity }
-      end
-    end
-  end
-
   # DELETE /subscriptions/1
   # DELETE /subscriptions/1.json
   def destroy
@@ -64,7 +47,7 @@ class SubscriptionsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_subscription
-      @subscription = Subscription.find(params[:id])
+      @subscription = Subscription.find_by_guid(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

@@ -1,9 +1,9 @@
 Rails.application.routes.draw do
-  resources :subscriptions
   namespace :admin do
     resources :plans
   end
   resources :donations, :except => [:edit,:update,:delete]
+  resources :subscriptions, :except => [:edit,:update]
   root 'donations#new'
 
   # The priority is based upon order of creation: first created -> highest priority.
