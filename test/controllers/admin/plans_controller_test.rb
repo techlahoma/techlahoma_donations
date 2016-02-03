@@ -3,6 +3,10 @@ require 'test_helper'
 class Admin::PlansControllerTest < ActionController::TestCase
   setup do
     @plan = plans(:one)
+    StripeMock.start
+  end
+  teardown do
+    StripeMock.stop
   end
 
   test "should get index" do
@@ -18,7 +22,7 @@ class Admin::PlansControllerTest < ActionController::TestCase
 
   test "should create plan" do
     assert_difference('Plan.count') do
-      post :create, plan: { amount: @plan.amount, interval: @plan.interval, interval_count: @plan.interval_count, name: @plan.name, stripe_id: @plan.stripe_id }
+      post :create, plan: { amount: @plan.amount, interval: @plan.interval, interval_count: @plan.interval_count, name: @plan.name, stripe_id: 'NewStripeId' }
     end
 
     assert_redirected_to admin_plan_path(assigns(:plan))
