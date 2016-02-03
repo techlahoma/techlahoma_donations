@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Amount:</strong>
+  <%= @plan.amount %>
+</p>
+
+<p>
+  <strong>Interval:</strong>
+  <%= @plan.interval %>
+</p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @plan.name %>
+</p>
+
+<p>
+  <strong>Stripe:</strong>
+  <%= @plan.stripe_id %>
+</p>
+
+<%= link_to 'Edit', edit_admin_plan_path(@plan) %> |
+<%= link_to 'Back', admin_plans_path %>
