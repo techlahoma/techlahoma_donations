@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160203010409) do
+ActiveRecord::Schema.define(version: 20160203041630) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -37,5 +37,31 @@ ActiveRecord::Schema.define(version: 20160203010409) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "subscriptions", force: true do |t|
+    t.string   "name"
+    t.string   "email"
+    t.integer  "plan_id"
+    t.integer  "amount"
+    t.string   "token_id"
+    t.string   "guid"
+    t.text     "stripe_response"
+    t.string   "stripe_id"
+    t.string   "stripe_customer_id"
+    t.string   "stripe_subscription_id"
+    t.datetime "current_period_start"
+    t.datetime "current_period_end"
+    t.datetime "ended_at"
+    t.datetime "trial_start"
+    t.datetime "trial_end"
+    t.datetime "canceled_at"
+    t.integer  "quantity"
+    t.string   "stripe_status"
+    t.boolean  "cancel_at_period_end"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "subscriptions", ["plan_id"], name: "index_subscriptions_on_plan_id", using: :btree
 
 end

@@ -1,0 +1,26 @@
+<%= form_for(@subscription) do |f| %>
+  <% if @subscription.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@subscription.errors.count, "error") %> prohibited this subscription from being saved:</h2>
+
+      <ul>
+      <% @subscription.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :name do %>Please enter the name that you'd like to appear on our donations page.  Leave this blank if you'd rather be all mysterious.<% end %><br>
+    <%= f.text_field :name, :placeholder => "An Anonymous Donor", :class=>"text" %>
+  </div>
+
+  <%= f.hidden_field :token_id %>
+  <%= f.hidden_field :plan_id %>
+  <%= f.hidden_field :email %>
+
+  <div class="actions">
+    <%= f.submit "Join Now!", :class => "button" %>
+  </div>
+<% end %>
