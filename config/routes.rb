@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  namespace :admin do
+    resources :plans
+  end
   resources :donations, :except => [:edit,:update,:delete]
   root 'donations#new'
 
