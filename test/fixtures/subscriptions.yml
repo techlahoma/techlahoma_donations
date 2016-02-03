@@ -5,9 +5,11 @@ one:
   plan_id: 
   amount: 1
   token_id: MyString
+  guid: guid1
 
 two:
   email: MyString
   plan_id: 
   amount: 1
   token_id: MyString
+  guid: guid2

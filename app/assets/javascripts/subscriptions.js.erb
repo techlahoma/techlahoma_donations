@@ -1,0 +1,46 @@
+// Place all the behaviors and hooks related to the matching controller here.
+// All this logic will automatically be available in application.js.
+
+var Techlahoma = Techlahoma || {};
+
+Techlahoma.Subscriptions = {};
+
+Techlahoma.Subscriptions.handler = StripeCheckout.configure({
+  key: '<%= Rails.configuration.stripe[:publishable_key] %>',
+  image: '<%= asset_path 'bson-128.png' %>',
+  token: function(token) {
+    // Use the token to create the charge with a server-side script.
+    // You can access the token ID with `token.id`
+    $('#subscription_token_id').val(token.id);
+    $('#subscription_email').val(token.email);
+    $('#new_subscription').get(0).submit();
+
+  }
+});
+
+
+Techlahoma.Subscriptions.friendlyAmount = function(amount){
+  return "$" + amount/100;
+}
+
+
+Techlahoma.Subscriptions.init = function(){
+  $('#new_subscription').on('submit', function(e) {
+    var amount = $('#subscription_amount').val();
+    // Open Checkout with further options
+    Techlahoma.Subscriptions.handler.open({
+      name: 'Donate to Techlahoma',
+      description: 'Recurring subscription : ' + Techlahoma.Subscriptions.friendlyAmount(amount),
+      amount: amount
+    });
+    e.preventDefault();
+  });
+};
+
+
+$(function() {
+  if( $('#new_subscription').length > 0 ){
+    Techlahoma.Subscriptions.init();
+  }
+});
+

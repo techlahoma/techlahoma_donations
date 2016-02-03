@@ -3,6 +3,12 @@ require 'test_helper'
 class SubscriptionsControllerTest < ActionController::TestCase
   setup do
     @subscription = subscriptions(:one)
+    @plan = plans(:one)
+    StripeMock.start
+    Chat.stubs(:slack_message).returns(true)
+  end
+  teardown do
+    StripeMock.stop
   end
 
   test "should get index" do
@@ -17,26 +23,18 @@ class SubscriptionsControllerTest < ActionController::TestCase
   end
 
   test "should create subscription" do
+    card_token = StripeMock.generate_card_token({})
+    @plan.create_stripe_plan
     assert_difference('Subscription.count') do
-      post :create, subscription: { amount: @subscription.amount, email: @subscription.email, plan_id: @subscription.plan_id, token_id: @subscription.token_id }
+      post :create, subscription: { amount: @subscription.amount, email: @subscription.email, plan_id: @plan.id, token_id: card_token }
     end
 
     assert_redirected_to subscription_path(assigns(:subscription))
   end
 
   test "should show subscription" do
-    get :show, id: @subscription
+    get :show, id: @subscription.guid
     assert_response :success
-  end
-
-  test "should get edit" do
-    get :edit, id: @subscription
-    assert_response :success
-  end
-
-  test "should update subscription" do
-    patch :update, id: @subscription, subscription: { amount: @subscription.amount, email: @subscription.email, plan_id: @subscription.plan_id, token_id: @subscription.token_id }
-    assert_redirected_to subscription_path(assigns(:subscription))
   end
 
   test "should destroy subscription" do

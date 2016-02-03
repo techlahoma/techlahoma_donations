@@ -19,7 +19,6 @@
         <td><%= subscription.amount %></td>
         <td><%= subscription.token_id%></td>
         <td><%= link_to 'Show', subscription %></td>
-        <td><%= link_to 'Edit', edit_subscription_path(subscription) %></td>
         <td><%= link_to 'Destroy', subscription, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
