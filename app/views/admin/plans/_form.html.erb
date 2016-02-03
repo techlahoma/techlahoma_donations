@@ -1,3 +1,6 @@
+<p>These values directly mirror the Stripe Plan attributes.</p>
+<p><a href="https://stripe.com/docs/api#plans">See the Stripe docs for clarification.</a></p>
+<p><b>Note:</b> All of these values other than 'Name' are read-only after a plan has been created.</p>
 <%= form_for([:admin,@plan]) do |f| %>
   <% if @plan.errors.any? %>
     <div id="error_explanation">
@@ -17,7 +20,11 @@
   </div>
   <div class="field">
     <%= f.label :interval %><br>
-    <%= f.text_field :interval %>
+    <%= f.select :interval, Plan::INTERVALS %>
+  </div>
+  <div class="field">
+    <%= f.label :interval_count, "Interval Count" %><br>
+    <%= f.number_field :interval_count %>
   </div>
   <div class="field">
     <%= f.label :name %><br>
