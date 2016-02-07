@@ -2,9 +2,9 @@ require 'test_helper'
 
 class SubscriptionsControllerTest < ActionController::TestCase
   setup do
+    StripeMock.start
     @subscription = subscriptions(:one)
     @plan = plans(:one)
-    StripeMock.start
     Chat.stubs(:slack_message).returns(true)
   end
   teardown do
@@ -37,11 +37,13 @@ class SubscriptionsControllerTest < ActionController::TestCase
     assert_response :success
   end
 
-  test "should destroy subscription" do
-    assert_difference('Subscription.count', -1) do
+  test "should cancel the subscription without destroying it" do
+    @plan.create_stripe_plan
+    @subscription.charge_the_token
+    assert_difference('Subscription.count', 0) do
       delete :destroy, id: @subscription
     end
 
-    assert_redirected_to subscriptions_path
+    assert_redirected_to @subscription
   end
 end

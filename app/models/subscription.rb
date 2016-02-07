@@ -20,8 +20,20 @@ class Subscription < ActiveRecord::Base
     )
     self.stripe_customer_id = customer["id"]
     self.stripe_subscription_id = customer["subscriptions"]["data"].first["id"]
+    self.stripe_status = customer["subscriptions"]["data"].first["status"]
     self.stripe_response = customer.to_json
     self.save!
+  end
+
+  def cancel
+    customer = Stripe::Customer.retrieve(stripe_customer_id)
+    customer.subscriptions.retrieve(stripe_subscription_id).delete
+    self.stripe_status = 'canceled'
+    self.save
+  end
+
+  def canceled?
+    stripe_status == 'canceled'
   end
 
   def send_thank_you_email
@@ -33,7 +45,7 @@ class Subscription < ActiveRecord::Base
   end
 
   def notify_techlahomies
-    p 'email techlahoma@gmail.com about subscription posting'
+    #p 'email techlahoma@gmail.com about subscription posting'
   end
 
   before_create :populate_guid

@@ -1,0 +1,13 @@
+<h1>Listing donations (Admin view)</h1>
+
+<table class="donors">
+
+  <tbody>
+    <% @donations.each do |donation| %>
+      <tr>
+        <td class="donor"><%=link_to donation.donor_name, [:admin,donation] %></td>
+        <td class="date"><%= donation.created_at.to_s(:short) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
