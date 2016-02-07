@@ -9,4 +9,8 @@
 
 
 
-
+<% if @subscription.canceled? %>
+  <h3>This subscription has been canceled.</h3>
+<% else %>
+  <%= link_to 'Cancel this subscription', @subscription, method: :delete, data: { confirm: 'Are you sure?' } %>
+<% end %>

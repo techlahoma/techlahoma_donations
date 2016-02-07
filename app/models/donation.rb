@@ -28,7 +28,7 @@ class Donation < ActiveRecord::Base
     Chat.slack_message("New Donation: $#{self.amount.to_i} by #{self.email}")
   end
   def notify_techlahomies
-    p 'email techlahoma@gmail.com about donation posting'
+    #p 'email techlahoma@gmail.com about donation posting'
   end
 
   before_create :populate_guid

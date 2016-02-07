@@ -1,4 +1,4 @@
-class SubscriptionsController < ApplicationController
+class Admin::SubscriptionsController < Admin::AdminController
   before_action :set_subscription, only: [:show, :edit, :update, :destroy]
 
   # GET /subscriptions
@@ -39,7 +39,7 @@ class SubscriptionsController < ApplicationController
   def destroy
     @subscription.cancel
     respond_to do |format|
-      format.html { redirect_to @subscription, notice: 'Subscription was successfully canceled.' }
+      format.html { redirect_to subscription, notice: 'Subscription was successfully canceled.' }
       format.json { head :no_content }
     end
   end

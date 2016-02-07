@@ -2,14 +2,14 @@
 
 one:
   email: MyString
-  plan_id: 
-  amount: 1
+  plan: one
+  amount: 1000
   token_id: MyString
   guid: guid1
 
 two:
   email: MyString
-  plan_id: 
-  amount: 1
+  plan: two
+  amount: 2000
   token_id: MyString
   guid: guid2
