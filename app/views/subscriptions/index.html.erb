@@ -1,25 +1,11 @@
 <h1>Listing subscriptions</h1>
 
-<table>
-  <thead>
-    <tr>
-      <th>Email</th>
-      <th>Plan</th>
-      <th>Amount</th>
-      <th>Stripe token</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
+<table class="donors">
   <tbody>
     <% @subscriptions.each do |subscription| %>
       <tr>
-        <td><%= subscription.email %></td>
-        <td><%= subscription.plan %></td>
-        <td><%= subscription.amount %></td>
-        <td><%= subscription.token_id%></td>
-        <td><%= link_to 'Show', subscription %></td>
-        <td><%= link_to 'Destroy', subscription, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td class="donor"><%= subscription.donor_name %></td>
+        <td class="date"><%= subscription.created_at.to_s(:short) %></td>
       </tr>
     <% end %>
   </tbody>
