@@ -35,6 +35,12 @@ class DonationsController < ApplicationController
         format.json { render json: @donation.errors, status: :unprocessable_entity }
       end
     end
+  rescue Stripe::CardError => e
+    @donation.errors.add("Credit card", e)
+    respond_to do |format|
+      format.html { render :new, flash: { error: e.to_s } }
+      format.json { render json: @donation.errors, status: :unprocessable_entity }
+    end
   end
 
   # PATCH/PUT /donations/1
