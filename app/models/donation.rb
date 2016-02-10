@@ -10,7 +10,8 @@ class Donation < ActiveRecord::Base
   # Ideally the process of charging a card would happen
   # in the bakground and in a service object of some sort.
   # This is the quick and dirty method that doesn't require background workers.
-  after_create :charge_the_token,  :send_thank_you_email, :notify_slack, :notify_techlahomies
+  after_create :send_thank_you_email, :notify_slack, :notify_techlahomies
+  before_create :charge_the_token
   def charge_the_token
     charge = Stripe::Charge.create(
       amount:      (amount * 100).to_i,
@@ -18,6 +19,9 @@ class Donation < ActiveRecord::Base
       card:        token_id,
       description: email
     )
+    self.stripe_id = charge["id"]
+    self.stripe_status = charge["status"]
+    self.stripe_response = charge.to_json
   end
 
   def send_thank_you_email

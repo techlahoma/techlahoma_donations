@@ -32,6 +32,13 @@ class SubscriptionsController < ApplicationController
         format.json { render json: @subscription.errors, status: :unprocessable_entity }
       end
     end
+  rescue Stripe::CardError => e
+    @plan = Plan.find(params[:subscription][:plan_id])
+    @subscription.errors.add("Credit card", e)
+    respond_to do |format|
+      format.html { render :new, flash: { error: e.to_s } }
+      format.json { render json: @subscription.errors, status: :unprocessable_entity }
+    end
   end
 
   # DELETE /subscriptions/1

@@ -40,6 +40,7 @@ class SubscriptionsControllerTest < ActionController::TestCase
   test "should cancel the subscription without destroying it" do
     @plan.create_stripe_plan
     @subscription.charge_the_token
+    @subscription.save
     assert_difference('Subscription.count', 0) do
       delete :destroy, id: @subscription
     end
