@@ -3,6 +3,7 @@ require File.expand_path('../../config/environment', __FILE__)
 require 'rails/test_help'
 require 'stripe_mock'
 require "minitest/mock"
+require "mocha/test_unit"
 
 # Start a StripeMock server
 require 'thin'
