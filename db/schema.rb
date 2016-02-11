@@ -11,47 +11,47 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160210013521) do
+ActiveRecord::Schema.define(version: 20160211044206) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "donations", force: true do |t|
-    t.string   "first_name"
-    t.string   "last_name"
-    t.string   "email"
-    t.decimal  "amount",          precision: 8, scale: 2
+  create_table "donations", force: :cascade do |t|
+    t.string   "first_name",      limit: 255
+    t.string   "last_name",       limit: 255
+    t.string   "email",           limit: 255
+    t.decimal  "amount",                      precision: 8, scale: 2
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "guid"
-    t.string   "name"
-    t.string   "token_id"
-    t.string   "stripe_id"
-    t.string   "stripe_status"
+    t.string   "guid",            limit: 255
+    t.string   "name",            limit: 255
+    t.string   "token_id",        limit: 255
+    t.string   "stripe_id",       limit: 255
+    t.string   "stripe_status",   limit: 255
     t.text     "stripe_response"
   end
 
-  create_table "plans", force: true do |t|
+  create_table "plans", force: :cascade do |t|
     t.integer  "amount"
-    t.string   "interval"
-    t.integer  "interval_count", default: 1
-    t.string   "name"
-    t.string   "stripe_id"
+    t.string   "interval",       limit: 255
+    t.integer  "interval_count",             default: 1
+    t.string   "name",           limit: 255
+    t.string   "stripe_id",      limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "subscriptions", force: true do |t|
-    t.string   "name"
-    t.string   "email"
+  create_table "subscriptions", force: :cascade do |t|
+    t.string   "name",                   limit: 255
+    t.string   "email",                  limit: 255
     t.integer  "plan_id"
     t.integer  "amount"
-    t.string   "token_id"
-    t.string   "guid"
+    t.string   "token_id",               limit: 255
+    t.string   "guid",                   limit: 255
     t.text     "stripe_response"
-    t.string   "stripe_id"
-    t.string   "stripe_customer_id"
-    t.string   "stripe_subscription_id"
+    t.string   "stripe_id",              limit: 255
+    t.string   "stripe_customer_id",     limit: 255
+    t.string   "stripe_subscription_id", limit: 255
     t.datetime "current_period_start"
     t.datetime "current_period_end"
     t.datetime "ended_at"
@@ -59,12 +59,19 @@ ActiveRecord::Schema.define(version: 20160210013521) do
     t.datetime "trial_end"
     t.datetime "canceled_at"
     t.integer  "quantity"
-    t.string   "stripe_status"
+    t.string   "stripe_status",          limit: 255
     t.boolean  "cancel_at_period_end"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   add_index "subscriptions", ["plan_id"], name: "index_subscriptions_on_plan_id", using: :btree
+
+  create_table "users", force: :cascade do |t|
+    t.string   "name"
+    t.string   "email"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
 end
