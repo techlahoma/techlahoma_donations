@@ -179,7 +179,7 @@ GEM
       dante (>= 0.2.0)
       jimson-temp
       stripe (>= 1.10.1)
-    techlahoma_auth (0.0.5)
+    techlahoma_auth (0.0.6)
       omniauth (~> 1.2.1)
       omniauth-oauth2 (~> 1.1.2)
       rails (>= 4.0.4)
