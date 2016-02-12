@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+
   get 'plans' => 'plans#index'
 
   namespace :admin do
@@ -8,7 +9,7 @@ Rails.application.routes.draw do
   end
   resources :donations, :except => [:edit,:update,:delete]
   resources :subscriptions, :except => [:edit,:update]
-  root 'donations#new'
+  root 'home#index'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
