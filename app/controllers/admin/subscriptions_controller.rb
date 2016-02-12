@@ -14,7 +14,7 @@ class Admin::SubscriptionsController < Admin::AdminController
 
   # GET /subscriptions/new
   def new
-    @plan = params[:plan_id] ? Plan.find(params[:plan_id]) : Plan.first
+    @plan = params[:plan_id] ? Plan.find_by_stripe_id(params[:plan_id]) : Plan.first
     @subscription = Subscription.new(:plan => @plan, :amount => @plan.amount)
   end
 

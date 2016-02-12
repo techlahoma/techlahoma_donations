@@ -1,0 +1,19 @@
+// Place all the styles related to the plans controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+//
+.plan{
+  background:#cdcdcd;
+  border-radius:6px;
+  padding:12px;
+  padding-bottom:36px;
+  margin-bottom:36px;
+
+  a.small{
+    display:block;
+    &:hover{
+      background:transparent;
+      color:black;
+    }
+  }
+}

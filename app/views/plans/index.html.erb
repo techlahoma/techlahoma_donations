@@ -1,0 +1,34 @@
+<h1>Techlahoma Individual Membership Plans</h1>
+
+<p>
+  2016 is the first time that Techlahoma is doing a fund raising drive.
+  Members who join this year will be counted as Founding Members, and this will be
+  the only time you can earn that badge.
+</p>
+
+<p>
+  Join today and become a Founding Member, Founding Leader, or Founding Champion!
+</p>
+
+<div class="plan">
+  <h3>Founding Champion</h3>
+  <h3>$512 / year</h3>
+  <%= link_to "Join Now!", new_subscription_path(:plan_id => 'founding_champion_yearly'), :class => "button" %>
+  <%= link_to "Or pay monthly at $42.67 / month.", new_subscription_path(:plan_id => 'founding_champion_monthly'), :class => "small" %>
+</div>
+
+<div class="plan">
+  <h3>Founding Leader</h3>
+  <h3>$256 / year</h3>
+  <%= link_to "Join Now!", new_subscription_path(:plan_id => 'founding_leader_yearly'), :class => "button" %>
+  <%= link_to "Or pay monthly at $21.33 / month.", new_subscription_path(:plan_id => 'founding_leader_monthly'), :class => "small" %>
+</div>
+
+<div class="plan">
+  <h3>Founding Member</h3>
+  <h3>$128 / year</h3>
+  <%= link_to "Join Now!", new_subscription_path(:plan_id => 'founding_member_yearly'), :class => "button" %>
+  <%= link_to "Or pay monthly at $10.67 / month.", new_subscription_path(:plan_id => 'founding_member_monthly'), :class => "small" %>
+</div>
+
+

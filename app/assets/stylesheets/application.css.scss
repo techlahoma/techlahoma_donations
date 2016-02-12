@@ -34,7 +34,7 @@ input.text{
   width:98%;
 }
 
-input.button{
+.button{
   width:100%;
   font-size:2em;
   padding:20px;
@@ -42,6 +42,11 @@ input.button{
   background:$bluish;
   color:white;
   border-radius:6px;
+}
+
+a.button{
+  display:inline-block;
+  max-width:60%;
 }
 
 .body-wrap{

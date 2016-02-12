@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'plans' => 'plans#index'
+
   namespace :admin do
     resources :plans
     resources :donations, :except => [:edit,:update,:delete]
