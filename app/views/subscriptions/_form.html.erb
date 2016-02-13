@@ -12,7 +12,7 @@
   <% end %>
 
 
-  <p>You are signing up for <%= @plan.name %> at <%= number_to_currency(@plan.amount/100) %> per <%= @plan.interval %></p>
+  <p>You are signing up for <%= @plan.name %> at <%= cents_to_dollars(@plan.amount) %> per <%= @plan.interval %></p>
 
   <div class="field">
     <%= f.label :name do %>Please enter the name that you'd like to appear on our donations page.  Leave this blank if you'd rather be all mysterious.<% end %><br>
