@@ -6,7 +6,7 @@ class ApplicationController < TechlahomaAuth::ApplicationController
   force_ssl if: :ssl_configured?
 
   def ssl_configured?
-    Rails.env.production?
+    Rails.env.production? && !ENV['SKIP_SSL']
   end
 
 end
