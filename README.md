@@ -1,8 +1,4 @@
-== README
-
-
-getting started
-==========
+# Techlahoma Donations
 
 ## Prerequisites
 
