@@ -4,6 +4,7 @@
 
 You will need the following things properly installed on your computer.
 
+* ruby - Check the `Gemfile` for the version required
 * postgres
 
 
