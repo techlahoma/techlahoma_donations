@@ -39,7 +39,7 @@ Make sure that postgress is running locally and then run:
 This app relies on several environment variables being set. You should copy the
 `dotenv.sample.env` file to `.env` and update the values there as
 needed. The default values should get you going with a complete local
-setup. 
+setup.
 
 If you're working directly with one of the integrated services
 (Stripe, etc...) you'll want to create your own development
@@ -47,10 +47,20 @@ account there in order to see exactly what's happening. If you do that
 make sure to update your `.env` file accordingly. (Don't forget to also
 update `.env` in the related projects!)
 
+## Auth Configuration
+
+Go to the /oauth/applications endpoint on the Techlahoma installation that you want to integrate with.
+For development this will probably be http://localhost:3000/oauth/applications.
+
+Create a new application, and set the callback URL to http://localhost:5001/auth/techlahoma/callback.
+Change the port if you plan to run this app on a different port.
+
+After creating the app copy the Application ID and Secret into your `.env` file.
+
 ## Running tests
 
 ```
-> rspec
+> rake test
 ```
 
 ## Starting the rails server
