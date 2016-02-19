@@ -2,9 +2,9 @@ class Plan
 
   PLAN_BASES = [
     {
-      :name => "Founding Champion",
-      :cost_in_dollars_per_year => 512,
-      :benefits => "Techlahoma Founding Member Hoodie or Yeti Mug and Stratified Website Recognition"
+      :name => "Founding Member",
+      :cost_in_dollars_per_year => 128,
+      :benefits => "Techlahoma Founding Member T-Shirt and Stratified Website Recognition"
     },
     {
       :name => "Founding Leader",
@@ -12,10 +12,27 @@ class Plan
       :benefits => "Techlahoma Founding Member Polo and Stratified Website Recognition"
     },
     {
-      :name => "Founding Member",
-      :cost_in_dollars_per_year => 128,
+      :name => "Founding Champion",
+      :cost_in_dollars_per_year => 512,
+      :benefits => "Techlahoma Founding Member Hoodie or Yeti Mug and Stratified Website Recognition"
+    },
+
+    {
+      :name => "Founding Early Adopter",
+      :cost_in_dollars_per_year => 1024,
       :benefits => "Techlahoma Founding Member T-Shirt and Stratified Website Recognition"
+    },
+    {
+      :name => "Founding User Group Hero",
+      :cost_in_dollars_per_year => 2048,
+      :benefits => "Techlahoma Founding Member Polo and Stratified Website Recognition"
+    },
+    {
+      :name => "Founding Angel Investor",
+      :cost_in_dollars_per_year => 10240,
+      :benefits => "Techlahoma Founding Member Hoodie or Yeti Mug and Stratified Website Recognition"
     }
+    
   ]
 
   def self.plan_bases
