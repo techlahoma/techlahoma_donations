@@ -15,7 +15,7 @@ class SubscriptionsController < ApplicationController
   # GET /subscriptions/new
   def new
     @plan = params[:plan_id] ? Plan.find_by_stripe_id(params[:plan_id]) : Plan.first
-    @subscription = Subscription.new(:plan => @plan, :amount => @plan.amount)
+    @subscription = Subscription.new(:amount => (@plan[:cost_in_dollars] * 100).to_i )
   end
 
   # POST /subscriptions

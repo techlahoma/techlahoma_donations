@@ -10,25 +10,14 @@
   Join today and become a Founding Member, Founding Leader, or Founding Champion!
 </p>
 
-<div class="plan">
-  <h3>Founding Champion</h3>
-  <h3>$512 / year</h3>
-  <%= link_to "Join Now!", new_subscription_path(:plan_id => 'founding_champion_yearly'), :class => "button" %>
-  <%= link_to "Or pay monthly at $42.67 / month.", new_subscription_path(:plan_id => 'founding_champion_monthly'), :class => "small" %>
-</div>
-
-<div class="plan">
-  <h3>Founding Leader</h3>
-  <h3>$256 / year</h3>
-  <%= link_to "Join Now!", new_subscription_path(:plan_id => 'founding_leader_yearly'), :class => "button" %>
-  <%= link_to "Or pay monthly at $21.33 / month.", new_subscription_path(:plan_id => 'founding_leader_monthly'), :class => "small" %>
-</div>
-
-<div class="plan">
-  <h3>Founding Member</h3>
-  <h3>$128 / year</h3>
-  <%= link_to "Join Now!", new_subscription_path(:plan_id => 'founding_member_yearly'), :class => "button" %>
-  <%= link_to "Or pay monthly at $10.67 / month.", new_subscription_path(:plan_id => 'founding_member_monthly'), :class => "small" %>
-</div>
+<% @plan_bases.each do |plan_base| %>
+  <div class="plan">
+    <h3><%= plan_base[:name] %></h3>
+    <h3>$<%= plan_base[:cost_in_dollars_per_year] %> / year</h3>
+    <p><%= plan_base[:benefits] %></p>
+    <%= link_to "Join Now!", new_subscription_path(:plan_id => Plan.id_for_plan_base(plan_base,'annual')), :class => "button" %>
+    <%= link_to "Or pay monthly at #{number_to_currency plan_base[:cost_in_dollars_per_year].to_f/12} / month.", new_subscription_path(:plan_id => Plan.id_for_plan_base(plan_base,'monthly')), :class => "small" %>
+  </div>
+<% end %>
 
 
