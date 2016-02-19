@@ -1,7 +1,7 @@
 <h1>Thank you!</h1>
 <p>
-  Thank you for your continuing support of <%= cents_to_dollars(@subscription.plan.amount) %>
-  per <%= @subscription.plan.interval %>.
+  Thank you for your continuing support of <%= cents_to_dollars(@subscription.amount) %>
+  per <%= @subscription.plan[:interval] %>.
 </p>
 <p>
   You'll be listed on our donors page as <%= @subscription.donor_name %>.

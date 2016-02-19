@@ -5,21 +5,21 @@ class SubscriptionTest < ActiveSupport::TestCase
   setup do
     @client = StripeMock.start_client
     @client.clear_server_data
+    @plan = Plan.plan_list.first
+    Plan.create_stripe_plan(@plan)
   end
   teardown do
     StripeMock.stop_client
   end
   test "charge_the_token" do
-    plan = Plan.create(:amount => 1000, :interval => 'day', :name => 'test plan', :stripe_id => 'test_plan')
-    subscription = Subscription.create(:plan => plan, :token_id => 'test-token', :email => 'test@test.com')
+    subscription = Subscription.create(:stripe_plan_id => @plan[:id], :token_id => 'test-token', :email => 'test@test.com')
 
     customers = @client.get_server_data(:customers)
     assert_equal 1, customers.size
   end
 
   test "cancel" do
-    plan = Plan.create(:amount => 1000, :interval => 'day', :name => 'test plan', :stripe_id => 'test_plan')
-    subscription = Subscription.create(:plan => plan, :token_id => 'test-token', :email => 'test@test.com')
+    subscription = Subscription.create(:stripe_plan_id => @plan[:id], :token_id => 'test-token', :email => 'test@test.com')
 
     subscription.cancel
 

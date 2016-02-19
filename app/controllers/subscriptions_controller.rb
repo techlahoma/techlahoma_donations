@@ -14,7 +14,7 @@ class SubscriptionsController < ApplicationController
 
   # GET /subscriptions/new
   def new
-    @plan = params[:plan_id] ? Plan.find_by_stripe_id(params[:plan_id]) : Plan.first
+    @plan = params[:plan_id] ? Plan.find_by_stripe_id(params[:plan_id]) : Plan.plan_list.first
     @subscription = Subscription.new(:amount => (@plan[:cost_in_dollars] * 100).to_i )
   end
 
@@ -59,6 +59,6 @@ class SubscriptionsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def subscription_params
-      params.require(:subscription).permit(:email, :plan_id, :token_id, :name)
+      params.require(:subscription).permit(:email, :stripe_plan_id, :token_id, :name)
     end
 end

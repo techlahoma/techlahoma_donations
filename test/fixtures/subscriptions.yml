@@ -2,14 +2,14 @@
 
 one:
   email: MyString
-  plan: one
   amount: 1000
   token_id: MyString
   guid: guid1
+  stripe_plan_id: <%= Plan.plan_list.first[:id] %>
 
 two:
   email: MyString
-  plan: two
   amount: 2000
   token_id: MyString
   guid: guid2
+  stripe_plan_id: <%= Plan.plan_list.first[:id] %>

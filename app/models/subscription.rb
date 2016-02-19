@@ -1,5 +1,4 @@
 class Subscription < ActiveRecord::Base
-  belongs_to :plan
 
   def to_param
     guid
@@ -15,7 +14,7 @@ class Subscription < ActiveRecord::Base
   def charge_the_token
     customer = Stripe::Customer.create(
       :source => self.token_id,
-      :plan => self.plan.stripe_id,
+      :plan => self.stripe_plan_id,
       :email => self.email
     )
     self.stripe_customer_id = customer["id"]
@@ -46,6 +45,10 @@ class Subscription < ActiveRecord::Base
 
   def notify_techlahomies
     #p 'email techlahoma@gmail.com about subscription posting'
+  end
+
+  def plan
+    Plan.find_by_stripe_id(stripe_plan_id)
   end
 
   before_create :populate_guid

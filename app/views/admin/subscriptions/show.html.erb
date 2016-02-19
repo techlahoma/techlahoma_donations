@@ -1,8 +1,7 @@
 <p>Name: <%= @subscription.donor_name %></p>
 <p>Email: <%= @subscription.email %></p>
-<p>Amount: <%= cents_to_dollars @subscription.plan.amount %></p>
-<p>Interval: <%= @subscription.plan.interval %></p>
-<p>Interval Count: <%= @subscription.plan.interval_count %></p>
+<p>Amount: <%= cents_to_dollars @subscription.amount %></p>
+<p>Plan: <%= @subscription.stripe_plan_id %></p>
 <p>Date: <%= @subscription.created_at.to_s(:short) %></p>
 <p>Stripe Subscription ID: <%= @subscription.stripe_subscription_id %></p>
 
