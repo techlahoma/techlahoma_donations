@@ -10,7 +10,8 @@ class Subscription < ActiveRecord::Base
   # Ideally the process of charging a card would happen
   # in the bakground and in a service object of some sort.
   # This is the quick and dirty method that doesn't require background workers.
-  before_create :charge_the_token,  :send_thank_you_email, :notify_slack, :notify_techlahomies
+  before_create :charge_the_token, :populate_plan_data
+  after_create :send_thank_you_email, :notify_slack, :notify_techlahomies
   def charge_the_token
     customer = Stripe::Customer.create(
       :source => self.token_id,
@@ -22,6 +23,12 @@ class Subscription < ActiveRecord::Base
     self.stripe_status = customer["subscriptions"]["data"].first["status"]
     self.stripe_response = customer.to_json
     #self.save!
+  end
+
+  def populate_plan_data
+    self.plan_name = plan[:name]
+    self.interval = plan[:interval]
+    self.interval_count = plan[:interval_count]
   end
 
   def cancel
