@@ -1,23 +1,36 @@
-<h1>Techlahoma Individual Membership Plans</h1>
+<% content_for :hero do %>
+  <!-- Hero -->
+  <section id="hero" class="container">
+    <header>
+      <h2>Techlahoma Individual Membership Plans</h2>
+    </header>
+    <p>
+      2016 is the first time that Techlahoma is offering memberships.
+      Members who join this year will be counted as <strong>Founding Members</strong>, and this will be
+      the only time you can earn that badge.
+    </p>
 
-<p>
-  2016 is the first time that Techlahoma is offering memberships.
-  Members who join this year will be counted as Founding Members, and this will be
-  the only time you can earn that badge.
-</p>
+    <p>
+      Join today and become a Founding Member!
+    </p>
+  </section>
+<% end %>
 
-<p>
-  Join today and become a Founding Member, Founding Leader, or Founding Champion!
-</p>
+<h2></h2>
 
+
+<div class="row">
 <% @plan_bases.each do |plan_base| %>
-  <div class="plan">
+  <section class="6u 12u(narrower) feature">
+    <div class="plan">
     <h3><%= plan_base[:name] %></h3>
     <h3>$<%= plan_base[:cost_in_dollars_per_year] %> / year</h3>
     <p><%= plan_base[:benefits] %></p>
-    <%= link_to "Join Now!", new_subscription_path(:plan_id => Plan.id_for_plan_base(plan_base,'annual')), :class => "button" %>
+    <%= link_to "Join Now as a #{plan_base[:name]}!", new_subscription_path(:plan_id => Plan.id_for_plan_base(plan_base,'annual')), :class => "button" %>
+    <br/>
     <%= link_to "Or pay monthly at #{number_to_currency plan_base[:cost_in_dollars_per_year].to_f/12} / month.", new_subscription_path(:plan_id => Plan.id_for_plan_base(plan_base,'monthly')), :class => "small" %>
-  </div>
+    </div>
+  </section>
 <% end %>
-
+</div>
 

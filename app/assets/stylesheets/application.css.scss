@@ -11,10 +11,35 @@
  * file per style scope.
  *
  *= require jquery-ui
- *= require_tree .
+ *= require main
  *= require_self
  */
 
+
+#footer-tax-info{
+  text-align:center;
+}
+
+#hero{
+  /*margin-top:5em;*/
+}
+
+#header-wrapper{
+  /*padding-top:3em;*/
+}
+
+.plan{
+  padding:4em;
+  margin-bottom:4em;
+  border-bottom:1px solid #ddd;
+  background-image: url("images/overlay.png"), url("images/header.svg"), -moz-linear-gradient(75deg, #FFFFFF 15%, #FFFFFF 55%);
+  background-image: url("images/overlay.png"), url("images/header.svg"), -webkit-linear-gradient(75deg, #FFFFFF 15%, #FFFFFF 55%);
+  background-image: url("images/overlay.png"), url("images/header.svg"), -ms-linear-gradient(75deg, #FFFFFF 15%, #FFFFFF 55%);
+  background-image: url("images/overlay.png"), url("images/header.svg"), linear-gradient(75deg, #FFFFFF 15%, #FFFFFF 55%);
+}
+
+
+/*
 $dark-grey: #292829;
 $bluish: #5bb8f0;
 body{
@@ -84,3 +109,4 @@ a.button{
     }
   }
 }
+*/
