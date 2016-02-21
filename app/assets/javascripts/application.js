@@ -12,6 +12,9 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require skel.min
+//= require util
+//= require main
 //= require jquery-ui
 //= require jquery.ui.touch-punch
 //= require_tree .
