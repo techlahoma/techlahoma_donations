@@ -50,8 +50,8 @@ class Plan
   def self.generate_plan_list
     all_plans = []
     PLAN_BASES.each do |plan_base|
-      id_base = plan_base[:name].parameterize
       all_plans.push({
+        :base_name => plan_base[:name],
         :name => "#{plan_base[:name]} Annual",
         :id => id_for_plan_base(plan_base,'annual'),
         :cost_in_dollars => plan_base[:cost_in_dollars_per_year],
@@ -60,6 +60,7 @@ class Plan
         :benefits => plan_base[:benefits]
       })
       all_plans.push({
+        :base_name => plan_base[:name],
         :name => "#{plan_base[:name]} Monthly",
         :id => id_for_plan_base(plan_base,'monthly'),
         :cost_in_dollars => plan_base[:cost_in_dollars_per_year].to_f / 12,

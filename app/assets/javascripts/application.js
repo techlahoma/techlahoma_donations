@@ -17,4 +17,5 @@
 //= require main
 //= require jquery-ui
 //= require jquery.ui.touch-punch
+//= require jquery.payment
 //= require_tree .

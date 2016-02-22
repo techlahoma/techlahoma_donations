@@ -5,6 +5,13 @@ var Techlahoma = Techlahoma || {};
 
 Techlahoma.Subscriptions = {};
 
+Techlahoma.Subscriptions.origButtonText = '';
+
+var stripePublishableKey = stripePublishableKey || '<%= Rails.configuration.stripe[:publishable_key] %>';
+
+
+
+/*
 Techlahoma.Subscriptions.handler = StripeCheckout.configure({
   key: '<%= Rails.configuration.stripe[:publishable_key] %>',
   image: '<%= asset_path 'bson-128.png' %>',
@@ -17,14 +24,39 @@ Techlahoma.Subscriptions.handler = StripeCheckout.configure({
 
   }
 });
+*/
 
-
+/*
 Techlahoma.Subscriptions.friendlyAmount = function(amount){
   return "$" + amount/100;
 }
+*/
 
 
 Techlahoma.Subscriptions.init = function(){
+
+  try{
+    Stripe.setPublishableKey(stripePublishableKey);
+  }catch(error){
+    console.log("Maybe stripe isn't loaded?");
+    console.log(error);
+  }
+
+  $('.exp-date').payment('formatCardExpiry');
+  $('input[data-stripe="number"]').payment('formatCardNumber');
+  $('input[data-stripe="cvc"]').payment('formatCardCVC');
+
+  $('.exp-date').on('keyup', function() {
+      var e = $('.exp-date').first();
+      var out = $.payment.cardExpiryVal(e.val());
+      $('input[data-stripe="exp_month"]').val(out.month);
+      $('input[data-stripe="exp_year"]').val(out.year);
+  });
+
+  $('.card-number').on('keyup', Techlahoma.Subscriptions.detectCardType);
+
+  $('form').submit(Techlahoma.Subscriptions.formHandler);
+  /*
   $('#new_subscription').on('submit', function(e) {
     var amount = $('#subscription_amount').val();
     // Open Checkout with further options
@@ -35,6 +67,7 @@ Techlahoma.Subscriptions.init = function(){
     });
     e.preventDefault();
   });
+  */
 };
 
 
@@ -43,3 +76,138 @@ $(function() {
     Techlahoma.Subscriptions.init();
   }
 });
+
+
+
+
+
+
+
+
+
+
+Techlahoma.Subscriptions.preValidate = function(){
+  var $form = $('form');
+  $form.find('input.submit').val('Validating Info');
+
+  var emailField = $form.find('input.email');
+  var emailValid = Techlahoma.Subscriptions.validateEmail(emailField.val());
+  if(emailValid){
+    emailField.removeClass('error');
+  }else{
+    emailField.addClass('error');
+  }
+
+  var ccNumField = $form.find('input.card-number');
+  var ccNumValid = $.payment.validateCardNumber(ccNumField.val());
+  if(ccNumValid){
+    ccNumField.removeClass('error');
+  }else{
+    ccNumField.addClass('error');
+  }
+
+  var ccExpField = $form.find('input.exp-date');
+  var ccExpVal = $.payment.cardExpiryVal(ccExpField.val());
+  var ccExpValid = $.payment.validateCardExpiry(ccExpVal.month,ccExpVal.year);
+  if(ccExpValid){
+    ccExpField.removeClass('error');
+  }else{
+    ccExpField.addClass('error');
+  }
+
+  var ccCvcField = $form.find('input.cvc');
+  var ccCvcValid = $.payment.validateCardCVC(ccCvcField.val());
+  if(ccCvcValid){
+    ccCvcField.removeClass('error');
+  }else{
+    ccCvcField.addClass('error');
+  }
+
+
+  return emailValid && ccNumValid && ccExpValid && ccCvcValid;
+};
+
+Techlahoma.Subscriptions.validateEmail = function(email){
+  return email.indexOf('@') > 0 && email.length > 5;
+};
+
+Techlahoma.Subscriptions.stripeResponseHandler = function(status, response){
+  var $form = $('form');
+  console.log('stripeResponseHandler',status,response);
+
+  if (response.error) {
+    // Show the errors on the form
+    $form.find('.payment-errors').text(response.error.message);
+    $form.find('input.submit').prop('disabled', false);
+    $form.find('input.submit').val(Techlahoma.Subscriptions.origButtonText);
+  } else {
+    $form.find('input.submit').val('Processing Payment');
+
+    // response contains id and card, which contains additional card details
+    var token = response.id;
+    // Insert the token into the form so it gets submitted to the server
+    $form.find('#subscription_token_id').val(token);
+
+    //var amount = $('#display_amount').val();
+    //amount = accounting.unformat(amount);
+    //$('#payment_amount').val(amount);
+    // and submit
+    $form.get(0).submit();
+  }
+};
+
+Techlahoma.Subscriptions.detectCardType = function() {
+  console.log('detecting');
+  var e = $('.card-number').first();
+    var type = $.payment.cardType(e.val());
+    var img = "money.png";
+    switch(type) {
+        case "visa":
+          img = "visa.png";
+          break;
+        case "mastercard":
+          img = "mastercard.png";
+          break;
+        case "discover":
+          img = "discover.png";
+          break;
+        case "amex":
+          img = "amex.png";
+          break;
+    }
+    e.css('background-image', 'url(/images/creditcards/' + img + ')');
+};
+
+
+Techlahoma.Subscriptions.formHandler = function(event) {
+
+  console.log('calling the formHandler');
+
+  var $form = $(this);
+
+  // Disable the submit button to prevent repeated clicks
+  $form.find('button').prop('disabled', true);
+
+  // Remove previous error
+  $form.find('.payment-errors').text('');
+
+  Techlahoma.Subscriptions.origButtonText = $form.find('input.submit').val();
+  $form.find('input.submit').val('Saving Credit Card');
+
+  // Populate the date fields correctly
+  var values = $.payment.cardExpiryVal( $('.exp-date').val() );
+  $('.cc_exp_month').val(values.month);
+  $('.cc_exp_year').val(values.year);
+
+  if(Techlahoma.Subscriptions.preValidate()){
+    Stripe.card.createToken($form, Techlahoma.Subscriptions.stripeResponseHandler);
+  }else{
+    $form.find('input.submit').val(Techlahoma.Subscriptions.origButtonText);
+  }
+
+  // Prevent the form from submitting with the default action
+  return false;
+}
+
+
+

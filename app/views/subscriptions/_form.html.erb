@@ -12,22 +12,43 @@
   <% end %>
 
 
-  <p>You are signing up for <%= @plan[:name] %> at <%= cents_to_dollars(@plan[:cost_in_dollars] * 100) %> per <%= @plan[:interval] %></p>
+  <p>You are signing up for <strong><%= @plan[:name] %></strong> at <strong><%= cents_to_dollars(@plan[:cost_in_dollars] * 100) %> per <%= @plan[:interval] %></strong></p>
 
   <p>In return for your generous contribution you will receive:</p>
 
   <p><%= @plan[:benefits] %></p>
-  <div class="field">
-    <%= f.label :name do %>Please enter the name that you'd like to appear on our donations page.  Leave this blank if you'd rather be all mysterious.<% end %><br>
+
+
+  <h3>Your Info</h3>
+
+  <div class="form-group">
+    <%= f.label :email %>
+    <%= f.text_field :email, :placeholder => "you@yourdomain.com", :class=>"text email" %>
+  </div>
+
+  <br/>
+  <hr />
+  <br/>
+
+  <h3>Donor Recognition</h3>
+
+  <div class="form-group">
+    <%= f.label :name do %>Please enter the name that you'd like to appear on our donations page.  Leave this blank if you'd rather be all mysterious.<% end %>
     <%= f.text_field :name, :placeholder => "An Anonymous Donor", :class=>"text" %>
   </div>
+
+  <br/>
+  <hr />
+  <br/>
+
+  <%= render 'subscriptions/billing' %>
 
   <%= f.hidden_field :token_id %>
   <%= f.hidden_field :amount %>
   <%= f.hidden_field :stripe_plan_id %>
   <%= f.hidden_field :email %>
-
+  <br/>
   <div class="actions">
-    <%= f.submit "Join Now!", :class => "button" %>
+    <%= f.submit "Join Now!", :class => "button submit" %>
   </div>
 <% end %>

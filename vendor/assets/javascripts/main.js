@@ -42,12 +42,12 @@
 				$(':last-child').addClass('last-child');
 
 		// Dropdowns.
-			$('#nav > ul').dropotron({
+			/*$('#nav > ul').dropotron({
 				mode: 'fade',
 				speed: 300,
 				alignment: 'center',
 				noOpenerFade: true
-			});
+			});*/
 
 		// Off-Canvas Navigation.
 

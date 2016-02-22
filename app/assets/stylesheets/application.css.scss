@@ -38,6 +38,17 @@
   background-image: url("images/overlay.png"), url("images/header.svg"), linear-gradient(75deg, #FFFFFF 15%, #FFFFFF 55%);
 }
 
+form input.card-number {
+  background-image: url(/images/creditcards/money.png);
+  background-repeat: no-repeat !important;
+  background-size: 30px !important;
+  background-position: right 10px center !important;
+}
+
+form input.error{
+  border-color:#990000;
+  background-color:#ffdddd;
+}
 
 /*
 $dark-grey: #292829;
