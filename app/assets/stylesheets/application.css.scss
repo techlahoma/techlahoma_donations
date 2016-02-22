@@ -31,11 +31,10 @@
 .plan{
   padding:4em;
   margin-bottom:4em;
-  border-bottom:1px solid #ddd;
-  background-image: url("images/overlay.png"), url("images/header.svg"), -moz-linear-gradient(75deg, #FFFFFF 15%, #FFFFFF 55%);
-  background-image: url("images/overlay.png"), url("images/header.svg"), -webkit-linear-gradient(75deg, #FFFFFF 15%, #FFFFFF 55%);
-  background-image: url("images/overlay.png"), url("images/header.svg"), -ms-linear-gradient(75deg, #FFFFFF 15%, #FFFFFF 55%);
-  background-image: url("images/overlay.png"), url("images/header.svg"), linear-gradient(75deg, #FFFFFF 15%, #FFFFFF 55%);
+  background-image: image-url("images/overlay.png"), image-url("images/header.svg"), -moz-linear-gradient(75deg, #FFFFFF 15%, #FFFFFF 55%);
+  background-image: image-url("images/overlay.png"), image-url("images/header.svg"), -webkit-linear-gradient(75deg, #FFFFFF 15%, #FFFFFF 55%);
+  background-image: image-url("images/overlay.png"), image-url("images/header.svg"), -ms-linear-gradient(75deg, #FFFFFF 15%, #FFFFFF 55%);
+  background-image: image-url("images/overlay.png"), image-url("images/header.svg"), linear-gradient(75deg, #FFFFFF 15%, #FFFFFF 55%);
 }
 
 form input.card-number {
