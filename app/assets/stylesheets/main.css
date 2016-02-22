@@ -2335,7 +2335,7 @@
 			}
 
 			#header-wrapper {
-				padding: 2em 0 2em 0;
+				padding: 3em 0 2em 0;
 			}
 
 			.homepage #header-wrapper {
@@ -2380,11 +2380,11 @@
 			}
 
 			#header-wrapper {
-				padding: 5em 0 1em 0;
+				padding: 2em 0 1em 0;
 			}
 
 			.homepage #header-wrapper {
-				padding: 5em 0 4em 0;
+				padding: 3em 0 4em 0;
 			}
 
 			#promo-wrapper {
@@ -2613,7 +2613,7 @@
 			}
 
 			#header-wrapper {
-				padding: 3em 20px 20px 20px;
+				padding: 20px 20px 20px 20px;
 				text-align: center;
 			}
 
@@ -2638,7 +2638,7 @@
 				#logo a {
 					border: solid 1px rgba(255, 255, 255, 0.75);
 					border-radius: 0.35em;
-					height: 3em;
+					/*height: 3em;*/
 					line-height: 3em;
 				}
 
