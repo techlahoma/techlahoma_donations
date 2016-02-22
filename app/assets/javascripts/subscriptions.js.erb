@@ -56,6 +56,8 @@ Techlahoma.Subscriptions.init = function(){
   $('.card-number').on('keyup', Techlahoma.Subscriptions.detectCardType);
 
   $('form').submit(Techlahoma.Subscriptions.formHandler);
+
+  console.log('setup the form handler');
   /*
   $('#new_subscription').on('submit', function(e) {
     var amount = $('#subscription_amount').val();
