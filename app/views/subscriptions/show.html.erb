@@ -14,7 +14,9 @@
 
 <p>
   <%= @subscription.address1 %><br/>
-  <%= @subscription.address2 %><br/>
+  <% if @subscription.address2.present? %>
+    <%= @subscription.address2 %><br/>
+  <% end %>
   <%= @subscription.city %> <%= @subscription.state %> <%= @subscription.zipcode %><br/>
 </p>
 
