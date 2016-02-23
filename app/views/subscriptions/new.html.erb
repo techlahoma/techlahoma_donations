@@ -6,32 +6,9 @@
   </div>
   <div class="4u 12u(narrower)">
     <section id="sidebar">
-      <section>
-        <header>
-          <h3>Tax-Deductible</h3>
-        </header>
-        <p>
-        Your contribution to Techlahoma is tax-deductible.
-        After you donate we'll send you the paperwork to file with your taxes.
-        </p>
-      </section>
-      <section>
-        <header>
-          <h3>Employer Match</h3>
-        </header>
-        <p>
-          Many companies will match the contributions of their employers.
-        </p>
-        <ul class="actions">
-          <li><a href="#" class="button">Learn more about employer matching</a></li>
-        </ul>
-      </section>
-      <section>
-        <header>
-          <h3>Join by check</h3>
-        </header>
-        <p>We need some real info to go here. Halp!</p>
-      </section>
+      <%= render 'subscriptions/side_tax_deductible' %>
+      <%= render 'subscriptions/side_employer_match' %>
+      <%= render 'subscriptions/side_join_by_check' %>
     </section>
   </div>
 </div>
