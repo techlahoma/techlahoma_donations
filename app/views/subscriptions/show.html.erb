@@ -3,8 +3,19 @@
   Thank you for your continuing support of <%= cents_to_dollars(@subscription.amount) %>
   per <%= @subscription.plan[:interval] %>.
 </p>
+
+
+<h3>Donor Recognition</h3>
 <p>
   You'll be listed on our donors page as <%= @subscription.donor_name %>.
+</p>
+
+<h3>Mailing Address</h3>
+
+<p>
+  <%= @subscription.address1 %><br/>
+  <%= @subscription.address2 %><br/>
+  <%= @subscription.city %> <%= @subscription.state %> <%= @subscription.zipcode %><br/>
 </p>
 
 

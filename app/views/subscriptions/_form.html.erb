@@ -43,6 +43,11 @@
     <%= render 'subscriptions/billing' %>
   </fieldset>
 
+  <fieldset>
+    <legend>Mailing Address</legend>
+    <%= render 'subscriptions/address', :f => f %>
+  </fieldset>
+
   <%= f.hidden_field :token_id %>
   <%= f.hidden_field :amount %>
   <%= f.hidden_field :stripe_plan_id %>

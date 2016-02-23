@@ -58,18 +58,6 @@ Techlahoma.Subscriptions.init = function(){
   $('form').submit(Techlahoma.Subscriptions.formHandler);
 
   console.log('setup the form handler');
-  /*
-  $('#new_subscription').on('submit', function(e) {
-    var amount = $('#subscription_amount').val();
-    // Open Checkout with further options
-    Techlahoma.Subscriptions.handler.open({
-      name: 'Donate to Techlahoma',
-      description: 'Recurring subscription : ' + Techlahoma.Subscriptions.friendlyAmount(amount),
-      amount: amount
-    });
-    e.preventDefault();
-  });
-  */
 };
 
 
@@ -80,8 +68,22 @@ $(function() {
 });
 
 
+Techlahoma.Subscriptions.validateField = function(selector, validator){
+  console.log('selector ',selector);
+  var field = $(selector);
+  console.log('val ', field.val());
+  var valid = validator(field.val());
+  if(valid){
+    field.removeClass('error');
+  }else{
+    field.addClass('error');
+  }
+  return valid;
+}
 
-
+Techlahoma.Subscriptions.validatePresence = function(value){
+  return value !== '';
+}
 
 
 
@@ -92,22 +94,15 @@ Techlahoma.Subscriptions.preValidate = function(){
   var $form = $('form');
   $form.find('input.submit').val('Validating Info');
 
-  var emailField = $form.find('input.email');
-  var emailValid = Techlahoma.Subscriptions.validateEmail(emailField.val());
-  if(emailValid){
-    emailField.removeClass('error');
-  }else{
-    emailField.addClass('error');
-  }
+  var formIsValid = true;
+  var validateField = Techlahoma.Subscriptions.validateField;
+  var validatePresence = Techlahoma.Subscriptions.validatePresence;
 
-  var ccNumField = $form.find('input.card-number');
-  var ccNumValid = $.payment.validateCardNumber(ccNumField.val());
-  if(ccNumValid){
-    ccNumField.removeClass('error');
-  }else{
-    ccNumField.addClass('error');
-  }
+  formIsValid = validateField('input.email',Techlahoma.Subscriptions.validateEmail) && formIsValid;
 
+  formIsValid = validateField('input.card-number',$.payment.validateCardNumber) && formIsValid;
+
+  // This one is a little tricky, so we do it manually
   var ccExpField = $form.find('input.exp-date');
   var ccExpVal = $.payment.cardExpiryVal(ccExpField.val());
   var ccExpValid = $.payment.validateCardExpiry(ccExpVal.month,ccExpVal.year);
@@ -117,15 +112,18 @@ Techlahoma.Subscriptions.preValidate = function(){
     ccExpField.addClass('error');
   }
 
-  var ccCvcField = $form.find('input.cvc');
-  var ccCvcValid = $.payment.validateCardCVC(ccCvcField.val());
-  if(ccCvcValid){
-    ccCvcField.removeClass('error');
-  }else{
-    ccCvcField.addClass('error');
-  }
+  formIsValid = validateField('input.cvc',$.payment.validateCardCVC) && formIsValid;
+
+  formIsValid = validateField('input#subscription_address1',validatePresence) && formIsValid;
+
+  formIsValid = validateField('input#subscription_city',validatePresence) && formIsValid;
+
+  formIsValid = validateField('input#subscription_state',validatePresence) && formIsValid;
+
+  formIsValid = validateField('input#subscription_zipcode',validatePresence) && formIsValid;
 
 
+  return formIsValid;
   return emailValid && ccNumValid && ccExpValid && ccCvcValid;
 };
 

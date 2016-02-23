@@ -1,0 +1,24 @@
+<div class="form-group">
+  <%= f.label :address1 %>
+  <%= f.text_field :address1, :placeholder => "1234 Your Street", :class=>"text" %>
+</div>
+
+<div class="form-group">
+  <%= f.label :address2 %>
+  <%= f.text_field :address2, :placeholder => "Apt J", :class=>"text" %>
+</div>
+
+<div class="row">
+  <div class="form-group 6u">
+    <%= f.label :city %>
+    <%= f.text_field :city, :placeholder => ["Tulsa", "Oklahoma City", "Norman"].sample, :class=>"text" %>
+  </div>
+  <div class="form-group 3u">
+    <%= f.label :state %>
+    <%= f.text_field :state, :placeholder => "OK", :class=>"text" %>
+  </div>
+  <div class="form-group 3u">
+    <%= f.label :zipcode %>
+    <%= f.text_field :zipcode, :placeholder => "73071", :class=>"text" %>
+  </div>
+</div>
