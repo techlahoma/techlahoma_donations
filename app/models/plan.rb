@@ -20,36 +20,48 @@ class Plan
     {
       :name => "Founding Early Adopter",
       :cost_in_dollars_per_year => 1024,
-      :benefits => "Techlahoma Founding Member T-Shirt and Stratified Website Recognition"
+      :benefits => "Stratified Recognition Wall Props plus Champion level perks"
     },
+    
+  ]
+
+  SPONSOR_BASES = [
     {
-      :name => "Founding User Group Hero",
+      :name => "User Group Hero",
       :cost_in_dollars_per_year => 2048,
       :benefits => "Techlahoma Founding Member Polo and Stratified Website Recognition"
     },
     {
-      :name => "Founding Angel Investor",
+      :name => "User Group Hero",
+      :cost_in_dollars_per_year => 5120,
+      :benefits => "Techlahoma Founding Member Polo and Stratified Website Recognition"
+    },
+    {
+      :name => "Angel Investor",
       :cost_in_dollars_per_year => 10240,
       :benefits => "Techlahoma Founding Member Hoodie or Yeti Mug and Stratified Website Recognition"
     }
-    
   ]
 
   def self.plan_bases
     PLAN_BASES
   end
 
+  def self.sponsor_bases
+    SPONSOR_BASES
+  end
+
   def self.plan_list
-    @@plan_list ||= generate_plan_list
+    @@plan_list ||= generate_plan_list(PLAN_BASES)
   end
 
   def self.id_for_plan_base plan_base, modifier
     "#{plan_base[:name].parameterize}-#{modifier}"
   end
 
-  def self.generate_plan_list
+  def self.generate_plan_list(base_list)
     all_plans = []
-    PLAN_BASES.each do |plan_base|
+    base_list.each do |plan_base|
       all_plans.push({
         :base_name => plan_base[:name],
         :name => "#{plan_base[:name]} Annual",
