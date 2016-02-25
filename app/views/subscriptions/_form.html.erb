@@ -40,7 +40,7 @@
 
   <fieldset>
     <legend>Donor Gift</legend>
-    <% if @plan[:benefits].include?("T-Shirt") %>
+    <% if plan_gets_tee_shirt(@plan) %>
       <div class="row">
         <div class="form-group 6u">
           <%= f.label :tee_shirt_size %>
