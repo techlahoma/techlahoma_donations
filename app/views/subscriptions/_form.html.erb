@@ -39,6 +39,22 @@
   </fieldset>
 
   <fieldset>
+    <legend>Donor Gift</legend>
+    <div class="row">
+    <div class="form-group 6u">
+      <%= f.label :tee_shirt_size %>
+      <%= f.select :tee_shirt_size, TeeShirt::SIZES, :prompt => "Select a shirt size" %>
+    </div>
+
+    <div class="form-group 6u">
+      <%= f.label :tee_shirt_color %>
+      <%= f.select :tee_shirt_color, TeeShirt::COLORS, :prompt => "Select a shirt color" %>
+    </div>
+    </div>
+  </fieldset>
+
+ 
+  <fieldset>
     <legend>Payment Information</legend>
     <%= render 'subscriptions/billing' %>
   </fieldset>

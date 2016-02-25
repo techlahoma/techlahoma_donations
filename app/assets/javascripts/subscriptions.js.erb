@@ -82,7 +82,7 @@ Techlahoma.Subscriptions.validateField = function(selector, validator){
 }
 
 Techlahoma.Subscriptions.validatePresence = function(value){
-  return value !== '';
+  return value !== '' && typeof value !== 'undefined';
 }
 
 
@@ -122,6 +122,10 @@ Techlahoma.Subscriptions.preValidate = function(){
 
   formIsValid = validateField('input#subscription_zipcode',validatePresence) && formIsValid;
 
+  if( $('select#subscription_tee_shirt_size').length ){
+    formIsValid = validateField('select#subscription_tee_shirt_size',validatePresence) && formIsValid;
+    formIsValid = validateField('select#subscription_tee_shirt_color',validatePresence) && formIsValid;
+  }
 
   return formIsValid;
   return emailValid && ccNumValid && ccExpValid && ccCvcValid;

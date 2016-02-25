@@ -44,7 +44,8 @@ form input.card-number {
   background-position: right 10px center !important;
 }
 
-form input.error{
+form input.error,
+form select.error{
   border-color:#990000;
   background-color:#ffdddd;
 }
@@ -68,6 +69,7 @@ fieldset{
 .form-group{
   margin-bottom:0.5em;
 }
+
 
 /*
 $dark-grey: #292829;
