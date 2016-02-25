@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160225014113) do
+ActiveRecord::Schema.define(version: 20160225024936) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -74,6 +74,7 @@ ActiveRecord::Schema.define(version: 20160225014113) do
     t.string   "zipcode"
     t.string   "tee_shirt_size"
     t.string   "tee_shirt_color"
+    t.boolean  "accept_gift",                        default: true
   end
 
   add_index "subscriptions", ["plan_id"], name: "index_subscriptions_on_plan_id", using: :btree

@@ -40,6 +40,13 @@
 
   <fieldset>
     <legend>Donor Gift</legend>
+    <div class="form-group inline">
+      <%= f.radio_button(:accept_gift, true) %>
+      <%= f.label(:accept_gift_true, "Yes, I'd like to receive a gift&nbsp;&nbsp;".html_safe) %>
+      <%= f.radio_button(:accept_gift, false) %>
+      <%= f.label(:accept_gift_false, "No, please don't send me a gift") %>
+    </div>
+    <div id="gift-selections">
     <% if plan_gets_tee_shirt(@plan) %>
       <div class="row">
         <div class="form-group 6u">
@@ -53,6 +60,7 @@
         </div>
       </div>
     <% end %>
+    </div>
   </fieldset>
 
  

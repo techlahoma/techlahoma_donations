@@ -55,6 +55,8 @@ Techlahoma.Subscriptions.init = function(){
 
   $('.card-number').on('keyup', Techlahoma.Subscriptions.detectCardType);
 
+  $('input[type=radio][name="subscription[accept_gift]"]').change(Techlahoma.Subscriptions.acceptGiftToggle);
+
   $('form').submit(Techlahoma.Subscriptions.formHandler);
 
   console.log('setup the form handler');
@@ -66,6 +68,21 @@ $(function() {
     Techlahoma.Subscriptions.init();
   }
 });
+
+
+Techlahoma.Subscriptions.acceptGiftToggle = function(){
+  var acceptGift = Techlahoma.Subscriptions.donorAcceptsGift();
+  if( acceptGift ){
+    $('#gift-selections').show();
+  }else{
+    $('#gift-selections').hide();
+  }
+}
+
+Techlahoma.Subscriptions.donorAcceptsGift = function(){
+  var radioVal = $('input:radio[name="subscription[accept_gift]"]:checked').val();
+  return radioVal === 'true';
+}
 
 
 Techlahoma.Subscriptions.validateField = function(selector, validator){
@@ -122,7 +139,9 @@ Techlahoma.Subscriptions.preValidate = function(){
 
   formIsValid = validateField('input#subscription_zipcode',validatePresence) && formIsValid;
 
-  if( $('select#subscription_tee_shirt_size').length ){
+  var acceptGift = Techlahoma.Subscriptions.donorAcceptsGift();
+
+  if( $('select#subscription_tee_shirt_size').length && acceptGift ){
     formIsValid = validateField('select#subscription_tee_shirt_size',validatePresence) && formIsValid;
     formIsValid = validateField('select#subscription_tee_shirt_color',validatePresence) && formIsValid;
   }
