@@ -26,7 +26,7 @@
     <h3><%= plan_base[:name] %></h3>
     <h3>$<%= plan_base[:cost_in_dollars_per_year] %> / year</h3>
     <p><%= plan_base[:benefits] %></p>
-    <%= link_to "Join Now as a<br/>#{plan_base[:name]}!".html_safe, new_subscription_path(:plan_id => Plan.id_for_plan_base(plan_base,'annual')), :class => "button" %>
+    <%= link_to "Join Now as a<br/>#{plan_base[:name]}!".html_safe, new_subscription_path(:plan_id => Plan.id_for_plan_base(plan_base,'annual')), :class => "button cta" %>
     <br/>
     <%= link_to "Or pay monthly at #{number_to_currency plan_base[:cost_in_dollars_per_year].to_f/12} / month.", new_subscription_path(:plan_id => Plan.id_for_plan_base(plan_base,'monthly')), :class => "small" %>
     </div>

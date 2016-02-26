@@ -11,3 +11,32 @@
     </div>
   </div>
 <% end %>
+
+<% if plan_gets_polo(@plan) %>
+  <div class="row">
+    <div class="form-group 6u">
+      <%= f.label :polo_size %>
+      <%= f.select :polo_size, Polo::SIZES, :prompt => "Select a shirt size" %>
+    </div>
+
+    <div class="form-group 6u">
+      <%= f.label :polo_color %>
+      <%= f.select :polo_color, Polo::COLORS, :prompt => "Select a shirt color" %>
+    </div>
+  </div>
+<% end %>
+
+
+<% if plan_gets_hoodie(@plan) %>
+  <div class="row">
+    <div class="form-group 6u">
+      <%= f.label :hoodie_size %>
+      <%= f.select :hoodie_size, Hoodie::SIZES, :prompt => "Select a shirt size" %>
+    </div>
+
+    <div class="form-group 6u">
+      <%= f.label :hoodie_color %>
+      <%= f.select :hoodie_color, Hoodie::COLORS, :prompt => "Select a shirt color" %>
+    </div>
+  </div>
+<% end %>

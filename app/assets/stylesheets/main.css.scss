@@ -1948,6 +1948,26 @@
 		outline: 0;
 	}
 
+  input[type="button"].cta,
+	input[type="submit"].cta,
+	input[type="reset"].cta,
+	button.cta,
+	.button.cta {
+    background: #000077;
+	  border-color: #000077;
+    color:white;
+  }
+
+  input[type="button"].cta:hover,
+	input[type="submit"].cta:hover,
+	input[type="reset"].cta:hover,
+	button.cta:hover,
+	.button.cta:hover {
+    background: #007700;
+	  border-color: #007700;
+    color:white;
+  }
+
 		input[type="button"]:hover,
 		input[type="submit"]:hover,
 		input[type="reset"]:hover,

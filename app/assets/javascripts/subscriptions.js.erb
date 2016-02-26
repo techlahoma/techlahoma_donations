@@ -146,6 +146,16 @@ Techlahoma.Subscriptions.preValidate = function(){
     formIsValid = validateField('select#subscription_tee_shirt_color',validatePresence) && formIsValid;
   }
 
+  if( $('select#subscription_polo_size').length && acceptGift ){
+    formIsValid = validateField('select#subscription_polo_size',validatePresence) && formIsValid;
+    formIsValid = validateField('select#subscription_polo_color',validatePresence) && formIsValid;
+  }
+
+  if( $('select#subscription_hoodie_size').length && acceptGift ){
+    formIsValid = validateField('select#subscription_hoodie_size',validatePresence) && formIsValid;
+    formIsValid = validateField('select#subscription_hoodie_color',validatePresence) && formIsValid;
+  }
+
   return formIsValid;
   return emailValid && ccNumValid && ccExpValid && ccCvcValid;
 };
