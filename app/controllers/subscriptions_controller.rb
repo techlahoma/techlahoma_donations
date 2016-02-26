@@ -64,6 +64,9 @@ class SubscriptionsController < ApplicationController
     def subscription_params
       params.require(:subscription).permit(:email, :stripe_plan_id, :token_id, :name, :amount,
                                           :address1, :address2, :city, :state, :zipcode, :accept_gift,
-                                          :tee_shirt_size, :tee_shirt_color)
+                                          :tee_shirt_size, :tee_shirt_color,
+                                          :polo_size, :polo_color,
+                                          :hoodie_size, :hoodie_color, :gift_selected
+                                          )
     end
 end

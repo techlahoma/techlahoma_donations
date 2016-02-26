@@ -57,6 +57,9 @@ Techlahoma.Subscriptions.init = function(){
 
   $('input[type=radio][name="subscription[accept_gift]"]').change(Techlahoma.Subscriptions.acceptGiftToggle);
 
+  $('select[name="subscription[gift_selected]"]').change(Techlahoma.Subscriptions.giftSelectedToggle);
+  Techlahoma.Subscriptions.giftSelectedToggle();
+
   $('form').submit(Techlahoma.Subscriptions.formHandler);
 
   console.log('setup the form handler');
@@ -76,8 +79,30 @@ Techlahoma.Subscriptions.acceptGiftToggle = function(){
     $('#gift-selections').show();
   }else{
     $('#gift-selections').hide();
+    $('#subscription_hoodie_size').val('');
+    $('#subscription_hoodie_color').val('');
   }
 }
+
+
+
+Techlahoma.Subscriptions.giftSelectedToggle = function(){
+  var hoodieSelected = Techlahoma.Subscriptions.hoodieSelected();
+  if( hoodieSelected ){
+    $('#hoodie-options').show();
+  }else{
+    $('#hoodie-options').hide();
+    $('#subscription_hoodie_size').val('');
+    $('#subscription_hoodie_color').val('');
+  }
+}
+
+Techlahoma.Subscriptions.hoodieSelected = function(){
+  var gift = $('select[name="subscription[gift_selected]"]').val();
+  console.log('gift',gift);
+  return gift.indexOf("Hoodie") >= 0;
+}
+
 
 Techlahoma.Subscriptions.donorAcceptsGift = function(){
   var radioVal = $('input:radio[name="subscription[accept_gift]"]:checked').val();
@@ -151,9 +176,14 @@ Techlahoma.Subscriptions.preValidate = function(){
     formIsValid = validateField('select#subscription_polo_color',validatePresence) && formIsValid;
   }
 
-  if( $('select#subscription_hoodie_size').length && acceptGift ){
+  var hoodieSelected = Techlahoma.Subscriptions.hoodieSelected();
+  if( $('select#subscription_hoodie_size').length && acceptGift && hoodieSelected){
     formIsValid = validateField('select#subscription_hoodie_size',validatePresence) && formIsValid;
     formIsValid = validateField('select#subscription_hoodie_color',validatePresence) && formIsValid;
+  }
+
+  if( $('select#subscription_gift_selected').length && acceptGift ){
+    formIsValid = validateField('select#subscription_gift_selected',validatePresence) && formIsValid;
   }
 
   return formIsValid;

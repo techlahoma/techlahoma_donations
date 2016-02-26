@@ -29,6 +29,12 @@
 
 <% if plan_gets_hoodie(@plan) %>
   <div class="row">
+    <div class="form-group 12u">
+      <%= f.label :gift_selected %>
+      <%= f.select :gift_selected, ["Techlahoma Members-Only Hoodie","Techlahoma Member-Only Yeti Mug"], :prompt => "Select your gift" %>
+    </div>
+  </div>
+  <div class="row" id="hoodie-options">
     <div class="form-group 6u">
       <%= f.label :hoodie_size %>
       <%= f.select :hoodie_size, Hoodie::SIZES, :prompt => "Select a shirt size" %>
