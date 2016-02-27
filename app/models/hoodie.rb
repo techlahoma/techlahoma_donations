@@ -1,15 +1,15 @@
 class Hoodie
   SIZES = [
-    "Women's Small",
-    "Women's Medium",
-    "Women's Large",
-    "Men's Small",
-    "Men's Medium",
-    "Men's Large"
+    "Unisex XS",
+    "Unisex S",
+    "Unisex M",
+    "Unisex L",
+    "Unisex XL",
+    "Unisex 2XL"
   ]
 
   COLORS = [
-    "Green",
-    "Blue"
+    "Blue",
+    "Green"
   ]
 end

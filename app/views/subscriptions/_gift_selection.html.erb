@@ -10,6 +10,11 @@
       <%= f.select :tee_shirt_color, TeeShirt::COLORS, :prompt => "Select a shirt color" %>
     </div>
   </div>
+  <div>
+    <%= link_to "Women's T-Shirt", "http://www.quantumco.com/:quicksearch.htm?quicksearchbox=LNZPI-KGSSZ" %>
+    &nbsp;&nbsp;
+    <%= link_to "Men's T-Shirt", "http://www.quantumco.com/:quicksearch.htm?quicksearchbox=NOXUB-KGQWQ" %>
+  </div>
 <% end %>
 
 <% if plan_gets_polo(@plan) %>
@@ -23,6 +28,11 @@
       <%= f.label :polo_color %>
       <%= f.select :polo_color, Polo::COLORS, :prompt => "Select a shirt color" %>
     </div>
+  </div>
+  <div>
+    <%= link_to "Women's Polo", "http://www.quantumco.com/:quicksearch.htm?quicksearchbox=RQTUD-GWXFQ" %>
+    &nbsp;&nbsp;
+    <%= link_to "Men's Polo", "http://www.quantumco.com/:quicksearch.htm?quicksearchbox=BUWPJ-KYNHY" %>
   </div>
 <% end %>
 
@@ -45,4 +55,14 @@
       <%= f.select :hoodie_color, Hoodie::COLORS, :prompt => "Select a shirt color" %>
     </div>
   </div>
+  <div>
+    <%= link_to "Unisex Hoodie", "http://www.quantumco.com/:quicksearch.htm?quicksearchbox=ELRPI-IQDAZ" %>
+    &nbsp;
+    &nbsp;
+    <%= link_to "Yeti Rambler Tumbler", "http://www.rei.com/product/874364/yeti-rambler-tumbler-20-fl-oz?cm_mmc=cse_PLA_GOOG-_-8743640001&CAWELAID=120217890000784000&lsft=cm_mmc:cse_PLA_GOOG" %>
+  </div>
 <% end %>
+
+<p>
+  Plese note: Planned brand options could change depending upon availability.
+</p>

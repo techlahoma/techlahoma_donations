@@ -1,15 +1,25 @@
 class Polo
   SIZES = [
-    "Women's Small",
-    "Women's Medium",
-    "Women's Large",
-    "Men's Small",
-    "Men's Medium",
-    "Men's Large"
+    "Women's S",
+    "Women's M",
+    "Women's L",
+    "Women's XL",
+    "Women's 2XL",
+    "Women's 3XL",
+    "Women's 4XL",
+    "Men's XS",
+    "Men's S",
+    "Men's M",
+    "Men's L",
+    "Men's XL",
+    "Men's 2XL",
+    "Men's 3XL",
+    "Men's 4XL"
   ]
 
   COLORS = [
-    "White",
-    "Yellow"
+    "Black",
+    "Blue",
+    "Red"
   ]
 end

@@ -51,16 +51,25 @@
     </div>
   </fieldset>
 
+  <fieldset id="gift-delivery">
+    <legend>Gift Delivery</legend>
+    <p>
+      We are currently planning to throw celebration parties simultaneously in OKC and in Tulsa
+      sometime in early summer. Gifts will be distributed there to members who can attend.
+    </p>
+    <p>
+      For members who cannot attend the parties, your gifts will be mailed to you after the party.
+    </p>
+    <%= render 'subscriptions/address', :f => f %>
+  </fieldset>
+
  
   <fieldset>
     <legend>Payment Information</legend>
     <%= render 'subscriptions/billing' %>
   </fieldset>
 
-  <fieldset>
-    <legend>Mailing Address</legend>
-    <%= render 'subscriptions/address', :f => f %>
-  </fieldset>
+  
 
   <%= f.hidden_field :token_id %>
   <%= f.hidden_field :amount %>

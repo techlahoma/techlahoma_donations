@@ -77,8 +77,10 @@ Techlahoma.Subscriptions.acceptGiftToggle = function(){
   var acceptGift = Techlahoma.Subscriptions.donorAcceptsGift();
   if( acceptGift ){
     $('#gift-selections').show();
+    $('#gift-delivery').show();
   }else{
     $('#gift-selections').hide();
+    $('#gift-delivery').hide();
     $('#subscription_hoodie_size').val('');
     $('#subscription_hoodie_color').val('');
   }
@@ -100,7 +102,7 @@ Techlahoma.Subscriptions.giftSelectedToggle = function(){
 Techlahoma.Subscriptions.hoodieSelected = function(){
   var gift = $('select[name="subscription[gift_selected]"]').val();
   console.log('gift',gift);
-  return gift.indexOf("Hoodie") >= 0;
+  return gift && gift.indexOf("Hoodie") >= 0;
 }
 
 
