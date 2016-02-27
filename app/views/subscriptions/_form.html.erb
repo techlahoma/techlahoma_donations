@@ -22,20 +22,31 @@
   <fieldset>
     <legend>Your Info</legend>
 
+    <p>We need your name and email address to send you a receipt that will help you claim your tax deduction.</p>
+
     <div class="form-group">
       <%= f.label :email %>
       <%= f.text_field :email, :placeholder => "you@yourdomain.com", :class=>"text email" %>
     </div>
+
+    <div class="form-group">
+      <%= f.label :name, "Name" %>
+      <%= f.text_field :name, :placeholder => "Your Name or Company", :class=>"text" %>
+    </div>
+
   </fieldset>
 
 
   <fieldset>
     <legend>Donor Recognition</legend>
-
-    <div class="form-group">
-      <%= f.label :name do %>Please enter the name that you'd like to appear on our donations page.  Leave this blank if you'd rather be all mysterious.<% end %>
-      <%= f.text_field :name, :placeholder => "An Anonymous Donor", :class=>"text" %>
+    <p>Would you like to be publicly recognized for your membership?</p>
+    <div class="form-group inline">
+      <%= f.radio_button(:accept_recognition, true) %>
+      <%= f.label(:accept_recognition_true, "Yes, I'd like to be recognized.".html_safe) %>
+      <%= f.radio_button(:accept_recognition, false) %>
+      <%= f.label(:accept_recognition_false, "No, I'd rather remain anonymous.") %>
     </div>
+    
   </fieldset>
 
   <fieldset>

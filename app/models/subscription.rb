@@ -5,7 +5,7 @@ class Subscription < ActiveRecord::Base
   end
 
   def donor_name
-    name.blank? ? "An Anonymous Donor" : name
+    self.accept_recognition? ? name : "An Anonymous Donor"
   end
   # Ideally the process of charging a card would happen
   # in the bakground and in a service object of some sort.

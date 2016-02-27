@@ -142,6 +142,8 @@ Techlahoma.Subscriptions.preValidate = function(){
   var validateField = Techlahoma.Subscriptions.validateField;
   var validatePresence = Techlahoma.Subscriptions.validatePresence;
 
+  formIsValid = validateField('input#subscription_name',validatePresence) && formIsValid;
+
   formIsValid = validateField('input.email',Techlahoma.Subscriptions.validateEmail) && formIsValid;
 
   formIsValid = validateField('input.card-number',$.payment.validateCardNumber) && formIsValid;
