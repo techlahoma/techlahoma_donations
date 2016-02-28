@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  resources :subscriptions
+  resources :donations
   resources :plans
   get 'plans' => 'plans#index'
   get 'sponsorship' => 'home#sponsorship'

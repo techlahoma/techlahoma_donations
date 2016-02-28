@@ -24,7 +24,7 @@ class SubscriptionTest < ActiveSupport::TestCase
     subscription.cancel
 
     customers = @client.get_server_data(:customers)
-    
+
     assert_equal 'canceled', customers["test_cus_1"][:subscriptions][:data].first[:status]
   end
 end
