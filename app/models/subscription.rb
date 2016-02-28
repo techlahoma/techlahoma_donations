@@ -1,11 +1,8 @@
 class Subscription < ActiveRecord::Base
 
+  include GuidIds
 
   validates :email, :presence => true
-
-  def to_param
-    guid
-  end
 
   def donor_name
     self.accept_recognition? ? name : "An Anonymous Donor"
@@ -59,13 +56,6 @@ class Subscription < ActiveRecord::Base
 
   def plan
     Plan.find_by_stripe_id(stripe_plan_id)
-  end
-
-  before_create :populate_guid
-
-  private
-  def populate_guid
-    self.guid = SecureRandom.uuid()
   end
 
 end

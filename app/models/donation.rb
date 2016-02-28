@@ -1,10 +1,8 @@
 class Donation < ActiveRecord::Base
 
-  validates :email, :presence => true
+  include GuidIds
 
-  def to_param
-    guid
-  end
+  validates :email, :presence => true
 
   def donor_name
     name.blank? ? "An Anonymous Donor" : name
@@ -36,15 +34,5 @@ class Donation < ActiveRecord::Base
   def notify_techlahomies
     #p 'email techlahoma@gmail.com about donation posting'
   end
-
-  before_create :populate_guid
-
-  private
-  def populate_guid
-    self.guid = SecureRandom.uuid()
-  end
-
-
-
 
 end
