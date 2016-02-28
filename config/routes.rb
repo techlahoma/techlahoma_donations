@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :plans
   get 'plans' => 'plans#index'
   get 'sponsorship' => 'home#sponsorship'
 
