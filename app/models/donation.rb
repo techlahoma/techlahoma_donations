@@ -27,7 +27,7 @@ class Donation < ActiveRecord::Base
   end
 
   def send_thank_you_email
-    DonationMailer.thank_you_email(self).deliver
+    DonationMailer.thank_you_email(self).deliver_later
   end
 
   def notify_slack

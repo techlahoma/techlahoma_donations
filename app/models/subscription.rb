@@ -46,7 +46,7 @@ class Subscription < ActiveRecord::Base
   end
 
   def send_thank_you_email
-    SubscriptionMailer.thank_you_email(self).deliver
+    SubscriptionMailer.thank_you_email(self).deliver_later
   end
 
   def notify_slack

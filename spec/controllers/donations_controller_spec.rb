@@ -51,12 +51,6 @@ RSpec.describe DonationsController, type: :controller do
 
   describe "GET #index" do
     it "assigns all donations as @donations" do
-      puts "*"*50
-      puts "*"*50
-      puts "donation count = #{Donation.count}"
-      puts "Rails.env = #{Rails.env}"
-      puts "*"*50
-      puts "*"*50
       donation = Donation.create! valid_attributes
       get :index, {}, valid_session
       expect(assigns(:donations).length).to eq([donation].length)
