@@ -14,6 +14,21 @@
   </section>
 <% end %>
 
+
+<div class="row">
+<% Sponsorship::PLANS.each do |plan| %>
+  <section class="6u 12u(narrower) feature">
+    <div class="plan">
+    <h3><%= plan[:name] %></h3>
+    <h3>$<%= plan[:cost_in_dollars_per_year] %> / year</h3>
+    <p><%= plan[:benefits] %></p>
+    <%= link_to "Sponsor Now as a<br/>#{plan[:name]}!".html_safe, new_sponsorship_path(:plan_id => plan[:id]), :class => "button cta" %>
+    </div>
+  </section>
+<% end %>
+</div>
+
+
 <div class="row">
   <section class="6u 12u(narrower) feature">
     <div class="plan">

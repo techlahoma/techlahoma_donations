@@ -14,7 +14,10 @@ class SponsorshipsController < ApplicationController
 
   # GET /sponsorships/new
   def new
-    @sponsorship = Sponsorship.new
+    @plan = params[:plan_id] ? Sponsorship.find_plan(params[:plan_id]) : Sponsorship::PLANS.first
+    @sponsorship = Sponsorship.new({
+      :plan_id => params[:plan_id]
+    })
   end
 
   # GET /sponsorships/1/edit
@@ -69,6 +72,6 @@ class SponsorshipsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def sponsorship_params
-      params.require(:sponsorship).permit(:email, :name, :amount, :guid, :token_id, :stripe_id, :stripe_status, :stripe_response, :plan_data)
+      params.require(:sponsorship).permit(:email, :name, :plan_id)
     end
 end

@@ -1,0 +1,16 @@
+<fieldset>
+  <legend>Your Info</legend>
+
+  <p>We need your name and email address to send you a receipt that will help you claim your tax deduction.</p>
+
+  <div class="form-group">
+    <%= f.label :email %>
+    <%= f.text_field :email, :placeholder => "you@yourdomain.com", :class=>"text email" %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :name, "Name" %>
+    <%= f.text_field :name, :placeholder => "Your Name or Company", :class=>"text" %>
+  </div>
+
+</fieldset>

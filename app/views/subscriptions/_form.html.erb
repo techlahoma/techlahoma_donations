@@ -18,36 +18,12 @@
 
   <p><%= @plan[:benefits] %></p>
 
+  <%= render 'subscriptions/your_info', :f => f %>
 
-  <fieldset>
-    <legend>Your Info</legend>
-
-    <p>We need your name and email address to send you a receipt that will help you claim your tax deduction.</p>
-
-    <div class="form-group">
-      <%= f.label :email %>
-      <%= f.text_field :email, :placeholder => "you@yourdomain.com", :class=>"text email" %>
-    </div>
-
-    <div class="form-group">
-      <%= f.label :name, "Name" %>
-      <%= f.text_field :name, :placeholder => "Your Name or Company", :class=>"text" %>
-    </div>
-
-  </fieldset>
+  <%= render 'subscriptions/donor_recognition', :f => f %>
 
 
-  <fieldset>
-    <legend>Donor Recognition</legend>
-    <p>Would you like to be publicly recognized for your membership?</p>
-    <div class="form-group inline">
-      <%= f.radio_button(:accept_recognition, true) %>
-      <%= f.label(:accept_recognition_true, "Yes, I'd like to be recognized.".html_safe) %>
-      <%= f.radio_button(:accept_recognition, false) %>
-      <%= f.label(:accept_recognition_false, "No, I'd rather remain anonymous.") %>
-    </div>
-    
-  </fieldset>
+
 
   <fieldset>
     <legend>Donor Gift</legend>
@@ -74,18 +50,12 @@
     <%= render 'subscriptions/address', :f => f %>
   </fieldset>
 
- 
-  <fieldset>
-    <legend>Payment Information</legend>
-    <%= render 'subscriptions/billing' %>
-  </fieldset>
+  <%= render 'subscriptions/billing' %>
 
-  
 
   <%= f.hidden_field :token_id %>
   <%= f.hidden_field :amount %>
   <%= f.hidden_field :stripe_plan_id %>
-  <%= f.hidden_field :email %>
   <br/>
   <div class="actions">
     <%= f.submit "Join Now!", :class => "button submit cta" %>
