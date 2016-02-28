@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :sponsorships
   resources :subscriptions
   resources :donations
   resources :plans
