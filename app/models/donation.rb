@@ -1,5 +1,7 @@
 class Donation < ActiveRecord::Base
 
+  validates :email, :presence => true
+
   def to_param
     guid
   end

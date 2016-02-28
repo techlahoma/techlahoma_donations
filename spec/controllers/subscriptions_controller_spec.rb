@@ -20,16 +20,32 @@ require 'rails_helper'
 
 RSpec.describe SubscriptionsController, type: :controller do
 
+  before :each do
+    StripeMock.start
+    @plan = Plan.plan_list.first
+    Plan.create_stripe_plan(@plan)
+  end
+
+  after :each do
+    StripeMock.stop
+  end
+  
   # This should return the minimal set of attributes required to create a valid
   # Subscription. As you add validations to Subscription, be sure to
   # adjust the attributes here as well.
-  let(:valid_attributes) {
-    skip("Add a hash of attributes valid for your model")
-  }
+  let(:valid_attributes) {{
+    :name => "test person",
+    :email => "test@person.com",
+    :stripe_plan_id => @plan[:id],
+    :token_id => StripeMock.generate_card_token(last4: "9191", exp_year: 1984)
+  }}
 
-  let(:invalid_attributes) {
-    skip("Add a hash of attributes invalid for your model")
-  }
+  let(:invalid_attributes) {{
+    :name => "test person",
+    :email => nil,
+    :stripe_plan_id => @plan[:id],
+    :token_id => StripeMock.generate_card_token(last4: "9191", exp_year: 1984)
+  }}
 
   # This should return the minimal set of values that should be in the session
   # in order to pass any filters (e.g. authentication) defined in
@@ -100,59 +116,59 @@ RSpec.describe SubscriptionsController, type: :controller do
     end
   end
 
-  describe "PUT #update" do
-    context "with valid params" do
-      let(:new_attributes) {
-        skip("Add a hash of attributes valid for your model")
-      }
+  #describe "PUT #update" do
+    #context "with valid params" do
+      #let(:new_attributes) {
+        #skip("Add a hash of attributes valid for your model")
+      #}
 
-      it "updates the requested subscription" do
-        subscription = Subscription.create! valid_attributes
-        put :update, {:id => subscription.to_param, :subscription => new_attributes}, valid_session
-        subscription.reload
-        skip("Add assertions for updated state")
-      end
+      #it "updates the requested subscription" do
+        #subscription = Subscription.create! valid_attributes
+        #put :update, {:id => subscription.to_param, :subscription => new_attributes}, valid_session
+        #subscription.reload
+        #skip("Add assertions for updated state")
+      #end
 
-      it "assigns the requested subscription as @subscription" do
-        subscription = Subscription.create! valid_attributes
-        put :update, {:id => subscription.to_param, :subscription => valid_attributes}, valid_session
-        expect(assigns(:subscription)).to eq(subscription)
-      end
+      #it "assigns the requested subscription as @subscription" do
+        #subscription = Subscription.create! valid_attributes
+        #put :update, {:id => subscription.to_param, :subscription => valid_attributes}, valid_session
+        #expect(assigns(:subscription)).to eq(subscription)
+      #end
 
-      it "redirects to the subscription" do
-        subscription = Subscription.create! valid_attributes
-        put :update, {:id => subscription.to_param, :subscription => valid_attributes}, valid_session
-        expect(response).to redirect_to(subscription)
-      end
-    end
+      #it "redirects to the subscription" do
+        #subscription = Subscription.create! valid_attributes
+        #put :update, {:id => subscription.to_param, :subscription => valid_attributes}, valid_session
+        #expect(response).to redirect_to(subscription)
+      #end
+    #end
 
-    context "with invalid params" do
-      it "assigns the subscription as @subscription" do
-        subscription = Subscription.create! valid_attributes
-        put :update, {:id => subscription.to_param, :subscription => invalid_attributes}, valid_session
-        expect(assigns(:subscription)).to eq(subscription)
-      end
+    #context "with invalid params" do
+      #it "assigns the subscription as @subscription" do
+        #subscription = Subscription.create! valid_attributes
+        #put :update, {:id => subscription.to_param, :subscription => invalid_attributes}, valid_session
+        #expect(assigns(:subscription)).to eq(subscription)
+      #end
 
-      it "re-renders the 'edit' template" do
-        subscription = Subscription.create! valid_attributes
-        put :update, {:id => subscription.to_param, :subscription => invalid_attributes}, valid_session
-        expect(response).to render_template("edit")
-      end
-    end
-  end
+      #it "re-renders the 'edit' template" do
+        #subscription = Subscription.create! valid_attributes
+        #put :update, {:id => subscription.to_param, :subscription => invalid_attributes}, valid_session
+        #expect(response).to render_template("edit")
+      #end
+    #end
+  #end
 
   describe "DELETE #destroy" do
-    it "destroys the requested subscription" do
+    it "cancels the requested subscription" do
       subscription = Subscription.create! valid_attributes
       expect {
         delete :destroy, {:id => subscription.to_param}, valid_session
-      }.to change(Subscription, :count).by(-1)
+      }.to change(Subscription, :count).by(0)
     end
 
-    it "redirects to the subscriptions list" do
+    it "redirects to the subscription" do
       subscription = Subscription.create! valid_attributes
       delete :destroy, {:id => subscription.to_param}, valid_session
-      expect(response).to redirect_to(subscriptions_url)
+      expect(response).to redirect_to(subscription)
     end
   end
 

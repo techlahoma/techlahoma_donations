@@ -7,7 +7,7 @@ RSpec.describe Subscription, type: :model do
     @client.clear_server_data
     @plan = Plan.plan_list.first
     Plan.create_stripe_plan(@plan)
-    @card_token = card_token = StripeMock.generate_card_token(last4: "9191", exp_year: 1984)
+    @card_token = StripeMock.generate_card_token(last4: "9191", exp_year: 1984)
   end
   after :each do
     StripeMock.stop_client
@@ -19,6 +19,9 @@ RSpec.describe Subscription, type: :model do
 
       customers = @client.get_server_data(:customers)
       assert_equal 1, customers.size
+
+      customer_key = customers.keys.first
+      assert_equal 1, customers[customer_key][:subscriptions][:data].length
     end
   end
 

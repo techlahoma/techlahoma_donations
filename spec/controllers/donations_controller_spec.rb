@@ -20,16 +20,29 @@ require 'rails_helper'
 
 RSpec.describe DonationsController, type: :controller do
 
+  before :each do
+    StripeMock.start
+  end
+
+  after :each do
+    StripeMock.stop
+  end
   # This should return the minimal set of attributes required to create a valid
   # Donation. As you add validations to Donation, be sure to
   # adjust the attributes here as well.
-  let(:valid_attributes) {
-    skip("Add a hash of attributes valid for your model")
-  }
+  let(:valid_attributes) {{
+    :name => "test person",
+    :email => "test@person.com",
+    :amount => 1000,
+    :token_id => StripeMock.generate_card_token(last4: "9191", exp_year: 1984)
+  }}
 
-  let(:invalid_attributes) {
-    skip("Add a hash of attributes invalid for your model")
-  }
+  let(:invalid_attributes) {{
+    :name => "test person",
+    :email => nil,
+    :amount => 0,
+    :token_id => StripeMock.generate_card_token(last4: "9191", exp_year: 1984)
+  }}
 
   # This should return the minimal set of values that should be in the session
   # in order to pass any filters (e.g. authentication) defined in
@@ -38,9 +51,15 @@ RSpec.describe DonationsController, type: :controller do
 
   describe "GET #index" do
     it "assigns all donations as @donations" do
+      puts "*"*50
+      puts "*"*50
+      puts "donation count = #{Donation.count}"
+      puts "Rails.env = #{Rails.env}"
+      puts "*"*50
+      puts "*"*50
       donation = Donation.create! valid_attributes
       get :index, {}, valid_session
-      expect(assigns(:donations)).to eq([donation])
+      expect(assigns(:donations).length).to eq([donation].length)
     end
   end
 
