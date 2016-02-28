@@ -69,8 +69,16 @@ After creating the app copy the Application ID and Secret into your `.env` file.
 
 ## Running tests
 
+The RSpec based unit tests can be run with:
+
 ```
-> rake test
+> rspec
+```
+
+And the Cucumber based integration tests can be run with:
+
+```
+> cucumber
 ```
 
 ## Starting the rails server
