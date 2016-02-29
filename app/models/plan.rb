@@ -1,65 +1,100 @@
 class Plan
 
-  PLAN_BASES = [
+  MEMBERSHIP_BASES = [
     {
       :name => "Founding Member",
+      :id => "founding-member",
+      :type => "Membership",
       :cost_in_dollars_per_year => 128,
-      :benefits => "Techlahoma Founding Member T-Shirt and Stratified Website Recognition"
+      :gift => ["Techlahoma Founding Member T-Shirt"],
+      :benefits => "Stratified Website Recognition"
     },
     {
       :name => "Founding Leader",
+      :id => "founding-leader",
+      :type => "Membership",
       :cost_in_dollars_per_year => 256,
-      :benefits => "Techlahoma Founding Member Polo and Stratified Website Recognition"
+      :gift => ["Techlahoma Founding Member Polo"],
+      :benefits => "Stratified Website Recognition"
     },
     {
       :name => "Founding Champion",
+      :id => "founding-champion",
+      :type => "Membership",
       :cost_in_dollars_per_year => 512,
-      :benefits => "Techlahoma Founding Member Hoodie or Yeti Mug and Stratified Website Recognition"
+      :gift => ["Techlahoma Founding Member Hoodie", "Techlahoma Founding Member Yeti Mug"],
+      :benefits => "Stratified Website Recognition"
     },
-
     {
       :name => "Founding Early Adopter",
+      :id => "founding-early-adopter",
+      :type => "Membership",
       :cost_in_dollars_per_year => 1024,
-      :benefits => "Stratified Recognition Wall Props plus Champion level perks"
-    },
-    
+      :gift => ["Techlahoma Founding Member Hoodie", "Techlahoma Founding Member Yeti Mug"],
+      :benefits => "Stratified Recognition Wall Props"
+    }
   ]
 
   SPONSOR_BASES = [
     {
       :name => "User Group Hero",
+      :type => "Sponsorship",
+      :id => "user-group-hero",
       :cost_in_dollars_per_year => 2048,
-      :benefits => "Techlahoma Founding Member Polo and Stratified Website Recognition"
+      :opportunities => 12,
+      :gift => nil,
+      :benefits => [
+        "Website Stratified Recognition props",
+        "Choose a month to be recognized as User Group Hero of the month in each Techlahoma technology group meeting."
+      ]
     },
     {
-      :name => "User Group Hero",
+      :name => "Bootstrap Funder",
+      :type => "Sponsorship",
+      :id => "bootstrap-funder",
       :cost_in_dollars_per_year => 5120,
-      :benefits => "Techlahoma Founding Member Polo and Stratified Website Recognition"
+      :opportunities => 2,
+      :gift => nil,
+      :benefits => [
+        "Website Stratified Recognition props",
+        "Recognition at Tulsa or OKC based Techlahoma technology groups from May 2016 - April 2017"
+      ]
     },
     {
       :name => "Angel Investor",
+      :type => "Sponsorship",
+      :id => "angel-investor",
       :cost_in_dollars_per_year => 10240,
-      :benefits => "Techlahoma Founding Member Hoodie or Yeti Mug and Stratified Website Recognition"
+      :opportunities => nil,
+      :gift => nil,
+      :benefits => [
+        "Website Stratified Recognition props",
+        "Recognition as an Angel Investor at all Techlahoma Technology Group meetings taking place from May 2016 - April 2017. Sponsor can elect to send a representative to speak briefly up to 3 times per Techlahoma Technology Group."
+      ]
     }
   ]
 
-  def self.plan_bases
-    PLAN_BASES
+  def self.membership_bases
+    MEMBERSHIP_BASES
   end
 
   def self.sponsor_bases
     SPONSOR_BASES
   end
 
-  def self.plan_list
-    @@plan_list ||= generate_plan_list(PLAN_BASES)
+  def self.find(id)
+    (MEMBERSHIP_BASES + SPONSOR_BASES).select{|p| p[:id] == id }.first
+  end
+
+  def self.membership_list
+    @@membership_list ||= generate_membership_list(MEMBERSHIP_BASES)
   end
 
   def self.id_for_plan_base plan_base, modifier
     "#{plan_base[:name].parameterize}-#{modifier}"
   end
 
-  def self.generate_plan_list(base_list)
+  def self.generate_membership_list(base_list)
     all_plans = []
     base_list.each do |plan_base|
       all_plans.push({
@@ -85,7 +120,7 @@ class Plan
   end
 
   def self.find_by_stripe_id stripe_id
-    plan_list.select{|p| p[:id] == stripe_id }.first
+    membership_list.select{|p| p[:id] == stripe_id }.first
   end
 
   def self.delete_all_stripe_plans
@@ -96,7 +131,7 @@ class Plan
   end
 
   def self.create_all_stripe_plans
-    plan_list.each do |plan_data|
+    membership_list.each do |plan_data|
       create_stripe_plan plan_data
     end
   end

@@ -1,0 +1,31 @@
+<% content_for :hero do %>
+  <!-- Hero -->
+  <section id="hero" class="container">
+    <header>
+      <h2>Techlahoma Statewide Membership Plans</h2>
+    </header>
+    <p>
+      Join in 2016 to be forever recognized as a<br>
+      <strong>Founding Member</strong>.
+    </p>
+  </section>
+<% end %>
+
+
+
+<div class="row">
+<% Plan.membership_bases.each do |membership_base| %>
+  <section class="6u 12u(narrower) feature">
+    <div class="plan">
+    <h3><%= membership_base[:name] %></h3>
+    <h3>$<%= membership_base[:cost_in_dollars_per_year] %> / year</h3>
+    <p><%= membership_base[:benefits] %></p>
+    <%= link_to "Join Now as a<br/>#{membership_base[:name]}!".html_safe, new_donation_path(:plan_id => membership_base[:id]), :class => "button cta" %>
+    <br/>
+    <%#= link_to "Or pay monthly at #{number_to_currency membership_base[:cost_in_dollars_per_year].to_f/12} / month.", new_subscription_path(:plan_id => Plan.id_for_membership_base(membership_base,'monthly')), :class => "small" %>
+    </div>
+  </section>
+<% end %>
+</div>
+
+

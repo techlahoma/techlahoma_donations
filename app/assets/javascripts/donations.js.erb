@@ -1,6 +1,147 @@
 // Place all the behaviors and hooks related to the matching controller here.
 // All this logic will automatically be available in application.js.
 
+
+var Techlahoma = Techlahoma || {};
+
+Techlahoma.Donations = {};
+
+Techlahoma.Donations.init = function(){
+
+  Techlahoma.Stripe.init();
+
+  Techlahoma.Stripe.initCardFormElements();
+
+  $('input[type=radio][name="donation[accept_gift]"]').change(Techlahoma.Donations.acceptGiftToggle);
+
+  $('select[name="donation[gift_selected]"]').change(Techlahoma.Donations.giftSelectedToggle);
+  Techlahoma.Donations.giftSelectedToggle();
+
+  $('form').submit(Techlahoma.Donations.formHandler);
+
+  console.log('setup the form handler');
+};
+
+
+$(function() {
+  console.log('yo!');
+  if( $('#new_donation').length > 0 ){
+    console.log('jo!');
+    Techlahoma.Donations.init();
+  }
+});
+
+
+Techlahoma.Donations.acceptGiftToggle = function(){
+  var acceptGift = Techlahoma.Donations.donorAcceptsGift();
+  if( acceptGift ){
+    $('#gift-selections').show();
+    $('#gift-delivery').show();
+  }else{
+    $('#gift-selections').hide();
+    $('#gift-delivery').hide();
+    $('#donation_hoodie_size').val('');
+    $('#donation_hoodie_color').val('');
+  }
+}
+
+
+
+Techlahoma.Donations.giftSelectedToggle = function(){
+  var hoodieSelected = Techlahoma.Donations.hoodieSelected();
+  if( hoodieSelected ){
+    $('#hoodie-options').show();
+  }else{
+    $('#hoodie-options').hide();
+    $('#donation_hoodie_size').val('');
+    $('#donation_hoodie_color').val('');
+  }
+}
+
+Techlahoma.Donations.hoodieSelected = function(){
+  var gift = $('select[name="donation[gift_selected]"]').val();
+  console.log('gift',gift);
+  return gift && gift.indexOf("Hoodie") >= 0;
+}
+
+
+Techlahoma.Donations.donorAcceptsGift = function(){
+  var radioVal = $('input:radio[name="donation[accept_gift]"]:checked').val();
+  return radioVal === 'true';
+}
+
+
+
+Techlahoma.Donations.preValidate = function(){
+  var $form = $('form');
+
+  var formIsValid = true;
+  var validateField = Techlahoma.Validations.validateField;
+  var validatePresence = Techlahoma.Validations.validatePresence;
+
+  formIsValid = validateField('input#donation_name',validatePresence) && formIsValid;
+
+  formIsValid = validateField('input.email',Techlahoma.Validations.validateEmail) && formIsValid;
+
+  formIsValid = validateField('input.card-number',$.payment.validateCardNumber) && formIsValid;
+
+  // This one is a little tricky, so we do it manually
+  var ccExpField = $form.find('input.exp-date');
+  var ccExpVal = $.payment.cardExpiryVal(ccExpField.val());
+  var ccExpValid = $.payment.validateCardExpiry(ccExpVal.month,ccExpVal.year);
+  if(ccExpValid){
+    ccExpField.removeClass('error');
+  }else{
+    ccExpField.addClass('error');
+  }
+
+  formIsValid = validateField('input.cvc',$.payment.validateCardCVC) && formIsValid;
+
+  var acceptGift = Techlahoma.Donations.donorAcceptsGift();
+
+  if( $('input#donation_address1').length && acceptGift ){
+    formIsValid = validateField('input#donation_address1',validatePresence) && formIsValid;
+    formIsValid = validateField('input#donation_city',validatePresence) && formIsValid;
+    formIsValid = validateField('input#donation_state',validatePresence) && formIsValid;
+    formIsValid = validateField('input#donation_zipcode',validatePresence) && formIsValid;
+  }
+
+  if( $('select#donation_tee_shirt_size').length && acceptGift ){
+    formIsValid = validateField('select#donation_tee_shirt_size',validatePresence) && formIsValid;
+    formIsValid = validateField('select#donation_tee_shirt_color',validatePresence) && formIsValid;
+  }
+
+  if( $('select#donation_polo_size').length && acceptGift ){
+    formIsValid = validateField('select#donation_polo_size',validatePresence) && formIsValid;
+    formIsValid = validateField('select#donation_polo_color',validatePresence) && formIsValid;
+  }
+
+  var hoodieSelected = Techlahoma.Donations.hoodieSelected();
+  if( $('select#donation_hoodie_size').length && acceptGift && hoodieSelected){
+    formIsValid = validateField('select#donation_hoodie_size',validatePresence) && formIsValid;
+    formIsValid = validateField('select#donation_hoodie_color',validatePresence) && formIsValid;
+  }
+
+  if( $('select#donation_gift_selected').length && acceptGift ){
+    formIsValid = validateField('select#donation_gift_selected',validatePresence) && formIsValid;
+  }
+
+  return formIsValid;
+};
+
+
+
+
+Techlahoma.Donations.formHandler = function(event) {
+
+  return Techlahoma.Stripe.formHandler(event,Techlahoma.Donations.preValidate);
+
+}
+
+
+
+
+
 /*
 var Techlahoma = Techlahoma || {};
 

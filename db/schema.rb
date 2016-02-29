@@ -11,24 +11,40 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160228185241) do
+ActiveRecord::Schema.define(version: 20160229170939) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "donations", force: :cascade do |t|
-    t.string   "first_name",      limit: 255
-    t.string   "last_name",       limit: 255
-    t.string   "email",           limit: 255
-    t.decimal  "amount",                      precision: 8, scale: 2
+    t.string   "first_name",         limit: 255
+    t.string   "last_name",          limit: 255
+    t.string   "email",              limit: 255
+    t.decimal  "amount",                         precision: 8, scale: 2
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "guid",            limit: 255
-    t.string   "name",            limit: 255
-    t.string   "token_id",        limit: 255
-    t.string   "stripe_id",       limit: 255
-    t.string   "stripe_status",   limit: 255
+    t.string   "guid",               limit: 255
+    t.string   "name",               limit: 255
+    t.string   "token_id",           limit: 255
+    t.string   "stripe_id",          limit: 255
+    t.string   "stripe_status",      limit: 255
     t.text     "stripe_response"
+    t.string   "plan_id"
+    t.string   "plan_name"
+    t.string   "address1"
+    t.string   "address2"
+    t.string   "city"
+    t.string   "state"
+    t.string   "zipcode"
+    t.string   "tee_shirt_size"
+    t.string   "tee_shirt_color"
+    t.boolean  "accept_gift",                                            default: true
+    t.string   "polo_size"
+    t.string   "polo_color"
+    t.string   "hoodie_size"
+    t.string   "hoodie_color"
+    t.string   "gift_selected"
+    t.boolean  "accept_recognition",                                     default: true
   end
 
   create_table "plans", force: :cascade do |t|

@@ -14,7 +14,12 @@ class DonationsController < ApplicationController
 
   # GET /donations/new
   def new
-    @donation = Donation.new(amount: 50)
+    @plan = Plan.find(params[:plan_id])
+    amount = @plan ? (@plan[:cost_in_dollars_per_year] * 100).to_i : 50
+    @donation = Donation.new({
+      :amount => amount,
+      :plan_id => params[:plan_id]
+    })
   end
 
   # GET /donations/1/edit
@@ -31,11 +36,13 @@ class DonationsController < ApplicationController
         format.html { redirect_to @donation, notice: 'Donation was successfully created.' }
         format.json { render :show, status: :created, location: @donation }
       else
+        @plan = Plan.find(params[:donation][:plan_id])
         format.html { render :new }
         format.json { render json: @donation.errors, status: :unprocessable_entity }
       end
     end
   rescue Stripe::CardError => e
+    @plan = Plan.find(params[:donation][:plan_id])
     @donation.errors.add("Credit card", e)
     respond_to do |format|
       format.html { render :new, flash: { error: e.to_s } }
@@ -68,6 +75,10 @@ class DonationsController < ApplicationController
   end
 
   private
+
+    def set_plan
+
+    end
     # Use callbacks to share common setup or constraints between actions.
     def set_donation
       @donation = Donation.find_by_guid!(params[:id])
@@ -75,6 +86,11 @@ class DonationsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def donation_params
-      params.require(:donation).permit(:first_name, :last_name, :email, :amount, :name, :token_id)
+      params.require(:donation).permit(:email, :amount, :name, :token_id, :plan_id,
+                                      :address1, :address2, :city, :state, :zipcode, :accept_gift,
+                                      :tee_shirt_size, :tee_shirt_color,
+                                      :polo_size, :polo_color,
+                                      :hoodie_size, :hoodie_color, :gift_selected, :accept_recognition
+                                      )
     end
 end

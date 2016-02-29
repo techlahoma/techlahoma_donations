@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   resources :plans
   get 'plans' => 'plans#index'
   get 'sponsorship' => 'home#sponsorship'
+  get 'membership' => 'home#membership'
 
   namespace :admin do
     resources :plans
