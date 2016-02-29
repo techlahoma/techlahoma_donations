@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160229170939) do
+ActiveRecord::Schema.define(version: 20160229200311) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -55,22 +55,6 @@ ActiveRecord::Schema.define(version: 20160229170939) do
     t.string   "stripe_id",      limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
-  end
-
-  create_table "sponsorships", force: :cascade do |t|
-    t.string   "email"
-    t.string   "name"
-    t.decimal  "amount"
-    t.string   "guid"
-    t.string   "token_id"
-    t.string   "stripe_id"
-    t.string   "stripe_status"
-    t.text     "stripe_response"
-    t.text     "plan_data"
-    t.datetime "created_at",                        null: false
-    t.datetime "updated_at",                        null: false
-    t.boolean  "accept_recognition", default: true
-    t.string   "plan_id"
   end
 
   create_table "subscriptions", force: :cascade do |t|
