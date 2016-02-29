@@ -13,6 +13,6 @@ module SubscriptionsHelper
   end
 
   def plan_gets_a_gift(plan)
-    plan[:gift].present?
+    plan && plan[:gift].present?
   end
 end
