@@ -9,7 +9,10 @@ class Hoodie
   ]
 
   COLORS = [
+    "Vintage Green",
+    "Black",
+    "Navy Blue",
     "Blue",
-    "Green"
+    "Coffee Brown"
   ]
 end
