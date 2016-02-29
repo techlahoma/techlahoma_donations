@@ -6,7 +6,7 @@
     <% @donations.each do |donation| %>
       <tr>
         <td class="donor"><%=link_to donation.donor_name, [:admin,donation] %></td>
-        <td class="date"><%= donation.created_at.to_s(:short) %></td>
+        <td class="date"><%= link_to donation.created_at.to_s(:short), [:admin,donation] %></td>
       </tr>
     <% end %>
   </tbody>

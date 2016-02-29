@@ -4,7 +4,7 @@ class Admin::DonationsController < Admin::AdminController
   # GET /donations
   # GET /donations.json
   def index
-    @donations = Donation.all
+    @donations = Donation.all.order(:created_at)
   end
 
   # GET /donations/1
