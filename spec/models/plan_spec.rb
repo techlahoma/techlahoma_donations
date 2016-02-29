@@ -11,18 +11,18 @@ RSpec.describe Plan, type: :model do
     StripeMock.stop_client
   end
 
-  describe "plan_list" do
+  describe "membership_list" do
     it "should return a list of available plans" do
-      plan_bases = Plan::PLAN_BASES
-      plan_list = Plan.plan_list
+      plan_bases = Plan::MEMBERSHIP_BASES
+      membership_list = Plan.membership_list
 
-      expect(plan_list.count).to eq(plan_bases.count * 2)
+      expect(membership_list.count).to eq(plan_bases.count * 2)
     end
   end
 
   describe "create_stripe_plan" do
     it "should create one plan" do
-      plan_data = Plan.plan_list.first
+      plan_data = Plan.membership_list.first
       Plan.create_stripe_plan plan_data
 
       plans = @client.get_server_data(:plans)
@@ -35,13 +35,13 @@ RSpec.describe Plan, type: :model do
       Plan.create_all_stripe_plans
 
       plans = @client.get_server_data(:plans)
-      assert_equal plans.size, Plan.plan_list.count
+      assert_equal plans.size, Plan.membership_list.count
     end
   end
 
   describe "delete_all_stripe_plans" do
     it "should delete all the plans" do
-      plan_data = Plan.plan_list.first
+      plan_data = Plan.membership_list.first
       Plan.create_stripe_plan plan_data
 
       plans = @client.get_server_data(:plans)

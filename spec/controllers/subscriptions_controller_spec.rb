@@ -22,7 +22,7 @@ RSpec.describe SubscriptionsController, type: :controller do
 
   before :each do
     StripeMock.start
-    @plan = Plan.plan_list.first
+    @plan = Plan.membership_list.first
     Plan.create_stripe_plan(@plan)
   end
 
