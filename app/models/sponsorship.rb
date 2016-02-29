@@ -37,4 +37,49 @@ class Sponsorship < ActiveRecord::Base
     PLANS.select{|p| p[:id] == id }.first
   end
 
+  validates :email, :presence => true
+  validates :name, :presence => true
+
+  def donor_name
+    self.accept_recognition? ? name : "An Anonymous Donor"
+  end
+
+  # Ideally the process of charging a card would happen
+  # in the bakground and in a service object of some sort.
+  # This is the quick and dirty method that doesn't require background workers.
+  before_create :populate_plan_data, :charge_the_token
+  after_create :send_thank_you_email, :notify_slack, :notify_techlahomies
+  def charge_the_token
+    charge = Stripe::Charge.create(
+      amount:      (amount * 100).to_i,
+      currency:    "usd",
+      card:        token_id,
+      description: email
+    )
+    self.stripe_id = charge["id"]
+    self.stripe_status = charge["status"]
+    self.stripe_response = charge.to_json
+  end
+
+  def populate_plan_data
+    #self.plan_name = plan[:name]
+    self.amount = plan[:cost_in_dollars_per_year]
+  end
+
+  def send_thank_you_email
+    SponsorshipMailer.thank_you_email(self).deliver_later
+  end
+
+  def notify_slack
+    Chat.slack_message("New Sponsorship: $#{self.amount.to_i} by #{self.donor_name}")
+  end
+
+  def notify_techlahomies
+    #p 'email techlahoma@gmail.com about subscription posting'
+  end
+
+  def plan
+    Sponsorship.find_plan(plan_id)
+  end
+
 end

@@ -72,6 +72,6 @@ class SponsorshipsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def sponsorship_params
-      params.require(:sponsorship).permit(:email, :name, :plan_id)
+      params.require(:sponsorship).permit(:email, :name, :plan_id, :token_id)
     end
 end

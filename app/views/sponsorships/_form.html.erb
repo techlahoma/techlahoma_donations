@@ -23,7 +23,7 @@
 
   <%= render 'subscriptions/billing' %>
 
-  <%= f.hidden_field :token_id %>
+  <%= f.hidden_field :token_id, :class=>'stripe-token-id' %>
   <%= f.hidden_field :plan_id %>
 
   <div class="actions">

@@ -1,0 +1,129 @@
+var stripePublishableKey = stripePublishableKey || '<%= Rails.configuration.stripe[:publishable_key] %>';
+
+var Techlahoma = Techlahoma || {};
+
+Techlahoma.Stripe = {};
+
+Techlahoma.Stripe.origButtonText = '';
+
+Techlahoma.Stripe.init = function(){
+  try{
+    Stripe.setPublishableKey(stripePublishableKey);
+  }catch(error){
+    console.log("Maybe stripe isn't loaded?");
+    console.log(error);
+  }
+};
+
+Techlahoma.Stripe.initCardFormElements = function(){
+  $('.exp-date').payment('formatCardExpiry');
+  $('input[data-stripe="number"]').payment('formatCardNumber');
+  $('input[data-stripe="cvc"]').payment('formatCardCVC');
+
+  $('.exp-date').on('keyup', function() {
+      var e = $('.exp-date').first();
+      var out = $.payment.cardExpiryVal(e.val());
+      $('input[data-stripe="exp_month"]').val(out.month);
+      $('input[data-stripe="exp_year"]').val(out.year);
+  });
+
+  $('.card-number').on('keyup', Techlahoma.Stripe.detectCardType);
+}
+
+Techlahoma.Stripe.detectCardType = function() {
+  console.log('detecting');
+  var e = $('.card-number').first();
+    var type = $.payment.cardType(e.val());
+    var img = "money.png";
+    switch(type) {
+        case "visa":
+          img = "visa.png";
+          break;
+        case "mastercard":
+          img = "mastercard.png";
+          break;
+        case "discover":
+          img = "discover.png";
+          break;
+        case "amex":
+          img = "amex.png";
+          break;
+    }
+    e.css('background-image', 'url(/images/creditcards/' + img + ')');
+};
+
+
+
+Techlahoma.Stripe.responseHandler = function(status, response){
+  console.log('stripeResponseHandler',status,response);
+
+  var $form = $('form');
+  if (response.error) {
+    // Show the errors on the form
+    $form.find('.payment-errors').text(response.error.message);
+    $form.find('input.submit').prop('disabled', false);
+    $form.find('input.submit').val(Techlahoma.Stripe.origButtonText);
+  } else {
+    $form.find('input.submit').val('Processing Payment');
+
+    // response contains id and card, which contains additional card details
+    var token = response.id;
+    console.log('token = ', token);
+    // Insert the token into the form so it gets submitted to the server
+    $('.stripe-token-id').val(token);
+
+    console.log('elems = ', $('.stripe-token-id'));
+    console.log('val = ', $('.stripe-token-id').val());
+    //var amount = $('#display_amount').val();
+    //amount = accounting.unformat(amount);
+    //$('#payment_amount').val(amount);
+    // and submit
+    $form.get(0).submit();
+  }
+};
+
+Techlahoma.Stripe.formHandler = function(event, validator) {
+
+  console.log('calling the formHandler');
+
+  var $form = $('form');
+
+  // Disable the submit button to prevent repeated clicks
+  $form.find('button').prop('disabled', true);
+
+  // Remove previous error
+  $form.find('.payment-errors').text('');
+
+  Techlahoma.Stripe.origButtonText = $form.find('input.submit').val();
+  $form.find('input.submit').val('Saving Credit Card');
+
+  // Populate the date fields correctly
+  var values = $.payment.cardExpiryVal( $('.exp-date').val() );
+  $('.cc_exp_month').val(values.month);
+  $('.cc_exp_year').val(values.year);
+
+  $form.find('input.submit').val('Validating Info');
+  if(validator()){
+    var cardData = {
+      number: $form.find('.card-number').val(),
+      cvc: $form.find('.cvc').val(),
+      exp_month: $form.find('.cc_exp_month').val(),
+      exp_year: $form.find('.cc_exp_year').val()
+    }
+    console.log('trying to createToken');
+    console.log('form = ', $form);
+    console.log('cardData = ', cardData);
+    try{
+      Stripe.card.createToken(cardData, Techlahoma.Stripe.responseHandler);
+    }catch(error){
+      console.error(error);
+      return false;
+    }
+  }else{
+    $form.find('input.submit').val(Techlahoma.Stripe.origButtonText);
+  }
+
+  // Prevent the form from submitting with the default action
+  return false;
+}
+
