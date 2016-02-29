@@ -75,13 +75,13 @@ RSpec.describe SubscriptionsController, type: :controller do
     end
   end
 
-  describe "GET #edit" do
-    it "assigns the requested subscription as @subscription" do
-      subscription = Subscription.create! valid_attributes
-      get :edit, {:id => subscription.to_param}, valid_session
-      expect(assigns(:subscription)).to eq(subscription)
-    end
-  end
+  #describe "GET #edit" do
+    #it "assigns the requested subscription as @subscription" do
+      #subscription = Subscription.create! valid_attributes
+      #get :edit, {:id => subscription.to_param}, valid_session
+      #expect(assigns(:subscription)).to eq(subscription)
+    #end
+  #end
 
   describe "POST #create" do
     context "with valid params" do

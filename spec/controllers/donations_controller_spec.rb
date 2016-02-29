@@ -72,13 +72,13 @@ RSpec.describe DonationsController, type: :controller do
     end
   end
 
-  describe "GET #edit" do
-    it "assigns the requested donation as @donation" do
-      donation = Donation.create! valid_attributes
-      get :edit, {:id => donation.to_param}, valid_session
-      expect(assigns(:donation)).to eq(donation)
-    end
-  end
+  #describe "GET #edit" do
+    #it "assigns the requested donation as @donation" do
+      #donation = Donation.create! valid_attributes
+      #get :edit, {:id => donation.to_param}, valid_session
+      #expect(assigns(:donation)).to eq(donation)
+    #end
+  #end
 
   describe "POST #create" do
     context "with valid params" do
@@ -113,46 +113,46 @@ RSpec.describe DonationsController, type: :controller do
     end
   end
 
-  describe "PUT #update" do
-    context "with valid params" do
-      let(:new_attributes) {
-        skip("Add a hash of attributes valid for your model")
-      }
+  #describe "PUT #update" do
+    #context "with valid params" do
+      #let(:new_attributes) {
+        #skip("Add a hash of attributes valid for your model")
+      #}
 
-      it "updates the requested donation" do
-        donation = Donation.create! valid_attributes
-        put :update, {:id => donation.to_param, :donation => new_attributes}, valid_session
-        donation.reload
-        skip("Add assertions for updated state")
-      end
+      #it "updates the requested donation" do
+        #donation = Donation.create! valid_attributes
+        #put :update, {:id => donation.to_param, :donation => new_attributes}, valid_session
+        #donation.reload
+        #skip("Add assertions for updated state")
+      #end
 
-      it "assigns the requested donation as @donation" do
-        donation = Donation.create! valid_attributes
-        put :update, {:id => donation.to_param, :donation => valid_attributes}, valid_session
-        expect(assigns(:donation)).to eq(donation)
-      end
+      #it "assigns the requested donation as @donation" do
+        #donation = Donation.create! valid_attributes
+        #put :update, {:id => donation.to_param, :donation => valid_attributes}, valid_session
+        #expect(assigns(:donation)).to eq(donation)
+      #end
 
-      it "redirects to the donation" do
-        donation = Donation.create! valid_attributes
-        put :update, {:id => donation.to_param, :donation => valid_attributes}, valid_session
-        expect(response).to redirect_to(donation)
-      end
-    end
+      #it "redirects to the donation" do
+        #donation = Donation.create! valid_attributes
+        #put :update, {:id => donation.to_param, :donation => valid_attributes}, valid_session
+        #expect(response).to redirect_to(donation)
+      #end
+    #end
 
-    context "with invalid params" do
-      it "assigns the donation as @donation" do
-        donation = Donation.create! valid_attributes
-        put :update, {:id => donation.to_param, :donation => invalid_attributes}, valid_session
-        expect(assigns(:donation)).to eq(donation)
-      end
+    #context "with invalid params" do
+      #it "assigns the donation as @donation" do
+        #donation = Donation.create! valid_attributes
+        #put :update, {:id => donation.to_param, :donation => invalid_attributes}, valid_session
+        #expect(assigns(:donation)).to eq(donation)
+      #end
 
-      it "re-renders the 'edit' template" do
-        donation = Donation.create! valid_attributes
-        put :update, {:id => donation.to_param, :donation => invalid_attributes}, valid_session
-        expect(response).to render_template("edit")
-      end
-    end
-  end
+      #it "re-renders the 'edit' template" do
+        #donation = Donation.create! valid_attributes
+        #put :update, {:id => donation.to_param, :donation => invalid_attributes}, valid_session
+        #expect(response).to render_template("edit")
+      #end
+    #end
+  #end
 
   describe "DELETE #destroy" do
     it "destroys the requested donation" do

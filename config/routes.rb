@@ -4,7 +4,6 @@ Rails.application.routes.draw do
   get 'membership' => 'home#membership'
 
   namespace :admin do
-    resources :plans
     resources :donations, :except => [:edit,:update,:delete]
     resources :subscriptions, :except => [:edit,:update]
   end

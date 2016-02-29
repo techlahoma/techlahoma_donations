@@ -15,25 +15,25 @@ RSpec.describe DonationsController, type: :routing do
       expect(:get => "/donations/1").to route_to("donations#show", :id => "1")
     end
 
-    it "routes to #edit" do
-      expect(:get => "/donations/1/edit").to route_to("donations#edit", :id => "1")
-    end
+    #it "routes to #edit" do
+      #expect(:get => "/donations/1/edit").to route_to("donations#edit", :id => "1")
+    #end
 
     it "routes to #create" do
       expect(:post => "/donations").to route_to("donations#create")
     end
 
-    it "routes to #update via PUT" do
-      expect(:put => "/donations/1").to route_to("donations#update", :id => "1")
-    end
+    #it "routes to #update via PUT" do
+      #expect(:put => "/donations/1").to route_to("donations#update", :id => "1")
+    #end
 
-    it "routes to #update via PATCH" do
-      expect(:patch => "/donations/1").to route_to("donations#update", :id => "1")
-    end
+    #it "routes to #update via PATCH" do
+      #expect(:patch => "/donations/1").to route_to("donations#update", :id => "1")
+    #end
 
-    it "routes to #destroy" do
-      expect(:delete => "/donations/1").to route_to("donations#destroy", :id => "1")
-    end
+    #it "routes to #destroy" do
+      #expect(:delete => "/donations/1").to route_to("donations#destroy", :id => "1")
+    #end
 
   end
 end
