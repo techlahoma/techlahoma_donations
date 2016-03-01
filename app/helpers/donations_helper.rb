@@ -14,4 +14,8 @@ module DonationsHelper
       donation.gift_selected.include?("Yeti")
   end
 
+  def gift_text gifts
+    ored_gifts = gifts.map{|g| g.respond_to?(:join) ? g.join("<br/>OR<br/>") : g }
+    ored_gifts.join("<br/>AND<br/>").html_safe
+  end
 end

@@ -19,7 +19,7 @@
     <div class="plan">
     <h3><%= membership_base[:name] %></h3>
     <h3>$<%= membership_base[:cost_in_dollars_per_year] %> / year</h3>
-    <p><%= membership_base[:gift].join("<br/>OR<br/>").html_safe %></p>
+    <p><%= gift_text membership_base[:gift] %></p>
     <p><%= membership_base[:benefits] %></p>
     <%= link_to "Join Now as a<br/>#{membership_base[:name]}!".html_safe, new_donation_path(:plan_id => membership_base[:id]), :class => "button cta" %>
     <br/>
