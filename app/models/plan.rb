@@ -31,7 +31,7 @@ class Plan
       :type => "Membership",
       :cost_in_dollars_per_year => 1024,
       :gift => ["Techlahoma Founding Member Hoodie", "Techlahoma Founding Member Yeti Mug"],
-      :benefits => "Stratified Recognition Wall Props"
+      :benefits => "Stratified Website Recognition"
     }
   ]
 
@@ -44,7 +44,7 @@ class Plan
       :opportunities => 12,
       :gift => nil,
       :benefits => [
-        "Website Stratified Recognition props",
+        "Stratified Website Recognition",
         "Choose a month to be recognized as User Group Hero of the month in each Techlahoma technology group meeting."
       ]
     },
@@ -56,7 +56,7 @@ class Plan
       :opportunities => 2,
       :gift => nil,
       :benefits => [
-        "Website Stratified Recognition props",
+        "Stratified Website Recognition",
         "Recognition at Tulsa or OKC based Techlahoma technology groups from May 2016 - April 2017"
       ]
     },
@@ -68,7 +68,7 @@ class Plan
       :opportunities => nil,
       :gift => nil,
       :benefits => [
-        "Website Stratified Recognition props",
+        "Stratified Website Recognition",
         "Recognition as an Angel Investor at all Techlahoma Technology Group meetings taking place from May 2016 - April 2017. Sponsor can elect to send a representative to speak briefly up to 3 times per Techlahoma Technology Group."
       ]
     }

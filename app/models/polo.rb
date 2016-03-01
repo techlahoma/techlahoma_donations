@@ -22,4 +22,6 @@ class Polo
     "Blue",
     "Red"
   ]
+
+  VALUE = 35
 end

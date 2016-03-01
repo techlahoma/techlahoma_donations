@@ -45,4 +45,8 @@ class Donation < ActiveRecord::Base
     #p 'email techlahoma@gmail.com about donation posting'
   end
 
+  def plan
+    Plan.find(plan_id)
+  end
+
 end

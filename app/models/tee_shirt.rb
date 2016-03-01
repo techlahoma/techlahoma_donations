@@ -21,4 +21,6 @@ class TeeShirt
     "Red",
     "Gray"
   ]
+
+  VALUE = 20
 end

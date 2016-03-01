@@ -15,4 +15,6 @@ class Hoodie
     "Blue",
     "Coffee Brown"
   ]
+
+  VALUE = 50
 end

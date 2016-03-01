@@ -1,6 +1,59 @@
-Thank you for your donation to Techlahoma.  You're helping us support developer groups and activities.
+Thank you for supporting Techlahoma.  You're helping us support developer groups and activities.
 
-Your donation of <%= number_to_currency @donation.amount %> will be credited to <%= @donation.name.blank? ? "An Anonymous Donor" : @donation.name %>.
+For tax purposes, your donation of <%= number_to_currency(@donation.amount) %> will be credited to <%= @donation.name %>.
+
+Public Recognition:
+<% if @donation.accept_recognition? %>
+  You'll be listed on our donors page as <%= @donation.donor_name %>
+<% else %>
+  You have chosen to remain anonymous.
+<% end %>
+
+<% if plan_gets_a_gift(@donation.plan) %>
+Your Gift:
+<% if @donation.accept_gift %>
+<% if plan_gets_tee_shirt(@donation.plan) %>
+  Techlahoma Members-Only Tee-Shirt
+  Size: <%= @donation.tee_shirt_size %>
+  Color: <%= @donation.tee_shirt_color %>
+  Value: <%= number_to_currency TeeShirt::VALUE %>
+<% end %>
+<% if plan_gets_polo(@donation.plan) %>
+  Techlahoma Members-Only Polo
+  Size: <%= @donation.polo_size %>
+  Color: <%= @donation.polo_color %>
+  Value: <%= number_to_currency Polo::VALUE %>
+<% end %>
+<% if donation_gets_hoodie(@donation) %>
+  Techlahoma Members-Only Hoodie
+  Size: <%= @donation.hoodie_size %>
+  Color: <%= @donation.hoodie_color %>
+  Value: <%= number_to_currency Hoodie::VALUE %>
+<% end %>
+<% if donation_gets_yeti(@donation) %>
+  Techlahoma Members-Only Yeti Rambler Tumbler
+  Value: <%= number_to_currency Hoodie::VALUE %>
+<% end %>
+<% else %>
+  <p>You have elected not to receive a gift.</p>
+<% end %>
+<% end %>
+
+<% if donation_gets_a_gift(@donation) %>
+Gift Delivery:
+
+We are currently planning to throw celebration parties simultaneously in OKC and in Tulsa sometime in early summer. You can pick up your gift there if you can attend.
+
+If you cannot attend either party, your gift will be mailed after the party to:
+
+  <%= @donation.name %>
+  <%= @donation.address1 %>
+  <% if @donation.address2.present? %>
+  <%= @donation.address2 %>
+  <% end %>
+  <%= @donation.city %> <%= @donation.state %>, <%= @donation.zipcode %>
+<% end %>
+
 
 If you have any questions or concerns, you can respond to this email and let us know.
 

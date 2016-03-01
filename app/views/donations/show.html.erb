@@ -1,8 +1,74 @@
 <h1>Thank you!</h1>
 <p>
-  Thank you for your donation of <%= number_to_currency(@donation.amount) %>
-</p>
-<p>
-  You'll be listed on our donors page as <%= @donation.donor_name %>
+  Thank you for your donation of <%= number_to_currency(@donation.amount) %>.
+  For tax purposes we will credit your donation to <%= @donation.name %>.
 </p>
 
+<p>
+  You can print this page as your recepit, and we will also email a recepit
+  to <%= @donation.email %>
+</p>
+
+<h3>Public Recognition</h3>
+<% if @donation.accept_recognition? %>
+  <p>You'll be listed on our donors page as <%= @donation.donor_name %></p>
+<% else %>
+  <p>You have chosen to remain anonymous.</p>
+<% end %>
+
+<% if plan_gets_a_gift(@donation.plan) %>
+  <h3>Your Gift</h3>
+  <% if @donation.accept_gift %>
+    <% if plan_gets_tee_shirt(@donation.plan) %>
+      <p>
+      Techlahoma Members-Only Tee-Shirt<br/>
+      Size: <%= @donation.tee_shirt_size %><br/>
+      Color: <%= @donation.tee_shirt_color %><br/>
+      Value: <%= number_to_currency TeeShirt::VALUE %>
+      </p>
+    <% end %>
+    <% if plan_gets_polo(@donation.plan) %>
+      <p>
+      Techlahoma Members-Only Polo<br/>
+      Size: <%= @donation.polo_size %><br/>
+      Color: <%= @donation.polo_color %><br/>
+      Value: <%= number_to_currency Polo::VALUE %>
+      </p>
+    <% end %>
+    <% if donation_gets_hoodie(@donation) %>
+      <p>
+      Techlahoma Members-Only Hoodie<br/>
+      Size: <%= @donation.hoodie_size %><br/>
+      Color: <%= @donation.hoodie_color %><br/>
+      Value: <%= number_to_currency Hoodie::VALUE %>
+      </p>
+    <% end %>
+    <% if donation_gets_yeti(@donation) %>
+      <p>
+      Techlahoma Members-Only Yeti Rambler Tumbler<br/>
+      Value: <%= number_to_currency Hoodie::VALUE %>
+      </p>
+    <% end %>
+  <% else %>
+      <p>You have elected not to receive a gift.</p>
+  <% end %>
+<% end %>
+
+<% if donation_gets_a_gift(@donation) %>
+  <h3>Gift Delivery</h3>
+  <p>
+    We are currently planning to throw celebration parties simultaneously in OKC and in Tulsa
+    sometime in early summer. You can pick up your gift there if you can attend.
+  </p>
+  <p>
+    If you cannot attend either party, your gift will be mailed after the party to:
+  </p>
+  <p>
+    <%= @donation.name %><br/>
+    <%= @donation.address1 %><br/>
+    <% if @donation.address2.present? %>
+      <%= @donation.address2 %><br/>
+    <% end %>
+    <%= @donation.city %> <%= @donation.state %>, <%= @donation.zipcode %>
+  </p>
+<% end %>
