@@ -78,6 +78,17 @@
       </div>
     <% end %>
   </fieldset>
+
+  <fieldset>
+    <legend>Your Thoughts</legend>
+    <p>
+      Is there anything else you'd like to tell us?
+    </p>
+    <div class="form-group">
+      <%= f.text_area :notes, :placeholder => "What's on your mind?", :class=>"text" %>
+    </div>
+  </fieldset>
+
   <%= f.hidden_field :plan_id %>
   <%= f.hidden_field :token_id, :class=>'stripe-token-id' %>
 
