@@ -1,7 +1,7 @@
 module DonationsHelper
 
   def donation_gets_a_gift donation
-    donation.plan && donation.accept_gift?
+    plan_gets_a_gift(donation.plan) && donation.accept_gift?
   end
 
   def donation_gets_hoodie donation
