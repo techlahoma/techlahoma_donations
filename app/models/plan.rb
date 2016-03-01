@@ -45,7 +45,7 @@ class Plan
       :gift => nil,
       :benefits => [
         "Stratified Website Recognition",
-        "Choose a month to be recognized as User Group Hero of the month in each Techlahoma technology group meeting."
+        "Choose a month to be recognized as User Group Hero in each Techlahoma technology group meeting."
       ]
     },
     {
@@ -57,7 +57,7 @@ class Plan
       :gift => nil,
       :benefits => [
         "Stratified Website Recognition",
-        "Recognition at Tulsa or OKC based Techlahoma technology groups from May 2016 - April 2017"
+        "Recognition at all Tulsa or OKC based Techlahoma technology groups from May 2016 - April 2017"
       ]
     },
     {

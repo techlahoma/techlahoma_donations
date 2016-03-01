@@ -21,7 +21,7 @@
     <div class="plan">
     <h3><%= plan[:name] %></h3>
     <h3>$<%= plan[:cost_in_dollars_per_year] %> / year</h3>
-    <p><%= plan[:benefits] %></p>
+    <p><%= plan[:benefits].join("<br/>AND<br/>").html_safe %></p>
     <%= link_to "Sponsor Now as a<br/>#{plan[:name]}!".html_safe, new_donation_path(:plan_id => plan[:id]), :class => "button cta" %>
     </div>
   </section>
