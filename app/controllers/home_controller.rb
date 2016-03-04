@@ -5,4 +5,7 @@ class HomeController < ApplicationController
   def sponsorship
     @plan_bases = Plan.sponsor_bases
   end
+
+  def giftpolicy
+  end
 end

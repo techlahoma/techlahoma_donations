@@ -33,16 +33,18 @@
             <div class="<%= level %>"><%= flash[level] %></div>
           <% end %>
         <% end %>
+
         <%= yield %>
-			</div>
-		</div>
+
+      </div>
+    </div>
 
 
 		<!-- Footer -->
     <div id="footer-wrapper">
       <div id="footer-tax-info" class="container">
         Techlahoma is a 501c3 orgnization.<br/>
-        Some other info should go here.
+        Please see our <%= link_to "Gift Acceptance Policy", '/giftpolicy' %>.
       </div>
       <div id="copyright" class="container">
         <ul class="menu">

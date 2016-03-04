@@ -2,6 +2,7 @@ Rails.application.routes.draw do
 
   get 'sponsorship' => 'home#sponsorship'
   get 'membership' => 'home#membership'
+  get 'giftpolicy' => 'home#giftpolicy'
 
   namespace :admin do
     resources :donations, :except => [:edit,:update,:delete]
