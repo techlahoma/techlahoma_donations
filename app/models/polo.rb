@@ -23,5 +23,5 @@ class Polo
     "Red"
   ]
 
-  VALUE = 35
+  VALUE = 40
 end
