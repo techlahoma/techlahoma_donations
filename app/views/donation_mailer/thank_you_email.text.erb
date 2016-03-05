@@ -9,6 +9,12 @@ Public Recognition:
   You have chosen to remain anonymous.
 <% end %>
 
+<% if plan_gets_a_gift(@donation.plan) && @donation.accept_gift %>
+This donation is fully tax deductible and no goods or services were provided to the donor except for a small gift whose value is approximated below.
+<% else %>
+This donation is fully tax deductible and no goods or services were provided to the donor.
+<% end %>
+
 <% if plan_gets_a_gift(@donation.plan) %>
 Your Gift:
 <% if @donation.accept_gift %>
