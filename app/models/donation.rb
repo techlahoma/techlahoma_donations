@@ -18,6 +18,7 @@ class Donation < ActiveRecord::Base
     return unless plan
     self.plan_name = plan[:name]
     self.amount = plan[:cost_in_dollars_per_year]
+    self.plan_type = plan[:type]
   end
 
 

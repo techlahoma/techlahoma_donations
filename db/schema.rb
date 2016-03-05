@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160301030218) do
+ActiveRecord::Schema.define(version: 20160305031624) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -46,6 +46,7 @@ ActiveRecord::Schema.define(version: 20160301030218) do
     t.string   "gift_selected"
     t.boolean  "accept_recognition",                                     default: true
     t.text     "notes"
+    t.string   "plan_type"
   end
 
   create_table "plans", force: :cascade do |t|
