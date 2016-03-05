@@ -18,4 +18,8 @@ module DonationsHelper
     ored_gifts = gifts.map{|g| g.respond_to?(:join) ? g.join("<br/>OR<br/>") : g }
     ored_gifts.join("<br/>AND<br/>").html_safe
   end
+
+  def benefits_text benefits
+    benefits.is_a?(String) ? benefits : benefits.join("<br/>AND<br/>").html_safe
+  end
 end

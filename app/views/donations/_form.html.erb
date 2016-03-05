@@ -19,11 +19,11 @@
 
     <% if @plan[:gift] %>
       <p>In return for your generous contribution you will receive the following gifts:</p>
-      <p><%= @plan[:gift].join(" OR ") %></p>
+      <p><%= gift_text @plan[:gift] %></p>
     <% end %>
 
     <p>In return for your generous contribution you will receive the following benefits:</p>
-    <p><%= @plan[:benefits] %></p>
+    <p><%= benefits_text @plan[:benefits] %></p>
   <% end %>
 
   <%= render 'subscriptions/your_info', :f => f %>
