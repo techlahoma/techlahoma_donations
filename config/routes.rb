@@ -4,12 +4,12 @@ Rails.application.routes.draw do
   get 'membership' => 'home#membership'
   get 'giftpolicy' => 'home#giftpolicy'
 
-  namespace :admin do
-    resources :donations, :except => [:edit,:update,:delete]
-    resources :subscriptions, :except => [:edit,:update]
-  end
+  #namespace :admin do
+    #resources :donations, :except => [:edit,:update,:delete]
+    #resources :subscriptions, :except => [:edit,:update]
+  #end
   resources :donations, :except => [:edit,:update,:delete]
-  resources :subscriptions, :except => [:edit,:update]
+  #resources :subscriptions, :except => [:edit,:update]
   root 'home#index'
 
   # The priority is based upon order of creation: first created -> highest priority.
