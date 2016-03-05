@@ -1,0 +1,43 @@
+<fieldset>
+  <legend>Payment Information</legend>
+
+<div class="row">
+  <div class="12u">
+    <div class="form-group">
+      <label>Card number</label>
+      <input type="text"
+             size="20"
+             data-stripe="number"
+             class="card-number form-control"
+             placeholder="**** **** **** ****"></input>
+   </div>
+ </div>
+</div>
+
+<div class="row">
+  <div class="6u">
+    <div class="form-group">
+      <label>Exp</label>
+      <input type="text"
+             size="8"
+             class="exp-date form-control"
+             placeholder="MM / YY"></input>
+      <input type="hidden" data-stripe="exp_month" class="cc_exp_month"></input>
+      <input type="hidden" data-stripe="exp_year" class="cc_exp_year"></input>
+    </div>
+  </div>
+  <div class="6u">
+    <div class="form-group">
+      <label>CVC</label>
+      <input type="text"
+             size="4"
+             data-stripe="cvc"
+             class="form-control cvc"
+             placeholder="***"></input>
+    </div>
+  </div>
+</div>
+
+<div class="alert alert-warning payola-error" style="display: none"></div>
+
+</fieldset>

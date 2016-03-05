@@ -2,22 +2,75 @@
 <html>
 <head>
   <title>TechlahomaDonations</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <!--[if lte IE 8]><%= javascript_include_tag 'ie/html5shiv' %><![endif]-->
+  <%= stylesheet_link_tag  'application', media: 'all' %>
+  <!--[if lte IE 8]><%= stylesheet_link_tag  'ie8' %><![endif]-->
+  <!--[if lte IE 9]><%= stylesheet_link_tag  'ie9' %><![endif]-->
+
   <%= csrf_meta_tags %>
 </head>
-<body>
 
-<div class="body-wrap">
-  <div class="body-wrap-inner">
-    <%= image_tag 'techlahoma_logo.png' %>
-    <%= yield %>
-  </div>
-</div>
 
-<script src="https://checkout.stripe.com/checkout.js"></script>
-<%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+
+<body class="<%= page_class %> <%= content_for(:hero).present? ? 'homepage' : '' %>">
+  <div id="page-wrapper">
+
+		<div id="header-wrapper">
+			<div id="header" class="container">
+        <div id="logo"><a href="/"><%= image_tag 'techlahoma_logo.png' %></a></div>
+        <nav id="nav">
+        </nav>
+      </div>
+      <%= content_for :hero %>
+		</div>
+
+    <div class="wrapper">
+      <div class="container">
+        <% [:error, :alert, :notice].each do |level| %>
+          <% if flash[level] %>
+            <div class="<%= level %>"><%= flash[level] %></div>
+          <% end %>
+        <% end %>
+
+        <%= yield %>
+
+      </div>
+    </div>
+
+
+		<!-- Footer -->
+    <div id="footer-wrapper">
+      <div id="footer-tax-info" class="container">
+        Techlahoma is a 501c3 orgnization.<br/>
+        Please see our <%= link_to "Gift Acceptance Policy", '/giftpolicy' %>.
+      </div>
+      <div id="copyright" class="container">
+        <ul class="menu">
+          <li>&copy; Techlahoma. All rights reserved.</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+        </ul>
+      </div>
+    </div>
+
+  </div> <!-- page-wrapper -->
+
+		<!-- Scripts -->
+
+
+
+
+
+
+<script type="text/javascript" src="https://js.stripe.com/v2/"></script>
+<%= javascript_include_tag 'application' %>
+<!--[if lte IE 8]><%= javascript_include_tag 'js/ie/respond.min' %><![endif]-->
+
+
+
+
+
+
 </body>
 </html>
 

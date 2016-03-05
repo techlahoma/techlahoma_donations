@@ -1,0 +1,29 @@
+<% content_for :hero do %>
+  <!-- Hero -->
+  <section id="hero" class="container">
+    <header>
+      <h2>Techlahoma Sponsorships Plans</h2>
+    </header>
+    <p>
+      Sponsor Techlahoma communities to make prominent connections with Oklahoman tech professionals.
+    </p>
+    <p>
+    Sponsor in 2016 to be forever recognized as a<br>
+    <strong>Founding Sponsor</strong>!
+    </p>
+  </section>
+<% end %>
+
+
+<div class="row">
+<% Plan.sponsor_bases.each do |plan| %>
+  <section class="6u 12u(narrower) feature">
+    <div class="plan">
+    <h3><%= plan[:name] %></h3>
+    <h3>$<%= plan[:cost_in_dollars_per_year] %> / year</h3>
+    <p><%= plan[:benefits].join("<br/>AND<br/>").html_safe %></p>
+    <%= link_to "Sponsor Now as a<br/>#{plan[:name]}!".html_safe, new_donation_path(:plan_id => plan[:id]), :class => "button cta" %>
+    </div>
+  </section>
+<% end %>
+</div>

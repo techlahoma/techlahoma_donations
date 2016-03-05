@@ -1,0 +1,4 @@
+<p>Name: <%= @donation.donor_name %></p>
+<p>Email: <%= @donation.email %></p>
+<p>Amount: <%= number_to_currency @donation.amount %></p>
+<p>Date: <%= @donation.created_at.to_s(:short) %></p>

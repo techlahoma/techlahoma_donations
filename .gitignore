@@ -17,3 +17,6 @@
 
 # Ignore the .env file that contains local ENV stuff
 .env
+
+stripe-mock-server.log
+stripe-mock-server.pid

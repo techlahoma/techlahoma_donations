@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 ruby '2.2.3'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '~> 4.1.6'
+gem 'rails', '~> 4.2.5.1'
 # Use postgresql as the database for Active Record
 gem 'pg'
 # Use SCSS for stylesheets
@@ -15,6 +15,9 @@ gem 'uglifier', '>= 1.3.0'
 # gem 'therubyracer',  platforms: :ruby
 #
 
+gem 'techlahoma_auth'
+
+
 #social
 gem "slack-notifier", :require => false
 
@@ -25,7 +28,7 @@ group :production do
 end
 
 # For the money.
-gem 'stripe', '~> 1.15.0'
+gem 'stripe', '~> 1.31.0'
 
 #exceptions
 gem 'rollbar'
@@ -47,11 +50,19 @@ group :development, :test do
   gem 'spring'
   gem 'thin'
 
-  gem 'stripe-ruby-mock', '~> 1.10.1.7', require: false
+  gem 'stripe-ruby-mock', '~> 2.2.1', :require => 'stripe_mock'
   gem 'mocha'
 
   gem 'dotenv-rails'
   gem 'foreman' # for the procfile
+
+  gem 'rspec-rails'
+end
+
+group :test do
+  gem 'cucumber-rails', :require => false
+  gem 'database_cleaner'
+  gem 'selenium-webdriver'
 end
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'

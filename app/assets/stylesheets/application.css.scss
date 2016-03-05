@@ -11,10 +11,79 @@
  * file per style scope.
  *
  *= require jquery-ui
- *= require_tree .
+ *= require main
  *= require_self
  */
 
+
+#footer-tax-info{
+  text-align:center;
+}
+
+#hero{
+  /*margin-top:5em;*/
+}
+
+#header-wrapper{
+  /*padding-top:3em;*/
+}
+
+.plan{
+  padding:4em;
+  margin-bottom:4em;
+  background-image: image-url("images/overlay.png"), image-url("images/header.svg"), -moz-linear-gradient(75deg, #FFFFFF 15%, #FFFFFF 55%);
+  background-image: image-url("images/overlay.png"), image-url("images/header.svg"), -webkit-linear-gradient(75deg, #FFFFFF 15%, #FFFFFF 55%);
+  background-image: image-url("images/overlay.png"), image-url("images/header.svg"), -ms-linear-gradient(75deg, #FFFFFF 15%, #FFFFFF 55%);
+  background-image: image-url("images/overlay.png"), image-url("images/header.svg"), linear-gradient(75deg, #FFFFFF 15%, #FFFFFF 55%);
+
+  h3{
+    margin-bottom:1em;
+  }
+}
+
+form input.card-number {
+  background-image: url(/images/creditcards/money.png);
+  background-repeat: no-repeat !important;
+  background-size: 30px !important;
+  background-position: right 10px center !important;
+}
+
+form input.error,
+form select.error{
+  border-color:#990000;
+  background-color:#ffdddd;
+}
+
+#navButton{
+  display:none;
+}
+
+fieldset{
+
+  border-bottom:1px solid #dddddd;
+  padding-bottom:2em;
+  margin-bottom:2em;
+
+  legend{
+    font-size:1.5em;
+    margin-bottom:0.5em;
+  }
+}
+
+.form-group{
+  margin-bottom:0.5em;
+}
+
+.form-group.inline label{
+  display:inline;
+}
+
+.alternate-donation-link{
+  text-align:center;
+  margin-top:5em;
+}
+
+/*
 $dark-grey: #292829;
 $bluish: #5bb8f0;
 body{
@@ -34,7 +103,7 @@ input.text{
   width:98%;
 }
 
-input.button{
+.button{
   width:100%;
   font-size:2em;
   padding:20px;
@@ -42,6 +111,11 @@ input.button{
   background:$bluish;
   color:white;
   border-radius:6px;
+}
+
+a.button{
+  display:inline-block;
+  max-width:60%;
 }
 
 .body-wrap{
@@ -62,3 +136,21 @@ input.button{
     max-width:100%;
   }
 }
+
+
+.plan, .donation-type{
+  background:#cdcdcd;
+  border-radius:6px;
+  padding:12px;
+  padding-bottom:36px;
+  margin-bottom:36px;
+
+  a.small{
+    display:block;
+    &:hover{
+      background:transparent;
+      color:black;
+    }
+  }
+}
+*/

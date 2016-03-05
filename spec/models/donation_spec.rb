@@ -1,15 +1,16 @@
-require 'test_helper'
+require 'rails_helper'
 
-class DonationTest < ActiveSupport::TestCase
-  setup do
+RSpec.describe Donation, type: :model do
+
+  before :each do
     StripeMock.start
-    Chat.stubs(:slack_message).returns(true)
+    expect(Chat).to receive(:slack_message).and_return(nil)
   end
-  teardown do
+  after :each do
     StripeMock.stop
   end
 
-  test "auto_generating_guids" do
+  it "should auto generate a guid on creation" do
     customer = Stripe::Customer.create({
           email: 'johnny@appleseed.com',
           :card => 'valid_card_token'
@@ -17,7 +18,6 @@ class DonationTest < ActiveSupport::TestCase
 
     donation = Donation.create! first_name: "Jeremy", last_name: "Green", email: "jeremy@octolabs.com", amount: 100.00, token_id: customer.id
     assert !donation.guid.nil?
-
   end
 
 end

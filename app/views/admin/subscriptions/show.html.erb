@@ -1,0 +1,12 @@
+<p>Name: <%= @subscription.donor_name %></p>
+<p>Email: <%= @subscription.email %></p>
+<p>Amount: <%= cents_to_dollars @subscription.amount %></p>
+<p>Plan: <%= @subscription.stripe_plan_id %></p>
+<p>Date: <%= @subscription.created_at.to_s(:short) %></p>
+<p>Stripe Subscription ID: <%= @subscription.stripe_subscription_id %></p>
+
+<% if @subscription.canceled? %>
+  <h3>This subscription has been canceled.</h3>
+<% else %>
+  <%= link_to 'Cancel this subscription', @subscription, method: :delete, data: { confirm: 'Are you sure?' } %>
+<% end %>

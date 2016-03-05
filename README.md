@@ -38,11 +38,24 @@ This app relies on several environment variables being set. You should copy the
 needed. The default values should get you going with a complete local
 setup.
 
-If you're working directly with one of the integrated services
-(Stripe, etc...) you'll want to create your own development
-account there in order to see exactly what's happening. If you do that
-make sure to update your `.env` file accordingly. (Don't forget to also
-update `.env` in the related projects!)
+If you're going to test any Stripe related features you'll want to create your own development
+account there in order to see exactly what's happening. When you do that
+make sure to update your `.env` file accordingly.
+
+After you've configured Stripe in your local `.env`, you need to create
+some subscription plans there so that the subscription forms will work.
+
+```
+rake donations:stripe_plans:create_all
+```
+
+If you're making changes to the plan structure and need to start over
+you can delete all the subscription plans in the connected Stripe
+account by running:
+
+```
+rake donations:stripe_plans:delete_all
+```
 
 ## Auth Configuration
 
@@ -56,8 +69,16 @@ After creating the app copy the Application ID and Secret into your `.env` file.
 
 ## Running tests
 
+The RSpec based unit tests can be run with:
+
 ```
-> rake test
+> rspec
+```
+
+And the Cucumber based integration tests can be run with:
+
+```
+> cucumber
 ```
 
 ## Starting the rails server

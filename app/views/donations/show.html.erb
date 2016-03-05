@@ -1,8 +1,15 @@
-<h1>Thank you!</h1>
-<p>
-  Thank you for your donation of <%= number_to_currency(@donation.amount) %>
-</p>
-<p>
-  You'll be listed on our donors page as <%= @donation.donor_name %>
-</p>
+
+<div class="row 150%">
+  <div class="8u 12u(narrower)">
+    <%= render 'thank_you' %>
+  </div>
+  <div class="4u 12u(narrower)">
+    <section id="sidebar">
+      <%= render 'subscriptions/side_tax_deductible' %>
+      <%= render 'subscriptions/side_employer_match' %>
+    </section>
+  </div>
+</div>
+
+
 

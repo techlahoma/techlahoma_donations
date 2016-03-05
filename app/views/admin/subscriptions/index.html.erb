@@ -1,0 +1,12 @@
+<h1>Listing subscriptions<br/>(Admin view)</h1>
+
+<table class="donors">
+  <tbody>
+    <% @subscriptions.each do |subscription| %>
+      <tr>
+        <td class="donor"><%= link_to subscription.donor_name, [:admin, subscription] %></td>
+        <td class="date"><%= subscription.created_at.to_s(:short) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

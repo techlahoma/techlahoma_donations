@@ -1,0 +1,16 @@
+<h1>Listing subscriptions</h1>
+
+<table class="donors">
+  <tbody>
+    <% @subscriptions.each do |subscription| %>
+      <tr>
+        <td class="donor"><%= subscription.donor_name %></td>
+        <td class="date"><%= subscription.created_at.to_s(:short) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Subscription', new_subscription_path %>
