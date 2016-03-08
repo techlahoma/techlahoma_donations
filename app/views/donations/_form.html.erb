@@ -43,6 +43,9 @@
         <%= f.label(:accept_gift_false, "No, please don't send me a gift") %>
       </div>
       <div id="gift-selections">
+        <% if @plan[:image] %>
+          <%= image_tag @plan[:image], :class=>'donation-gift-image' %>
+        <% end %>
         <%= render 'subscriptions/gift_selection', :f => f %>
       </div>
     </fieldset>

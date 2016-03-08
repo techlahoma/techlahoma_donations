@@ -7,7 +7,8 @@ class Plan
       :type => "Membership",
       :cost_in_dollars_per_year => 128,
       :gift => ["Techlahoma Founding Member T-Shirt"],
-      :benefits => "Stratified Website Recognition"
+      :benefits => "Stratified Website Recognition",
+      :image => "tshirt.jpg"
     },
     {
       :name => "Founding Leader",
@@ -15,7 +16,8 @@ class Plan
       :type => "Membership",
       :cost_in_dollars_per_year => 256,
       :gift => ["Techlahoma Founding Member Polo"],
-      :benefits => "Stratified Website Recognition"
+      :benefits => "Stratified Website Recognition",
+      :image => "polo.jpg"
     },
     {
       :name => "Founding Champion",
@@ -23,7 +25,8 @@ class Plan
       :type => "Membership",
       :cost_in_dollars_per_year => 512,
       :gift => [["Techlahoma Founding Member Hoodie", "Techlahoma Founding Member Yeti Mug"]],
-      :benefits => "Stratified Website Recognition"
+      :benefits => "Stratified Website Recognition",
+      :image => "hoodie_or_yeti.jpg"
     },
     {
       :name => "Founding Early Adopter",
@@ -31,7 +34,8 @@ class Plan
       :type => "Membership",
       :cost_in_dollars_per_year => 1024,
       :gift => ["Techlahoma Founding Member T-Shirt", "Techlahoma Founding Member Polo", ["Techlahoma Founding Member Hoodie", "Techlahoma Founding Member Yeti Mug"]],
-      :benefits => "Stratified Website Recognition"
+      :benefits => "Stratified Website Recognition",
+      :image => "early_adopter.jpg"
     }
   ]
 
