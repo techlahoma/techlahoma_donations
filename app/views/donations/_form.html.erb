@@ -95,6 +95,10 @@
   <%= f.hidden_field :plan_id %>
   <%= f.hidden_field :token_id, :class=>'stripe-token-id' %>
 
+  <div class="validation-error" style="display:none;">
+    Please correct the errors above.
+  </div>
+
   <div class="actions">
     <%= f.submit "Donate Now!", :class => "button submit cta" %>
   </div>

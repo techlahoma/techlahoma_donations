@@ -96,6 +96,14 @@ fieldset{
   margin-top:5em;
 }
 
+.validation-error{
+  border:1px solid #ff0000;
+  background: #ffdddd;
+  border-radius: 4px;
+  padding: 10px;
+  margin: 20px 0;
+}
+
 /*
 $dark-grey: #292829;
 $bluish: #5bb8f0;

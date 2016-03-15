@@ -126,6 +126,10 @@ Techlahoma.Donations.preValidate = function(){
     formIsValid = validateField('select#donation_gift_selected',validatePresence) && formIsValid;
   }
 
+  if( !formIsValid ){
+    $('.validation-error').show();
+  }
+
   return formIsValid;
 };
 
