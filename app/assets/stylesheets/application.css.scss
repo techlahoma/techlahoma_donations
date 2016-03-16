@@ -104,6 +104,73 @@ fieldset{
   margin: 20px 0;
 }
 
+.members, .sponsors{
+  .title{
+    border-bottom:1px solid #ddd;
+    margin-bottom:0.5em;
+  }
+  .founding-early-adopter, .angel-investor{
+    font-size:2.2em;
+    line-height:1.4em;
+  }
+  .founding-champion, .bootstrap-funder{
+    font-size:1.8em;
+    line-height:1.4em;
+  }
+  .founding-leader, .user-group-hero{
+    font-size:1.4em;
+    line-height:1.4em;
+  }
+}
+
+
+.true-believers{
+  li{
+    font-size:1.5em;
+  }
+}
+
+#campaign_thermometer_text{
+  margin-top:50px;
+  text-align:center;
+}
+
+#campaign_thermometer_link{
+  text-align:center;
+}
+
+#campaign_thermometer{
+  max-width:800px;
+  margin-left:auto;
+  margin-right:auto;
+  background:#dedede;
+  border:1px solid #000066;
+  position:relative;
+  color:white;
+  border-radius:10px;
+  font-size:2em;
+  line-height:1.5em;
+
+  .mercury{
+    background: #006600;
+    position:absolute;
+    left:0;
+    top:0;
+    z-index:1;
+    border-radius:10px;
+    white-space:nowrap;
+    overflow:hidden;
+    padding-left:10px;
+    color:white;
+  }
+  .text{
+    color:black;
+    z-index:0;
+    position:relative;
+    padding-left:10px;
+  }
+}
+
 /*
 $dark-grey: #292829;
 $bluish: #5bb8f0;

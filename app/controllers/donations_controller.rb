@@ -4,7 +4,7 @@ class DonationsController < ApplicationController
   # GET /donations
   # GET /donations.json
   def index
-    @donations = Donation.all
+    @donations = Donation.all.order("created_at asc")
   end
 
   # GET /donations/1

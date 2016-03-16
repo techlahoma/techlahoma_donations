@@ -1,17 +1,48 @@
-<h1>Listing donations</h1>
 
-<table class="donors">
 
-  <tbody>
-    <% @donations.each do |donation| %>
-      <tr>
-        <td class="donor"><%= donation.donor_name %></td>
-        <td class="date"><%= donation.created_at.to_s(:short) %></td>
-      </tr>
+<div class="row">
+  <section class="6u 12u(narrower) members">
+    <h1>Our Members</h1>
+    <% Plan.membership_bases.reverse.each do |membership_base| %>
+      <div class="<%= membership_base[:id] %>">
+        <div class="title"><%= membership_base[:name] %>s</div>
+        <ul>
+          <% @donations.where(:plan_id => membership_base[:id]).each do |donation| %>
+            <li><%= donation.donor_name %></li>
+          <% end %>
+          <li><%= link_to "Add your name here!".html_safe, new_donation_path(:plan_id => membership_base[:id]) %></li>
+        </ul>
+      </div>
     <% end %>
-  </tbody>
-</table>
+  </section>
+  <section class="6u 12u(narrower) sponsors">
+    <h1>Our Sponsors</h1>
+    <% Plan.sponsor_bases.reverse.each do |membership_base| %>
+      <div class="<%= membership_base[:id] %>">
+        <div class="title"><%= membership_base[:name] %>s</div>
+        <ul>
+          <% @donations.where(:plan_id => membership_base[:id]).each do |donation| %>
+            <li><%= donation.donor_name %></li>
+          <% end %>
+          <li><%= link_to "Add your name here!".html_safe, new_donation_path(:plan_id => membership_base[:id]) %></li>
+        </ul>
+      </div>
+    <% end %>
+  </section>
+</div>
 
-<br>
+<div class="true-believers">
+  <h2>True Belivers</h2>
+  <p>
+    These individuals were among the very first financial supporters of Techlahoma.
+    They donated before any official membership or sponsorship programs existed.
+  </p>
+  <ul class="row">
+    <% @donations.true_believers.each do |donation| %>
+      <li class="3u 6u(narrower)"><%= donation.donor_name %></li>
+    <% end %>
+  </ul>
+</div>
 
-<%= link_to 'New Donation', new_donation_path %>
+
+
