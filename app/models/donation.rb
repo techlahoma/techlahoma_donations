@@ -5,6 +5,7 @@ class Donation < ActiveRecord::Base
   validates :email, :presence => true
 
   scope :true_believers, -> { where("created_at < ?",Date.parse("Feb 25, 2016")) }
+  scope :in_campaign, -> { where("created_at > ?",Date.parse("Feb 25, 2016")) }
 
 
   def donor_name

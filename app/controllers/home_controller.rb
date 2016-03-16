@@ -1,5 +1,7 @@
 class HomeController < ApplicationController
   def index
+    @goal = 60_000
+    @raised = Donation.in_campaign.sum(:amount)
   end
 
   def sponsorship

@@ -1,0 +1,11 @@
+<div id="campaign_thermometer_text">
+  We're <%= (@raised / @goal * 100).to_i %>% of the way to our goal.
+</div>
+<div id="campaign_thermometer">
+  <div class="mercury" style="width:<%= @raised / @goal * 100 %>%;"><%= number_to_currency(@raised) %> of <%= number_to_currency(@goal) %></div>
+  <div class="text"><%= number_to_currency(@raised) %> of <%= number_to_currency(@goal) %></div>
+</div>
+<div id="campaign_thermometer_link">
+  <%= link_to "See our list of Members and Sponsors", donations_path %>
+</div>
+

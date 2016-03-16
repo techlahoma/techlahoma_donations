@@ -10,6 +10,7 @@
           <% @donations.where(:plan_id => membership_base[:id]).each do |donation| %>
             <li><%= donation.donor_name %></li>
           <% end %>
+          <li><%= link_to "Add your name here!".html_safe, new_donation_path(:plan_id => membership_base[:id]) %></li>
         </ul>
       </div>
     <% end %>
@@ -23,6 +24,7 @@
           <% @donations.where(:plan_id => membership_base[:id]).each do |donation| %>
             <li><%= donation.donor_name %></li>
           <% end %>
+          <li><%= link_to "Add your name here!".html_safe, new_donation_path(:plan_id => membership_base[:id]) %></li>
         </ul>
       </div>
     <% end %>
