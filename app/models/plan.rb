@@ -15,18 +15,18 @@ class Plan
       :id => "founding-leader",
       :type => "Membership",
       :cost_in_dollars_per_year => 256,
-      :gift => ["Techlahoma Founding Member Polo"],
+      :gift => ["Techlahoma Founding Member T-Shirt", "Techlahoma Founding Member Polo"],
       :benefits => "Stratified Website Recognition",
-      :image => "polo.jpg"
+      :image => "tshirt_and_polo.jpg"
     },
     {
       :name => "Founding Champion",
       :id => "founding-champion",
       :type => "Membership",
       :cost_in_dollars_per_year => 512,
-      :gift => [["Techlahoma Founding Member Hoodie", "Techlahoma Founding Member Yeti Mug"]],
+      :gift => ["Techlahoma Founding Member T-Shirt", ["Techlahoma Founding Member Hoodie", "Techlahoma Founding Member Yeti Mug"]],
       :benefits => "Stratified Website Recognition",
-      :image => "hoodie_or_yeti.jpg"
+      :image => "champion2.jpg"
     },
     {
       :name => "Founding Early Adopter",
