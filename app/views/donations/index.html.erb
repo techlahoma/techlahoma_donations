@@ -38,8 +38,8 @@
     They donated before any official membership or sponsorship programs existed.
   </p>
   <ul class="row">
-    <% @donations.true_believers.each do |donation| %>
-      <li class="3u 6u(narrower)"><%= donation.donor_name %></li>
+    <% @donations.true_believers.map(&:donor_name).uniq.each do |donor_name| %>
+      <li class="3u 6u(narrower)"><%= donor_name %></li>
     <% end %>
   </ul>
 </div>
