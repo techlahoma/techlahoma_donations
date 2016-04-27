@@ -4,10 +4,10 @@ Rails.application.routes.draw do
   get 'membership' => 'home#membership'
   get 'giftpolicy' => 'home#giftpolicy'
 
-  #namespace :admin do
-    #resources :donations, :except => [:edit,:update,:delete]
+  namespace :admin do
+    resources :donations, :except => [:edit,:update,:delete]
     #resources :subscriptions, :except => [:edit,:update]
-  #end
+  end
   resources :donations, :except => [:edit,:update,:delete]
   #resources :subscriptions, :except => [:edit,:update]
   root 'home#index'
