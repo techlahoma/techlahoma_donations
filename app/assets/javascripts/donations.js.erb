@@ -19,14 +19,14 @@ Techlahoma.Donations.init = function(){
 
   $('form').submit(Techlahoma.Donations.formHandler);
 
-  console.log('setup the form handler');
+  //console.log('setup the form handler');
 };
 
 
 $(function() {
-  console.log('yo!');
+  //console.log('yo!');
   if( $('#new_donation').length > 0 ){
-    console.log('jo!');
+    //console.log('jo!');
     Techlahoma.Donations.init();
   }
 });
@@ -60,7 +60,7 @@ Techlahoma.Donations.giftSelectedToggle = function(){
 
 Techlahoma.Donations.hoodieSelected = function(){
   var gift = $('select[name="donation[gift_selected]"]').val();
-  console.log('gift',gift);
+  //console.log('gift',gift);
   return gift && gift.indexOf("Hoodie") >= 0;
 }
 
@@ -139,7 +139,7 @@ Techlahoma.Donations.preValidate = function(){
 
 
 Techlahoma.Donations.formHandler = function(event) {
-  console.log('Techlahoma.Donations.formHandler');
+  //console.log('Techlahoma.Donations.formHandler');
   return Techlahoma.Stripe.formHandler(event,Techlahoma.Donations.preValidate);
 
 }

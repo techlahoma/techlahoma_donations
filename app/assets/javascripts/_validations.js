@@ -3,9 +3,9 @@ var Techlahoma = Techlahoma || {};
 Techlahoma.Validations = {};
 
 Techlahoma.Validations.validateField = function(selector, validator){
-  console.log('selector ',selector);
+  //console.log('selector ',selector);
   var field = $(selector);
-  console.log('val ', field.val());
+  //console.log('val ', field.val());
   var valid = validator(field.val());
   if(valid){
     field.removeClass('error');
