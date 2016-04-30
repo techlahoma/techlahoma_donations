@@ -7,6 +7,13 @@ class Admin::DonationsController < Admin::AdminController
     @donations = Donation.all.order(:created_at)
   end
 
+  def csv
+    @donations = Donation.all.order(:created_at)
+    response.headers['Content-Type'] = 'text/csv'
+    response.headers['Content-Disposition'] = 'attachment; filename=techlahoma_donations.csv'
+    render text: @donations.to_csv
+  end
+
   # GET /donations/1
   # GET /donations/1.json
   def show

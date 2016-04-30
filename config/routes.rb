@@ -8,6 +8,7 @@ Rails.application.routes.draw do
     resources :donations, :except => [:edit,:update,:delete] do
       collection do
         get :choose, :as => :choose
+        get :csv, :as => :csv
       end
     end
     #resources :subscriptions, :except => [:edit,:update]

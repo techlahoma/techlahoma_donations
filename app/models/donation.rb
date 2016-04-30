@@ -1,5 +1,7 @@
 class Donation < ActiveRecord::Base
 
+  require 'csv'
+
   include GuidIds
 
   validates :email, :presence => true
@@ -65,6 +67,15 @@ class Donation < ActiveRecord::Base
 
   def plan
     Plan.find(plan_id)
+  end
+
+  def self.to_csv
+    CSV.generate do |csv|
+      csv << column_names
+      all.each do |product|
+        csv << product.attributes.values_at(*column_names)
+      end
+    end
   end
 
 end

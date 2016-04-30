@@ -1,5 +1,8 @@
 <h1>Listing donations (Admin view)</h1>
 
+<%= link_to "Download a CSV of all donations", csv_admin_donations_path %>
+<br/>
+
 <%= link_to "Enter a non-Stripe donation", choose_admin_donations_path, :class => "button cta" %>
 
 <table class="donors">
