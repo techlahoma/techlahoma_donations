@@ -121,6 +121,14 @@ fieldset{
     font-size:1.4em;
     line-height:1.4em;
   }
+  a{
+    color: #cdcdcd;
+    &:hover{
+      color:white;
+      background:#006600;
+      border-bottom:1px solid;
+    }
+  }
 }
 
 
