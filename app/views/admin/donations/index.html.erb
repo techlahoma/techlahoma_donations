@@ -1,11 +1,18 @@
 <h1>Listing donations (Admin view)</h1>
 
+<%= link_to "Download a CSV of all donations", csv_admin_donations_path %>
+<br/>
+
+<%= link_to "Enter a non-Stripe donation", choose_admin_donations_path, :class => "button cta" %>
+
 <table class="donors">
 
   <tbody>
     <% @donations.each do |donation| %>
       <tr>
         <td class="donor"><%=link_to donation.donor_name, [:admin,donation] %></td>
+        <td class="donor"><%=link_to donation.plan.try(:[],:name) || "Basic Donation", [:admin,donation] %></td>
+        <td class="amount"><%= link_to number_to_currency(donation.amount), [:admin,donation] %></td>
         <td class="date"><%= link_to donation.created_at.to_s(:short), [:admin,donation] %></td>
       </tr>
     <% end %>

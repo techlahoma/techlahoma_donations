@@ -44,7 +44,7 @@ Techlahoma.Subscriptions.init = function(){
 
   $('form').submit(Techlahoma.Subscriptions.formHandler);
 
-  console.log('setup the form handler');
+  //console.log('setup the form handler');
 };
 
 
@@ -83,7 +83,7 @@ Techlahoma.Subscriptions.giftSelectedToggle = function(){
 
 Techlahoma.Subscriptions.hoodieSelected = function(){
   var gift = $('select[name="subscription[gift_selected]"]').val();
-  console.log('gift',gift);
+  //console.log('gift',gift);
   return gift && gift.indexOf("Hoodie") >= 0;
 }
 

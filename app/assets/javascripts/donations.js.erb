@@ -19,14 +19,14 @@ Techlahoma.Donations.init = function(){
 
   $('form').submit(Techlahoma.Donations.formHandler);
 
-  console.log('setup the form handler');
+  //console.log('setup the form handler');
 };
 
 
 $(function() {
-  console.log('yo!');
+  //console.log('yo!');
   if( $('#new_donation').length > 0 ){
-    console.log('jo!');
+    //console.log('jo!');
     Techlahoma.Donations.init();
   }
 });
@@ -60,7 +60,7 @@ Techlahoma.Donations.giftSelectedToggle = function(){
 
 Techlahoma.Donations.hoodieSelected = function(){
   var gift = $('select[name="donation[gift_selected]"]').val();
-  console.log('gift',gift);
+  //console.log('gift',gift);
   return gift && gift.indexOf("Hoodie") >= 0;
 }
 
@@ -83,19 +83,21 @@ Techlahoma.Donations.preValidate = function(){
 
   formIsValid = validateField('input.email',Techlahoma.Validations.validateEmail) && formIsValid;
 
-  formIsValid = validateField('input.card-number',$.payment.validateCardNumber) && formIsValid;
+  if($form.find('.card-number').length){
+    formIsValid = validateField('input.card-number',$.payment.validateCardNumber) && formIsValid;
 
-  // This one is a little tricky, so we do it manually
-  var ccExpField = $form.find('input.exp-date');
-  var ccExpVal = $.payment.cardExpiryVal(ccExpField.val());
-  var ccExpValid = $.payment.validateCardExpiry(ccExpVal.month,ccExpVal.year);
-  if(ccExpValid){
-    ccExpField.removeClass('error');
-  }else{
-    ccExpField.addClass('error');
+    // This one is a little tricky, so we do it manually
+    var ccExpField = $form.find('input.exp-date');
+    var ccExpVal = $.payment.cardExpiryVal(ccExpField.val());
+    var ccExpValid = $.payment.validateCardExpiry(ccExpVal.month,ccExpVal.year);
+    if(ccExpValid){
+      ccExpField.removeClass('error');
+    }else{
+      ccExpField.addClass('error');
+    }
+
+    formIsValid = validateField('input.cvc',$.payment.validateCardCVC) && formIsValid;
   }
-
-  formIsValid = validateField('input.cvc',$.payment.validateCardCVC) && formIsValid;
 
   var acceptGift = Techlahoma.Donations.donorAcceptsGift();
 
@@ -137,7 +139,7 @@ Techlahoma.Donations.preValidate = function(){
 
 
 Techlahoma.Donations.formHandler = function(event) {
-
+  //console.log('Techlahoma.Donations.formHandler');
   return Techlahoma.Stripe.formHandler(event,Techlahoma.Donations.preValidate);
 
 }

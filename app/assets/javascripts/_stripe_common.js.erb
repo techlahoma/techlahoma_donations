@@ -10,8 +10,8 @@ Techlahoma.Stripe.init = function(){
   try{
     Stripe.setPublishableKey(stripePublishableKey);
   }catch(error){
-    console.log("Maybe stripe isn't loaded?");
-    console.log(error);
+    //console.log("Maybe stripe isn't loaded?");
+    //console.log(error);
   }
 };
 
@@ -31,7 +31,7 @@ Techlahoma.Stripe.initCardFormElements = function(){
 }
 
 Techlahoma.Stripe.detectCardType = function() {
-  console.log('detecting');
+  //console.log('detecting');
   var e = $('.card-number').first();
     var type = $.payment.cardType(e.val());
     var img = "money.png";
@@ -55,7 +55,7 @@ Techlahoma.Stripe.detectCardType = function() {
 
 
 Techlahoma.Stripe.responseHandler = function(status, response){
-  console.log('stripeResponseHandler',status,response);
+  //console.log('stripeResponseHandler',status,response);
 
   var $form = $('form');
   if (response.error) {
@@ -68,12 +68,12 @@ Techlahoma.Stripe.responseHandler = function(status, response){
 
     // response contains id and card, which contains additional card details
     var token = response.id;
-    console.log('token = ', token);
+    //console.log('token = ', token);
     // Insert the token into the form so it gets submitted to the server
     $('.stripe-token-id').val(token);
 
-    console.log('elems = ', $('.stripe-token-id'));
-    console.log('val = ', $('.stripe-token-id').val());
+    //console.log('elems = ', $('.stripe-token-id'));
+    //console.log('val = ', $('.stripe-token-id').val());
     //var amount = $('#display_amount').val();
     //amount = accounting.unformat(amount);
     //$('#payment_amount').val(amount);
@@ -84,9 +84,19 @@ Techlahoma.Stripe.responseHandler = function(status, response){
 
 Techlahoma.Stripe.formHandler = function(event, validator) {
 
-  console.log('calling the formHandler');
+  //console.log('calling the Techlahoma.Stripe.formHandler');
 
   var $form = $('form');
+
+  if(!$form.find('.card-number').length){
+    // We're entering a donation that came in by check or cash
+    //console.log('skipping stripe processing!');
+    if(validator()){
+      $form.get(0).submit();
+    }else{
+      return false;
+    }
+  }
 
   // Disable the submit button to prevent repeated clicks
   $form.find('button').prop('disabled', true);
@@ -110,13 +120,13 @@ Techlahoma.Stripe.formHandler = function(event, validator) {
       exp_month: $form.find('.cc_exp_month').val(),
       exp_year: $form.find('.cc_exp_year').val()
     }
-    console.log('trying to createToken');
-    console.log('form = ', $form);
-    console.log('cardData = ', cardData);
+    //console.log('trying to createToken');
+    //console.log('form = ', $form);
+    //console.log('cardData = ', cardData);
     try{
       Stripe.card.createToken(cardData, Techlahoma.Stripe.responseHandler);
     }catch(error){
-      console.error(error);
+      //console.error(error);
       return false;
     }
   }else{
