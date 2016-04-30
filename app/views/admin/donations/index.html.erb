@@ -8,6 +8,8 @@
     <% @donations.each do |donation| %>
       <tr>
         <td class="donor"><%=link_to donation.donor_name, [:admin,donation] %></td>
+        <td class="donor"><%=link_to donation.plan.try(:[],:name) || "Basic Donation", [:admin,donation] %></td>
+        <td class="amount"><%= link_to number_to_currency(donation.amount), [:admin,donation] %></td>
         <td class="date"><%= link_to donation.created_at.to_s(:short), [:admin,donation] %></td>
       </tr>
     <% end %>
