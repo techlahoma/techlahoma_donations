@@ -84,9 +84,19 @@ Techlahoma.Stripe.responseHandler = function(status, response){
 
 Techlahoma.Stripe.formHandler = function(event, validator) {
 
-  console.log('calling the formHandler');
+  console.log('calling the Techlahoma.Stripe.formHandler');
 
   var $form = $('form');
+
+  if(!$form.find('.card-number').length){
+    // We're entering a donation that came in by check or cash
+    console.log('skipping stripe processing!');
+    if(validator()){
+      $form.get(0).submit();
+    }else{
+      return false;
+    }
+  }
 
   // Disable the submit button to prevent repeated clicks
   $form.find('button').prop('disabled', true);

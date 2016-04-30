@@ -27,6 +27,7 @@ class Donation < ActiveRecord::Base
 
 
   def charge_the_token
+    return unless token_id.present?
     charge = Stripe::Charge.create(
       amount:      (amount * 100).to_i,
       currency:    "usd",

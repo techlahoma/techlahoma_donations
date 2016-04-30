@@ -5,7 +5,11 @@ Rails.application.routes.draw do
   get 'giftpolicy' => 'home#giftpolicy'
 
   namespace :admin do
-    resources :donations, :except => [:edit,:update,:delete]
+    resources :donations, :except => [:edit,:update,:delete] do
+      collection do
+        get :choose, :as => :choose
+      end
+    end
     #resources :subscriptions, :except => [:edit,:update]
   end
   resources :donations, :except => [:edit,:update,:delete]

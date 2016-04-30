@@ -1,4 +1,6 @@
-<%= form_for(@donation) do |f| %>
+<% skip_stripe = skip_stripe || false %>
+<% destination = destination || @donation %>
+<%= form_for(destination) do |f| %>
   <% if @donation.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@donation.errors.count, "error") %> prohibited this donation from being saved:</h2>
@@ -30,9 +32,6 @@
 
   <%= render 'subscriptions/donor_recognition', :f => f %>
 
-
-
-
   <% if plan_gets_a_gift(@plan) %>
     <fieldset>
       <legend>Donor Gift</legend>
@@ -62,8 +61,16 @@
       <%= render 'subscriptions/address', :f => f %>
     </fieldset>
   <% end %>
-  <%= render 'subscriptions/billing' %>
 
+  <% unless skip_stripe %>
+    <%= render 'subscriptions/billing' %>
+  <% else %>
+    <fieldset>
+      <legend>You are entering a non-Stripe donation</legend>
+      <p>You are currently using the admin interface that's designed to allow donations to be recorded that are not processed via credit card.</p>
+      <p>If you need to enter a donation AND charge a card, just go through the normal donation form on the front end.</p>
+    </fieldset>
+  <% end %>
 
 
   <fieldset>

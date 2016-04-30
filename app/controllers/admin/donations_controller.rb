@@ -14,7 +14,12 @@ class Admin::DonationsController < Admin::AdminController
 
   # GET /donations/new
   def new
-    @donation = Donation.new(amount: 50)
+    @plan = Plan.find(params[:plan_id])
+    amount = @plan ? (@plan[:cost_in_dollars_per_year] * 100).to_i : 50
+    @donation = Donation.new({
+      :amount => amount,
+      :plan_id => params[:plan_id]
+    })
   end
 
   # GET /donations/1/edit
@@ -69,6 +74,13 @@ class Admin::DonationsController < Admin::AdminController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def donation_params
-      params.require(:donation).permit(:first_name, :last_name, :email, :amount, :name, :token_id)
+      params.require(:donation).permit(:email, :amount, :name, :token_id, :plan_id,
+                                      :address1, :address2, :city, :state, :zipcode, :accept_gift,
+                                      :tee_shirt_size, :tee_shirt_color,
+                                      :polo_size, :polo_color,
+                                      :hoodie_size, :hoodie_color, :gift_selected, :accept_recognition,
+                                      :notes
+                                      )
     end
+
 end

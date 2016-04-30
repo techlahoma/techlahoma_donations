@@ -1,0 +1,23 @@
+<h1>Choose a membership or sponsorship level</h1>
+
+<div class="row">
+  <section class="4u 12u(narrower)">
+    <h2>Memberships</h2>
+    <% Plan.membership_bases.each do |membership_base| %>
+      <%= link_to "#{membership_base[:name]}!".html_safe, new_admin_donation_path(:plan_id => membership_base[:id]), :class => "button cta" %>
+      <br/><br/>
+    <% end %>
+  </section>
+  <section class="4u 12u(narrower)">
+    <h2>Sponsorships</h2>
+    <% Plan.sponsor_bases.each do |plan| %>
+      <%= link_to "#{plan[:name]}!".html_safe, new_admin_donation_path(:plan_id => plan[:id]), :class => "button cta" %>
+      <br/><br/>
+    <% end %>
+  </section>
+  <section class="4u 12u(narrower)">
+    <h2>Basic Donation</h2>
+    <%= link_to "Basic Donation", new_admin_donation_path, :class => "button cta" %>
+  </section>
+
+</div>
