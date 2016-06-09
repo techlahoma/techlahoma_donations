@@ -5,7 +5,6 @@ class TeeShirt
     "Women's M",
     "Women's L",
     "Women's XL",
-    "Women's 2XL",
     "Men's XS",
     "Men's S",
     "Men's M",
