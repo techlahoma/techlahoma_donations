@@ -16,9 +16,6 @@ class TeeShirt
 
   COLORS = [
     "Blue",
-    "Purple",
-    "Green",
-    "Red",
     "Gray"
   ]
 
