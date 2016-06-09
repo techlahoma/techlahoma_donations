@@ -12,8 +12,7 @@ class Hoodie
     "Vintage Green",
     "Black",
     "Navy Blue",
-    "Blue",
-    "Coffee Brown"
+    "Blue"
   ]
 
   VALUE = 50
