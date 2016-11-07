@@ -21,6 +21,7 @@ require 'rails_helper'
 RSpec.describe SubscriptionsController, type: :controller do
 
   before :each do
+    skip "subscriptions are disabled"
     StripeMock.start
     @plan = Plan.membership_list.first
     Plan.create_stripe_plan(@plan)
