@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  get '/.well-known/acme-challenge/:id' => 'letsencrypt#challenge'
+
   get 'sponsorship' => 'home#sponsorship'
   get 'membership' => 'home#membership'
   get 'giftpolicy' => 'home#giftpolicy'

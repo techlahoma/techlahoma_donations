@@ -96,4 +96,25 @@ And the Cucumber based integration tests can be run with:
 Deployment happens automatically through [WE_NEED_A_CI_SERVICE]. Any pushes to `master` will be deployed. **This isn't actually true yet.**
 This is deployed on heroku, and currently is deployed through direct pushing.
 
+## SSL
+
+This page desdribes the process for obtaining and installing a cert from
+Let's Encrypt.
+
+http://collectiveidea.com/blog/archives/2016/01/12/lets-encrypt-with-a-rails-app-on-heroku/
+
+tl,dr:
+
+```
+$ brew install certbot
+...
+$ sudo certbot certonly --manual
+```
+
+You'll be prompted to enter an email address. Use: `techlahoma@gmail.com`
+
+You'll be prompted to enter a domain. Use: `donate.techlahoma.org`
+
+
+
 
