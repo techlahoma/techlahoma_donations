@@ -21,6 +21,10 @@ gem 'techlahoma_auth'
 #social
 gem "slack-notifier", :require => false
 
+
+# monitoring
+gem 'newrelic_rpm'
+
 # For deploying to heroku
 group :production do
   gem 'rails_12factor'
