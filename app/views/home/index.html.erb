@@ -2,23 +2,33 @@
   <!-- Hero -->
   <section id="hero" class="container">
     <header>
-      <h2>Get in on the ground floor</h2>
+      <h2>Donate today!</h2>
     </header>
-    <p>
-      Join in 2016 to be forever recognized as a<br>
-      <strong>Founding</strong> Member or Sponsor.
-    </p>
   </section>
 <% end %>
 
 
 <div class="row">
   <section class="6u 12u(narrower) feature">
-    <!--
-    <div class="image-wrapper first">
-      <a href="#" class="image featured first"><img src="images/pic01.jpg" alt="" /></a>
-    </div>
-    -->
+    <header>
+      <h2>Donate</h2>
+      <h3>Any amount</h3>
+    </header>
+    <p>
+      Support technology communities across the state.
+    </p>
+    <p>
+      Tax-deductible donation.
+    </p>
+    <p>
+      Admiration of your friends and co-workers.
+    </p>
+    <ul class="actions">
+      <li><%= link_to "Donate", new_donation_path, :class => "button cta" %></li>
+    </ul>
+  </section>
+  <!--
+  <section class="6u 12u(narrower) feature">
     <header>
       <h2>Membership</h2>
       <h3>$128 - $1024</h3>
@@ -36,12 +46,8 @@
       <li><%= link_to "Join", '/membership', :class => "button cta" %></li>
     </ul>
   </section>
+  -->
   <section class="6u 12u(narrower) feature">
-    <!--
-    <div class="image-wrapper">
-      <a href="#" class="image featured"><img src="images/pic02.jpg" alt="" /></a>
-    </div>
-    -->
     <header>
       <h2>Sponsorship</h2>
       <h3>$2048 - $5120</h3>
@@ -61,8 +67,9 @@
   </section>
 </div>
 
-<%= render 'campaign_thermometer' %>
+<%#= render 'campaign_thermometer' %>
 
+<!--
 <p class="alternate-donation-link">
   <%= link_to "Interested in non-membership donations?", new_donation_path %>
 </p>
@@ -70,3 +77,4 @@
 <p class="alternate-donation-link">
   If you'd like to get in on the first batch of donor gifts, please, donate by April 30, 2016.
 </p>
+-->
