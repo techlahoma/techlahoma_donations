@@ -1,6 +1,6 @@
 Thank you for supporting Techlahoma.  You're helping us support developer groups and activities.
 
-For tax purposes, your donation of <%= number_to_currency(@donation.amount) %> will be credited to <%= @donation.name %>.
+For tax purposes, your donation of <%= number_to_currency(@donation.amount) %> will be credited to <%= @donation.name %> on <%= @donation.created_at.in_time_zone('Central Time (US & Canada)').to_date.to_s(:long) %>.
 
 Public Recognition:
 <% if @donation.accept_recognition? %>
