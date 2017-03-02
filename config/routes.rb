@@ -11,10 +11,10 @@ Rails.application.routes.draw do
         get :csv, :as => :csv
       end
     end
-    #resources :subscriptions, :except => [:edit,:update]
+    resources :subscriptions, :except => [:edit,:update]
   end
   resources :donations, :except => [:edit,:update,:delete]
-  #resources :subscriptions, :except => [:edit,:update]
+  resources :subscriptions, :except => [:edit,:update]
   root 'home#index'
 
   # The priority is based upon order of creation: first created -> highest priority.

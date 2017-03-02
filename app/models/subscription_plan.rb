@@ -30,4 +30,28 @@ class SubscriptionPlan
   def self.plan_stripe_id plan_amount
     "membership-2017-#{plan_amount}"
   end
+
+  def self.membership_list
+    @@membership_list ||= generate_membership_list(MONTHLY_PLAN_AMOUNTS)
+  end
+
+  def self.generate_membership_list(amount_list)
+    all_plans = []
+    amount_list.each do |plan_amount|
+      all_plans.push({
+        :base_name => "Techlahoma Membership",
+        :name => "Techlahoma Membership",
+        :id => plan_stripe_id(plan_amount),
+        :cost_in_dollars => plan_amount,
+        :interval => 'month',
+        :interval_count => 1,
+        :benefits => nil
+      })
+    end
+    return all_plans
+  end
+
+  def self.find_by_stripe_id stripe_id
+    membership_list.select{|p| p[:id] == stripe_id }.first
+  end
 end
