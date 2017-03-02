@@ -126,29 +126,4 @@ class Plan
   def self.find_by_stripe_id stripe_id
     membership_list.select{|p| p[:id] == stripe_id }.first
   end
-
-  def self.delete_all_stripe_plans
-    plans = Stripe::Plan.all
-    plans.each do |plan|
-      plan.delete
-    end
-  end
-
-  def self.create_all_stripe_plans
-    membership_list.each do |plan_data|
-      create_stripe_plan plan_data
-    end
-  end
-
-  def self.create_stripe_plan plan_data
-    Stripe::Plan.create({
-      :amount => (plan_data[:cost_in_dollars] * 100).to_i,
-      :interval => plan_data[:interval],
-      :interval_count => plan_data[:interval_count],
-      :name => plan_data[:name],
-      :currency => 'usd',
-      :id => plan_data[:id],
-      :trial_period_days => 0
-    })
-  end
 end

@@ -5,8 +5,8 @@ RSpec.describe Subscription, type: :model do
   before :each do
     @client = StripeMock.start_client
     @client.clear_server_data
-    @plan = Plan.membership_list.first
-    Plan.create_stripe_plan(@plan)
+    SubscriptionPlan.create_stripe_plan(42)
+    @plan_id = SubscriptionPlan.plan_stripe_id(42)
     @card_token = StripeMock.generate_card_token(last4: "9191", exp_year: 1984)
   end
   after :each do
@@ -15,7 +15,7 @@ RSpec.describe Subscription, type: :model do
 
   describe "charge_the_token" do
     it "should work" do
-      subscription = Subscription.create(:stripe_plan_id => @plan[:id], :token_id => @card_token, :email => 'test@test.com')
+      subscription = Subscription.create(:stripe_plan_id => @plan_id, :token_id => @card_token, :email => 'test@test.com')
 
       customers = @client.get_server_data(:customers)
       assert_equal 1, customers.size
@@ -27,7 +27,7 @@ RSpec.describe Subscription, type: :model do
 
   describe "cancel" do
     it "should work" do
-      subscription = Subscription.create(:stripe_plan_id => @plan[:id], :token_id => @card_token, :email => 'test@test.com')
+      subscription = Subscription.create(:stripe_plan_id => @plan_id, :token_id => @card_token, :email => 'test@test.com')
 
       subscription.cancel
 

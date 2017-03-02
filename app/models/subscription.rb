@@ -26,9 +26,9 @@ class Subscription < ActiveRecord::Base
   end
 
   def populate_plan_data
-    self.plan_name = plan[:name]
-    self.interval = plan[:interval]
-    self.interval_count = plan[:interval_count]
+    #self.plan_name = plan[:name]
+    #self.interval = plan[:interval]
+    #self.interval_count = plan[:interval_count]
   end
 
   def cancel
