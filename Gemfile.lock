@@ -275,7 +275,7 @@ DEPENDENCIES
   newrelic_rpm
   pg
   quiet_assets
-  rails (~> 4.2.6)
+  rails (~> 4.2.8)
   rails_12factor
   rollbar
   rspec-rails
