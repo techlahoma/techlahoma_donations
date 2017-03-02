@@ -59,6 +59,7 @@ group :development, :test do
 
   gem 'dotenv-rails'
   gem 'foreman' # for the procfile
+  gem 'forward' # for exposting localhost to get Stripe webhooks
 
   gem 'rspec-rails'
 end

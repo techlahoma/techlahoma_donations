@@ -55,7 +55,7 @@ class Subscription < ActiveRecord::Base
   end
 
   def plan
-    Plan.find_by_stripe_id(stripe_plan_id)
+    SubscriptionPlan.find_by_stripe_id(stripe_plan_id)
   end
 
 end
