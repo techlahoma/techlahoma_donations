@@ -19,6 +19,10 @@ Rails.application.routes.draw do
 
   mount StripeEvent::Engine, at: "/stripe_webhooks"
 
+  require 'sidekiq/web'
+  constraints lambda {|request| AuthConstraint.admin?(request) } do
+    mount Sidekiq::Web => '/admin/sidekiq'
+  end
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

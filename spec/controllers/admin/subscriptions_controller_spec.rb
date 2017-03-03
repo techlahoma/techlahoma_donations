@@ -6,7 +6,7 @@ RSpec.describe Admin::SubscriptionsController, type: :controller do
     StripeMock.start
     SubscriptionPlan.create_stripe_plan(42)
     @plan_id = SubscriptionPlan.plan_stripe_id(42)
-    @user = create :user
+    @user = create :user, admin: true
     login_user(@user)
   end
 

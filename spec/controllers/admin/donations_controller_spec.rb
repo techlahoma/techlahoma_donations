@@ -4,7 +4,7 @@ RSpec.describe Admin::DonationsController, type: :controller do
 
   before :each do
     StripeMock.start
-    @user = create :user
+    @user = create :user, admin: true
     login_user(@user)
   end
 
