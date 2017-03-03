@@ -19,4 +19,13 @@ RSpec.describe Donation, type: :model do
     assert !donation.guid.nil?
   end
 
+  describe "csv" do
+    it "produces records for each Donation in the DB" do
+      donation1 = create :donation, name: 'person1'
+      donation2 = create :donation, name: 'person2'
+      csv = Donation.to_csv
+      expect(csv).to match 'person1'
+      expect(csv).to match 'person2'
+    end
+  end
 end

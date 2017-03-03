@@ -2,10 +2,6 @@ require "rails_helper"
 
 RSpec.describe SubscriptionsController, type: :routing do
   describe "routing" do
-    before do
-      skip "subscriptions are currently disabled"
-    end
-
     it "routes to #index" do
       expect(:get => "/subscriptions").to route_to("subscriptions#index")
     end
