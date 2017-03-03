@@ -10,6 +10,8 @@ class StripeInvoicePaymentSucceeded
     end
 
     donation.save!
+    SubscriptionPaymentMailerWorker.perform_async(donation.id)
+    SubscriptionPaymentSlackWorker.perform_async(donation.id)
     Rails.logger.info "Stripe Event: StripeInvoicePaymentSucceeded finished"
     return donation
   end
