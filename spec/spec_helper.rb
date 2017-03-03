@@ -25,6 +25,11 @@ require 'webmock/rspec'
 Stripe.api_key = 'just-a-test-key'
 StripeMock.spawn_server
 
+require 'sidekiq/testing'
+Sidekiq::Testing.fake! # fake is the default mode
+#Sidekiq::Testing.inline!
+#Sidekiq::Testing.disable!
+
 RSpec.configure do |config|
   # rspec-expectations config goes here. You can use an alternate
   # assertion/expectation library such as wrong or the stdlib/minitest
@@ -51,6 +56,10 @@ RSpec.configure do |config|
 
   WebMock.disable_net_connect!(allow_localhost: true)
 
+  config.before(:each) do
+    Sidekiq::Worker.clear_all
+    Sidekiq::Testing.fake!
+  end
 # The settings below are suggested to provide a good initial experience
 # with RSpec, but feel free to customize to your heart's content.
 =begin

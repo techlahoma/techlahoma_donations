@@ -8,6 +8,7 @@ class SubscriptionSlackWorker
   end
 
   def slack_message(subscription)
+    plan = subscription.plan
     if plan.blank?
       "New Subscription: $#{subscription.amount.to_i} by #{subscription.donor_name}"
     elsif plan[:type] == "Membership"
