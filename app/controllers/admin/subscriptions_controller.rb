@@ -13,33 +13,33 @@ class Admin::SubscriptionsController < Admin::AdminController
   end
 
   # GET /subscriptions/new
-  def new
-    @plan = params[:plan_id] ? Plan.find_by_stripe_id(params[:plan_id]) : Plan.first
-    @subscription = Subscription.new(:plan => @plan, :amount => @plan.amount)
-  end
+  #def new
+    #@plan = params[:plan_id] ? Plan.find_by_stripe_id(params[:plan_id]) : Plan.first
+    #@subscription = Subscription.new(:plan => @plan, :amount => @plan.amount)
+  #end
 
   # POST /subscriptions
   # POST /subscriptions.json
-  def create
-    @subscription = Subscription.new(subscription_params)
+  #def create
+    #@subscription = Subscription.new(subscription_params)
 
-    respond_to do |format|
-      if @subscription.save
-        format.html { redirect_to @subscription, notice: 'Subscription was successfully created.' }
-        format.json { render :show, status: :created, location: @subscription }
-      else
-        format.html { render :new }
-        format.json { render json: @subscription.errors, status: :unprocessable_entity }
-      end
-    end
-  end
+    #respond_to do |format|
+      #if @subscription.save
+        #format.html { redirect_to @subscription, notice: 'Subscription was successfully created.' }
+        #format.json { render :show, status: :created, location: @subscription }
+      #else
+        #format.html { render :new }
+        #format.json { render json: @subscription.errors, status: :unprocessable_entity }
+      #end
+    #end
+  #end
 
   # DELETE /subscriptions/1
   # DELETE /subscriptions/1.json
   def destroy
     @subscription.cancel
     respond_to do |format|
-      format.html { redirect_to subscription, notice: 'Subscription was successfully canceled.' }
+      format.html { redirect_to @subscription, notice: 'Subscription was successfully canceled.' }
       format.json { head :no_content }
     end
   end

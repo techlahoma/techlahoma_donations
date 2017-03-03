@@ -65,13 +65,13 @@ class DonationsController < ApplicationController
 
   # DELETE /donations/1
   # DELETE /donations/1.json
-  def destroy
-    @donation.destroy
-    respond_to do |format|
-      format.html { redirect_to donations_url, notice: 'Donation was successfully destroyed.' }
-      format.json { head :no_content }
-    end
-  end
+  #def destroy
+    #@donation.destroy
+    #respond_to do |format|
+      #format.html { redirect_to donations_url, notice: 'Donation was successfully destroyed.' }
+      #format.json { head :no_content }
+    #end
+  #end
 
   private
 

@@ -11,9 +11,9 @@ Rails.application.routes.draw do
         get :csv, :as => :csv
       end
     end
-    resources :subscriptions, :except => [:edit,:update]
+    resources :subscriptions, :except => [:edit,:update,:new,:create]
   end
-  resources :donations, :except => [:edit,:update,:delete]
+  resources :donations, :except => [:edit,:update,:destroy]
   resources :subscriptions, :except => [:edit,:update]
   root 'home#index'
 
