@@ -15,7 +15,7 @@ class Donation < ActiveRecord::Base
   end
 
   #before_create :populate_plan_data, :charge_the_token
-  after_create :send_thank_you_email, :notify_slack, :notify_techlahomies
+  #after_create :send_thank_you_email, :notify_slack, :notify_techlahomies
 
   def populate_plan_data
     plan = Plan.find(plan_id)

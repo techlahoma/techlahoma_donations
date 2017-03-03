@@ -12,7 +12,13 @@ class DonationCreator
       @donation.populate_plan_data
       @donation.charge_the_token
     end
-    return @donation.save
+    donation_saved = @donation.save
+    if donation_saved
+      @donation.send_thank_you_email
+      @donation.notify_slack
+      @donation.notify_techlahomies
+    end
+    return donation_saved
   end
 
   def to_model

@@ -4,7 +4,6 @@ RSpec.describe Donation, type: :model do
 
   before :each do
     StripeMock.start
-    expect(Chat).to receive(:slack_message).and_return(nil)
   end
   after :each do
     StripeMock.stop
