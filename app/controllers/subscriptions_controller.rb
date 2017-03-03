@@ -24,7 +24,7 @@ class SubscriptionsController < ApplicationController
   # POST /subscriptions
   # POST /subscriptions.json
   def create
-    @subscription = Subscription.new(subscription_params)
+    @subscription = SubscriptionCreator.new(subscription_params)
 
     respond_to do |format|
       if @subscription.save
@@ -36,7 +36,7 @@ class SubscriptionsController < ApplicationController
       end
     end
   rescue Stripe::CardError => e
-    @plan = Plan.find(params[:subscription][:plan_id])
+    @plan = SubscriptionPlan.find(params[:subscription][:plan_id])
     @subscription.errors.add("Credit card", e)
     respond_to do |format|
       format.html { render :new, flash: { error: e.to_s } }
