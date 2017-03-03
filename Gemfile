@@ -33,6 +33,7 @@ end
 
 # For the money.
 gem 'stripe', '~> 1.31.0'
+gem 'stripe_event' # for listening to Stripe webhooks
 
 #exceptions
 gem 'rollbar'
@@ -59,7 +60,7 @@ group :development, :test do
 
   gem 'dotenv-rails'
   gem 'foreman' # for the procfile
-  gem 'forward' # for exposting localhost to get Stripe webhooks
+  gem 'forward' # for exposing localhost to get Stripe webhooks
 
   gem 'rspec-rails'
 end
@@ -68,6 +69,7 @@ group :test do
   gem 'cucumber-rails', :require => false
   gem 'database_cleaner'
   gem 'selenium-webdriver'
+  gem 'webmock'
 end
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'

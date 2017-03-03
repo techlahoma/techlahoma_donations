@@ -13,10 +13,8 @@ class Donation < ActiveRecord::Base
   def donor_name
     self.accept_recognition? ? name : "An Anonymous Donor"
   end
-  # Ideally the process of charging a card would happen
-  # in the bakground and in a service object of some sort.
-  # This is the quick and dirty method that doesn't require background workers.
-  before_create :populate_plan_data, :charge_the_token
+
+  #before_create :populate_plan_data, :charge_the_token
   after_create :send_thank_you_email, :notify_slack, :notify_techlahomies
 
   def populate_plan_data

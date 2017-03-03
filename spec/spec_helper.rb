@@ -19,6 +19,7 @@
 
 require 'thin'
 require 'stripe_mock'
+require 'webmock/rspec'
 Stripe.api_key = 'just-a-test-key'
 StripeMock.spawn_server
 
@@ -46,7 +47,7 @@ RSpec.configure do |config|
     mocks.verify_partial_doubles = true
   end
 
-  
+  WebMock.disable_net_connect!(allow_localhost: true)
 
 # The settings below are suggested to provide a good initial experience
 # with RSpec, but feel free to customize to your heart's content.

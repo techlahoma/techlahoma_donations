@@ -43,7 +43,7 @@ class SubscriptionPlan
         :name => "Techlahoma Membership",
         :id => plan_stripe_id(plan_amount),
         :cost_in_dollars => plan_amount,
-        :interval => 'month',
+        :interval => ENV['STRIPE_SUBSCRIPTION_INTERVAL'] || 'month',
         :interval_count => 1,
         :benefits => nil
       })
