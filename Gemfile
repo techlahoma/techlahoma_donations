@@ -35,6 +35,8 @@ end
 gem 'stripe', '~> 1.31.0'
 gem 'stripe_event' # for listening to Stripe webhooks
 
+gem 'sidekiq' # for background processing
+
 #exceptions
 gem 'rollbar'
 
@@ -71,6 +73,7 @@ group :test do
   gem 'database_cleaner'
   gem 'selenium-webdriver'
   gem 'webmock'
+  gem 'simplecov', :require => false
 end
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'

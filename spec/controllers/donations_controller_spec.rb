@@ -90,7 +90,7 @@ RSpec.describe DonationsController, type: :controller do
 
       it "assigns a newly created donation as @donation" do
         post :create, {:donation => valid_attributes}, valid_session
-        expect(assigns(:donation)).to be_a(Donation)
+        expect(assigns(:donation)).to be_a(DonationCreator)
         expect(assigns(:donation)).to be_persisted
       end
 
@@ -103,7 +103,7 @@ RSpec.describe DonationsController, type: :controller do
     context "with invalid params" do
       it "assigns a newly created but unsaved donation as @donation" do
         post :create, {:donation => invalid_attributes}, valid_session
-        expect(assigns(:donation)).to be_a_new(Donation)
+        expect(assigns(:donation)).to be_a_new(DonationCreator)
       end
 
       it "re-renders the 'new' template" do

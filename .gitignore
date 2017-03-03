@@ -20,3 +20,5 @@
 
 stripe-mock-server.log
 stripe-mock-server.pid
+
+coverage/

@@ -29,14 +29,7 @@ class DonationsController < ApplicationController
   # POST /donations
   # POST /donations.json
   def create
-    @donation = Donation.new(donation_params)
-    # Ideally the process of charging a card would happen
-    # in the bakground and in a service object of some sort.
-    # This is the quick and dirty method that doesn't require background workers.
-    if @donation.valid?
-      @donation.populate_plan_data
-      @donation.charge_the_token
-    end
+    @donation = DonationCreator.new(donation_params)
     respond_to do |format|
       if @donation.save
         format.html { redirect_to @donation, notice: 'Donation was successfully created.' }
