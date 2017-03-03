@@ -63,6 +63,7 @@ group :development, :test do
   gem 'forward' # for exposing localhost to get Stripe webhooks
 
   gem 'rspec-rails'
+  gem 'factory_girl_rails'
 end
 
 group :test do

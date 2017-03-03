@@ -14,25 +14,13 @@ describe "Billing Events" do
     #StripeMock.stop
   #end
 
-  def stub_event(fixture_id, status = 200)
-    stub_request(:get, "https://api.stripe.com/v1/events/#{fixture_id}").
-      to_return(status: status, body: File.read("spec/fixtures/#{fixture_id}.json"))
-  end
-
-  def create_subscription
-    Subscription.create!({
-      :stripe_subscription_id => 'sub_42',
-      :email => 'test@person.com',
-      :stripe_plan_id => @plan_id,
-      :token_id => 'xyz'
-    })
-  end
+  
 
   describe "invoice.payment.succeeded with a subscription" do
     before do
       expect_any_instance_of(Subscription).to receive(:charge_the_token).and_return(nil)
-      stub_event 'invoice_payment_succeeded'
-      create_subscription
+      stub_stripe_event 'invoice_payment_succeeded'
+      create :subscription
     end
 
     it "is successful" do
