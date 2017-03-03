@@ -1,21 +1,6 @@
 require 'rails_helper'
 
 describe "Billing Events" do
-
-  #before :each do
-    #StripeMock.start
-    #@plan_amount = 16
-    #@plan_id = SubscriptionPlan.plan_stripe_id(@plan_amount)
-    #SubscriptionPlan.create_stripe_plan(@plan_amount)
-    ##Plan.create_stripe_plan(@plan)
-  #end
-
-  #after :each do
-    #StripeMock.stop
-  #end
-
-  
-
   describe "invoice.payment.succeeded with a subscription" do
     before do
       expect_any_instance_of(Subscription).to receive(:charge_the_token).and_return(nil)
@@ -45,5 +30,4 @@ describe "Billing Events" do
       # Additional expectations...
     end
   end
-
 end

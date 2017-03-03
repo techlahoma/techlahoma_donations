@@ -20,7 +20,7 @@ class StripeInvoicePaymentSucceeded
     donation = create_donation(subscription, invoice)
     return donation
   rescue ActiveRecord::RecordNotFound
-    # we couldn't find a subscription to match up with this invoce
+    # we couldn't find a subscription to match up with this invoice
     return nil
   end
 
