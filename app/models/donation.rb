@@ -39,10 +39,6 @@ class Donation < ActiveRecord::Base
     self.stripe_response = charge.to_json
   end
 
-  def send_thank_you_email
-    DonationMailer.thank_you_email(self).deliver_later
-  end
-
   def notify_slack
     Chat.slack_message(slack_message)
   end
