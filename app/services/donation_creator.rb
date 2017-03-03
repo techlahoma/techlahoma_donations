@@ -15,8 +15,7 @@ class DonationCreator
     donation_saved = @donation.save
     if donation_saved
       DonationMailerWorker.perform_async(@donation.id)
-      #@donation.send_thank_you_email
-      @donation.notify_slack
+      DonationSlackWorker.perform_async(@donation.id)
       @donation.notify_techlahomies
     end
     return donation_saved
