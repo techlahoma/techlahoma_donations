@@ -3,7 +3,6 @@ require 'rails_helper'
 describe "Billing Events" do
   describe "invoice.payment.succeeded with a subscription" do
     before do
-      expect_any_instance_of(Subscription).to receive(:charge_the_token).and_return(nil)
       stub_stripe_event 'invoice_payment_succeeded'
       create :subscription
     end
@@ -18,7 +17,6 @@ describe "Billing Events" do
 
   describe "invoice.payment.succeeded without a subscription" do
     before do
-      expect_any_instance_of(Subscription).to receive(:charge_the_token).and_return(nil)
       stub_stripe_event 'invoice_payment_succeeded'
       create :subscription, :stripe_subscription_id => 'sub_does_not_exist'
     end

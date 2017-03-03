@@ -4,7 +4,7 @@ class DonationSlackWorker
   def perform(donation_id)
     donation = Donation.find donation_id
     message = slack_message(donation)
-    Chat.slack_message(slack_message)
+    Chat.slack_message(message)
   end
 
   def slack_message(donation)

@@ -16,6 +16,7 @@ RSpec.describe Subscription, type: :model do
   describe "charge_the_token" do
     it "should work" do
       subscription = Subscription.create(:stripe_plan_id => @plan_id, :token_id => @card_token, :email => 'test@test.com')
+      subscription.charge_the_token
 
       customers = @client.get_server_data(:customers)
       assert_equal 1, customers.size
@@ -28,7 +29,7 @@ RSpec.describe Subscription, type: :model do
   describe "cancel" do
     it "should work" do
       subscription = Subscription.create(:stripe_plan_id => @plan_id, :token_id => @card_token, :email => 'test@test.com')
-
+      subscription.charge_the_token # sets up the Subscription at Stripe
       subscription.cancel
 
       customers = @client.get_server_data(:customers)

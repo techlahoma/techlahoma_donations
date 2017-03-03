@@ -3,6 +3,6 @@ class DonationMailerWorker
 
   def perform(donation_id)
     donation = Donation.find donation_id
-    DonationMailer.thank_you_email(donation).deliver_later
+    DonationMailer.thank_you_email(donation).deliver
   end
 end

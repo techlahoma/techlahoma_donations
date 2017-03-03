@@ -21,7 +21,6 @@ class Donation < ActiveRecord::Base
     self.plan_type = plan[:type]
   end
 
-
   def charge_the_token
     return unless token_id.present?
     charge = Stripe::Charge.create(
