@@ -16,7 +16,6 @@ class DonationCreator
     if donation_saved
       DonationMailerWorker.perform_async(@donation.id)
       DonationSlackWorker.perform_async(@donation.id)
-      @donation.notify_techlahomies
     end
     return donation_saved
   end
