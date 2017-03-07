@@ -1,65 +1,19 @@
-Thank you for supporting Techlahoma.  You're helping us support developer groups and activities.
+Thank you for supporting Techlahoma!  You're helping us support developer groups and activities.
 
-For tax purposes, your donation of <%= number_to_currency(@donation.amount) %> will be credited to <%= @donation.name %> on <%= @donation.created_at.in_time_zone('Central Time (US & Canada)').to_date.to_s(:long) %>.
+This is a receipt for the latest payment on your recurring subscription of <%= number_to_currency(@donation.amount) %> / <%= @donation.subscription.plan[:interval] %>. This payment will be credited to <%= @donation.subscription.donor_name %> on <%= @donation.created_at.in_time_zone('Central Time (US & Canada)').to_date.to_s(:long) %>.
 
 Public Recognition:
-<% if @donation.accept_recognition? %>
-  You'll be listed on our donors page as <%= @donation.donor_name %>
+<% if @donation.subscription.accept_recognition? %>
+  You'll be listed on our donors page as <%= @donation.subscription.donor_name %>
 <% else %>
   You have chosen to remain anonymous.
 <% end %>
 
-<% if plan_gets_a_gift(@donation.plan) && @donation.accept_gift %>
-This donation is fully tax deductible and no goods or services were provided to the donor except for a small gift whose value is approximated below.
-<% else %>
 This donation is fully tax deductible and no goods or services were provided to the donor.
-<% end %>
 
-<% if plan_gets_a_gift(@donation.plan) %>
-Your Gift:
-<% if @donation.accept_gift %>
-<% if plan_gets_tee_shirt(@donation.plan) %>
-  Techlahoma Members-Only Tee-Shirt
-  Size: <%= @donation.tee_shirt_size %>
-  Color: <%= @donation.tee_shirt_color %>
-  Value: <%= number_to_currency TeeShirt::VALUE %>
-<% end %>
-<% if plan_gets_polo(@donation.plan) %>
-  Techlahoma Members-Only Polo
-  Size: <%= @donation.polo_size %>
-  Color: <%= @donation.polo_color %>
-  Value: <%= number_to_currency Polo::VALUE %>
-<% end %>
-<% if donation_gets_hoodie(@donation) %>
-  Techlahoma Members-Only Hoodie
-  Size: <%= @donation.hoodie_size %>
-  Color: <%= @donation.hoodie_color %>
-  Value: <%= number_to_currency Hoodie::VALUE %>
-<% end %>
-<% if donation_gets_yeti(@donation) %>
-  Techlahoma Members-Only Yeti Rambler Tumbler
-  Value: <%= number_to_currency Yeti::VALUE %>
-<% end %>
-<% else %>
-  You have elected not to receive a gift.
-<% end %>
-<% end %>
+If you need to cancel your subscription you can do so by visiting the following link, and then clicking "Cancel this subscription".
 
-<% if donation_gets_a_gift(@donation) %>
-Gift Delivery:
-
-We are currently planning to throw celebration parties simultaneously in OKC and in Tulsa sometime in early summer. You can pick up your gift there if you can attend.
-
-If you cannot attend either party, your gift will be mailed after the party to:
-
-  <%= @donation.name %>
-  <%= @donation.address1 %>
-  <% if @donation.address2.present? %>
-  <%= @donation.address2 %>
-  <% end %>
-  <%= @donation.city %> <%= @donation.state %>, <%= @donation.zipcode %>
-<% end %>
-
+<%= subscription_url(@donation.subscription) %>
 
 If you have any questions or concerns, you can respond to this email and let us know.
 
@@ -67,3 +21,4 @@ Thanks,
 The Techlahoma Team
 
 The Techlahoma Foundation, otherwise known as Techlahoma, is a federally recognized 501 (c) (3) registered non-profit organization; Federal ID Number 46-5519987.
+

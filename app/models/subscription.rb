@@ -3,6 +3,7 @@ class Subscription < ActiveRecord::Base
   include GuidIds
 
   validates :email, :presence => true
+  has_many :donations
 
   def donor_name
     self.accept_recognition? ? name : "An Anonymous Donor"

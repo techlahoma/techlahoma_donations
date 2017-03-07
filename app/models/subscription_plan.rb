@@ -18,7 +18,7 @@ class SubscriptionPlan
   def self.create_stripe_plan plan_amount
     Stripe::Plan.create({
       :amount => (plan_amount * 100).to_i,
-      :interval => 'month',
+      :interval => ENV['STRIPE_SUBSCRIPTION_INTERVAL'] || 'month',
       :interval_count => 1,
       :name => "Techlahoma Monthly Membership $#{plan_amount}",
       :currency => 'usd',

@@ -1,3 +1,23 @@
-SubscriptionMailer#thank_you_email
+Thank you for supporting Techlahoma.  You're helping us support developer groups and activities.
 
-<%= @greeting %>, find me in app/views/subscription_mailer/thank_you_email.text.erb
+This is to confirm that you've started a subscription to Techlahoma at <%= number_to_currency @subscription.plan[:cost_in_dollars] %> / <%= @subscription.plan[:interval] %>.
+
+Each time that we actually charge your card (including today) we'll send you another email to confirm that particular donation.
+
+Public Recognition:
+<% if @subscription.accept_recognition? %>
+  You'll be listed on our donors page as <%= @subscription.donor_name %>
+<% else %>
+  You have chosen to remain anonymous.
+<% end %>
+
+If you need to cancel your subscription you can do so by visiting the following link, and then clicking "Cancel this subscription".
+
+<%= subscription_url(@subscription) %>
+
+If you have any questions or concerns, you can respond to this email and let us know.
+
+Thanks,
+The Techlahoma Team
+
+The Techlahoma Foundation, otherwise known as Techlahoma, is a federally recognized 501 (c) (3) registered non-profit organization; Federal ID Number 46-5519987.
