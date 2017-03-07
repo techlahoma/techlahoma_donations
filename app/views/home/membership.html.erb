@@ -5,8 +5,8 @@
       <h2>Techlahoma Statewide Membership Plans</h2>
     </header>
     <p>
-      Join in 2016 to be forever recognized as a<br>
-      <strong>Founding Member</strong>.
+      Join today and become a<br>
+      <strong>Techlahoma Member</strong>.
     </p>
   </section>
 <% end %>
@@ -14,22 +14,32 @@
 
 
 <div class="row">
-<% Plan.membership_bases.each do |membership_base| %>
-  <section class="6u 12u(narrower) feature">
+  <section class="6u 12u(narrower) feature single-col-buttons">
     <div class="plan">
-    <h3><%= membership_base[:name] %></h3>
-    <h3>$<%= membership_base[:cost_in_dollars_per_year] %> / year</h3>
-    <p><%= gift_text membership_base[:gift] %></p>
-    <%= link_to image_tag(membership_base[:image]), new_donation_path(:plan_id => membership_base[:id]), :class=>'img' %>
-    <p><%= membership_base[:benefits] %></p>
-    <%= link_to "Join Now as a<br/>#{membership_base[:name]}!".html_safe, new_donation_path(:plan_id => membership_base[:id]), :class => "button cta" %>
-    <br/>
-    <%#= link_to "Or pay monthly at #{number_to_currency membership_base[:cost_in_dollars_per_year].to_f/12} / month.", new_subscription_path(:plan_id => Plan.id_for_membership_base(membership_base,'monthly')), :class => "small" %>
+      <h3>Single Payment</h3>
+      <p>Surprise members-only end of year gift.</p>
+      <p>Stratified Website Recognition</p>
+      <% Donation::SUGGESTED_AMOUNTS.each do |amount| %>
+        <%= link_to "Join at $#{amount}", new_donation_path(:amount => amount), :class => "button cta" %>
+      <% end %>
+      <br/>
+      <%#= link_to "Or pay monthly at #{number_to_currency membership_base[:cost_in_dollars_per_year].to_f/12} / month.", new_subscription_path(:plan_id => Plan.id_for_membership_base(membership_base,'monthly')), :class => "small" %>
     </div>
   </section>
-<% end %>
+  <section class="6u 12u(narrower) feature single-col-buttons">
+    <div class="plan">
+      <h3>Monthly Payment</h3>
+      <p>Surprise members-only end of year gift.</p>
+      <p>Stratified Website Recognition</p>
+      <% SubscriptionPlan.membership_list.each do |plan| %>
+        <%= link_to "Subscribe at $#{plan[:cost_in_dollars]}", new_subscription_path(:plan_id => plan[:id]), :class => "button cta" %>
+      <% end %>
+      <br/>
+      <%#= link_to "Or pay monthly at #{number_to_currency membership_base[:cost_in_dollars_per_year].to_f/12} / month.", new_subscription_path(:plan_id => Plan.id_for_membership_base(membership_base,'monthly')), :class => "small" %>
+    </div>
+  </section>
 </div>
 
 <p class="alternate-donation-link">
-  If you'd like to get in on the first batch of donor gifts, please, donate by April 30, 2016.
+  Gifts will be sent near the end of the year and will be based upon your level of contribution.
 </p>

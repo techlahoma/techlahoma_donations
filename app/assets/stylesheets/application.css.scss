@@ -179,6 +179,14 @@ fieldset{
   }
 }
 
+.single-col-buttons{
+  .button{
+    display:block;
+    width:70%;
+    margin:0 auto 1em auto;
+  }
+}
+
 /*
 $dark-grey: #292829;
 $bluish: #5bb8f0;

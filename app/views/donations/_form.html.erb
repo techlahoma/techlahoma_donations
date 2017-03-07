@@ -26,6 +26,9 @@
 
     <p>In return for your generous contribution you will receive the following benefits:</p>
     <p><%= benefits_text @plan[:benefits] %></p>
+  <% else %>
+    <p>You are joining Techlahoma as a member.</p>
+    <p>In return for your generous contribution you will receive a surprise gift at the end of the year.</p>
   <% end %>
 
   <%= render 'subscriptions/your_info', :f => f %>

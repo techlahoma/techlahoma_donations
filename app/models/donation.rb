@@ -9,6 +9,8 @@ class Donation < ActiveRecord::Base
   scope :true_believers, -> { where("created_at < ?",Date.parse("Feb 25, 2016")) }
   scope :in_campaign, -> { where("created_at > ?",Date.parse("Feb 25, 2016")) }
 
+  SUGGESTED_AMOUNTS = [32,64,128,256,512,1024,2048,4096]
+
   def donor_name
     self.accept_recognition? ? name : "An Anonymous Donor"
   end

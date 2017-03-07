@@ -16,6 +16,7 @@ class DonationsController < ApplicationController
   def new
     @plan = Plan.find(params[:plan_id])
     amount = @plan ? (@plan[:cost_in_dollars_per_year] * 100).to_i : 50
+    amount = params[:amount] if params[:amount]
     @donation = Donation.new({
       :amount => amount,
       :plan_id => params[:plan_id]
