@@ -15,6 +15,9 @@ Techlahoma.Donations.init = function(){
   $('input[type=radio][name="donation[accept_gift]"]').change(Techlahoma.Donations.acceptGiftToggle);
 
   $('select[name="donation[gift_selected]"]').change(Techlahoma.Donations.giftSelectedToggle);
+
+  $('#amount_select').change(Techlahoma.Donations.amountSelectChanged);
+
   Techlahoma.Donations.giftSelectedToggle();
 
   $('form').submit(Techlahoma.Donations.formHandler);
@@ -31,6 +34,17 @@ $(function() {
   }
 });
 
+
+Techlahoma.Donations.amountSelectChanged = function(){
+  var selectValue = $('#amount_select').val();
+  if( selectValue == 'Other' ){
+    $('#amount_input').show();
+  }else{
+    $('#amount_input').hide();
+    $('#donation_amount').val(selectValue.replace('$',''));
+
+  }
+}
 
 Techlahoma.Donations.acceptGiftToggle = function(){
   var acceptGift = Techlahoma.Donations.donorAcceptsGift();

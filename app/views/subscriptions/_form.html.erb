@@ -11,9 +11,6 @@
     </div>
   <% end %>
 
-
-  <p>You are signing up for <strong><%= @plan[:name] %></strong> at <strong><%= cents_to_dollars(@plan[:cost_in_dollars] * 100) %> per <%= @plan[:interval] %></strong>.</p>
-
   <p>In return for your generous contribution you will receive a surprise gift at the end of the year.</p>
 
   <p><%= @plan[:benefits] %></p>
@@ -24,10 +21,24 @@
 
   <%= render 'subscriptions/billing' %>
 
+  <fieldset>
+    <legend>Your Subscription</legend>
+    <%= f.select :stripe_plan_id, options_for_subscription_select, prompt: 'Please select an amount' %>
+  </fieldset>
+
+  <fieldset>
+    <legend>Your Thoughts</legend>
+    <p>
+      Is there anything else you'd like to tell us?
+    </p>
+    <div class="form-group">
+      <%= f.text_area :notes, :placeholder => "What's on your mind?", :class=>"text" %>
+    </div>
+  </fieldset>
+
 
   <%= f.hidden_field :token_id, :class=>'stripe-token-id' %>
-  <%= f.hidden_field :amount %>
-  <%= f.hidden_field :stripe_plan_id %>
+  <%= f.text_field :amount %>
   <br/>
   <div class="actions">
     <%= f.submit "Join Now!", :class => "button submit cta" %>

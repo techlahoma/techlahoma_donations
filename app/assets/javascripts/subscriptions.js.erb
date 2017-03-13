@@ -44,6 +44,8 @@ Techlahoma.Subscriptions.init = function(){
 
   $('form').submit(Techlahoma.Subscriptions.formHandler);
 
+  $('#subscription_stripe_plan_id').change(Techlahoma.Subscriptions.stripePlanChanged);
+
   //console.log('setup the form handler');
 };
 
@@ -54,6 +56,14 @@ $(function() {
   }
 });
 
+
+Techlahoma.Subscriptions.stripePlanChanged = function(){
+  // This is kinda hacky, but it works...
+  var selectedPlanId = $('#subscription_stripe_plan_id').val();
+  var amountInDollars = parseInt(selectedPlanId.split("-")[2]);
+  var amountInPennies = amountInDollars * 100;
+  $('#subscription_amount').val(amountInPennies);
+}
 
 Techlahoma.Subscriptions.acceptGiftToggle = function(){
   var acceptGift = Techlahoma.Subscriptions.donorAcceptsGift();

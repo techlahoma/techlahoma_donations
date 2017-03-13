@@ -22,4 +22,9 @@ module DonationsHelper
   def benefits_text benefits
     benefits.is_a?(String) ? benefits : benefits.join("<br/>AND<br/>").html_safe
   end
+
+  def options_for_donation_select
+    amounts = Donation::SUGGESTED_AMOUNTS.map{|amount| number_to_currency(amount)}
+    options_for_select(amounts + ['Other'])
+  end
 end

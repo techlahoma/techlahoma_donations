@@ -187,6 +187,13 @@ fieldset{
   }
 }
 
+form select,
+form select:focus{
+  background-image: image-url('down-arrow.png');
+  background-position: 98% 50%;
+  background-repeat: no-repeat;
+}
+
 /*
 $dark-grey: #292829;
 $bluish: #5bb8f0;
