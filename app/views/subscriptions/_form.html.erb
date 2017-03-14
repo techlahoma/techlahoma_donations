@@ -1,6 +1,6 @@
 <%= form_for(@subscription) do |f| %>
   <% if @subscription.errors.any? %>
-    <div id="error_explanation">
+    <div id="error_explanation" class="validation-error">
       <h2><%= pluralize(@subscription.errors.count, "error") %> prohibited this subscription from being saved:</h2>
 
       <ul>
@@ -39,6 +39,10 @@
 
   <%= f.hidden_field :token_id, :class=>'stripe-token-id' %>
   <%= f.hidden_field :amount %>
+  <div class="validation-error" style="display:none;">
+    Please correct the errors above.
+  </div>
+
   <br/>
   <div class="actions">
     <%= f.submit "Join Now!", :class => "button submit cta" %>

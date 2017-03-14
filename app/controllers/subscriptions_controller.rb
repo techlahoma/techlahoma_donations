@@ -31,13 +31,15 @@ class SubscriptionsController < ApplicationController
         format.html { redirect_to @subscription, notice: 'Subscription was successfully created.' }
         format.json { render :show, status: :created, location: @subscription }
       else
+        @subscription = @subscription.model
         format.html { render :new }
         format.json { render json: @subscription.errors, status: :unprocessable_entity }
       end
     end
   rescue Stripe::CardError => e
-    @plan = SubscriptionPlan.find(params[:subscription][:plan_id])
-    @subscription.errors.add("Credit card", e)
+    @plan = SubscriptionPlan.find_by_stripe_id(params[:subscription][:stripe_plan_id])
+    @subscription = @subscription.model
+    @subscription.errors.add("Credit card: ", e.message)
     respond_to do |format|
       format.html { render :new, flash: { error: e.to_s } }
       format.json { render json: @subscription.errors, status: :unprocessable_entity }

@@ -19,7 +19,8 @@ module SubscriptionsHelper
   def options_for_subscription_select
     plans = SubscriptionPlan.membership_list
     plan_options = plans.map{|plan| ["#{number_to_currency(plan[:cost_in_dollars])} / #{plan[:interval]}", plan[:id]] }
-    options_for_select(plan_options)
+    selected_plan_id = params[:subscription].present? ? params[:subscription][:stripe_plan_id] : nil
+    options_for_select(plan_options, selected_plan_id)
   end
 
 end

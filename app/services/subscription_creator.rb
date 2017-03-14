@@ -24,6 +24,10 @@ class SubscriptionCreator
     return @subscription
   end
 
+  def model
+    return @subscription
+  end
+
   delegate :persisted?, to: :@subscription
   delegate :new_record?, to: :@subscription
 end
