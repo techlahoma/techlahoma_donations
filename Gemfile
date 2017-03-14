@@ -66,6 +66,8 @@ group :development, :test do
 
   gem 'rspec-rails'
   gem 'factory_girl_rails'
+
+  gem 'pry' # for debugging
 end
 
 group :test do

@@ -36,6 +36,7 @@ class DonationsController < ApplicationController
         format.html { redirect_to @donation, notice: 'Donation was successfully created.' }
         format.json { render :show, status: :created, location: @donation }
       else
+        @donation = @donation.model
         @plan = Plan.find(params[:donation][:plan_id])
         format.html { render :new }
         format.json { render json: @donation.errors, status: :unprocessable_entity }
@@ -43,7 +44,8 @@ class DonationsController < ApplicationController
     end
   rescue Stripe::CardError => e
     @plan = Plan.find(params[:donation][:plan_id])
-    @donation.errors.add("Credit card", e)
+    @donation = @donation.model
+    @donation.errors.add("Credit card: ", e.message)
     respond_to do |format|
       format.html { render :new, flash: { error: e.to_s } }
       format.json { render json: @donation.errors, status: :unprocessable_entity }

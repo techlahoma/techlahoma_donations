@@ -24,6 +24,11 @@ class DonationCreator
     return @donation
   end
 
+  def model
+    return @donation
+  end
+
   delegate :persisted?, to: :@donation
   delegate :new_record?, to: :@donation
+  delegate :errors, to: :@donation
 end

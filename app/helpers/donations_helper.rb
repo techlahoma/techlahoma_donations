@@ -24,7 +24,7 @@ module DonationsHelper
   end
 
   def options_for_donation_select
-    amounts = Donation::SUGGESTED_AMOUNTS.map{|amount| number_to_currency(amount)}
-    options_for_select(amounts + ['Other'])
+    amounts = Donation::SUGGESTED_AMOUNTS.map{|amount| [number_to_currency(amount), amount]}
+    options_for_select(amounts + ['Other'], params[:donation][:amount])
   end
 end
