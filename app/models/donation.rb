@@ -11,7 +11,7 @@ class Donation < ActiveRecord::Base
 
   belongs_to :subscription
 
-  SUGGESTED_AMOUNTS = [32,64,128,256,512,1024,2048,4096]
+  SUGGESTED_AMOUNTS = [16,32,64,128,256,512,1024,2048,4096]
 
   def donor_name
     self.accept_recognition? ? name : "An Anonymous Donor"

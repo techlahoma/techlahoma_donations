@@ -1,6 +1,6 @@
 class SubscriptionPlan
 
-  MONTHLY_PLAN_AMOUNTS = [16, 32, 64, 128, 256, 512, 1024, 2048]
+  MONTHLY_PLAN_AMOUNTS = [8, 16, 32, 64, 128, 256, 512, 1024, 2048]
 
   def self.delete_all_stripe_plans
     plans = Stripe::Plan.all

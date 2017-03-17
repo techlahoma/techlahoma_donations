@@ -92,8 +92,13 @@ Techlahoma.Donations.preValidate = function(){
   var formIsValid = true;
   var validateField = Techlahoma.Validations.validateField;
   var validatePresence = Techlahoma.Validations.validatePresence;
+  var validateMinimumAmount = Techlahoma.Donations.validateMinimumAmount;
 
   formIsValid = validateField('input#donation_name',validatePresence) && formIsValid;
+
+  formIsValid = validateField('select#amount_select',validatePresence) && formIsValid;
+
+  formIsValid = validateField('input#donation_amount',validateMinimumAmount) && formIsValid;
 
   formIsValid = validateField('input.email',Techlahoma.Validations.validateEmail) && formIsValid;
 
@@ -150,7 +155,9 @@ Techlahoma.Donations.preValidate = function(){
 };
 
 
-
+Techlahoma.Donations.validateMinimumAmount = function(value){
+  return value >= 10;
+}
 
 Techlahoma.Donations.formHandler = function(event) {
   //console.log('Techlahoma.Donations.formHandler');

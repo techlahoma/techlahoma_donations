@@ -86,7 +86,7 @@
       </p>
     <% else %>
       <div class="form-group" style="display:none;" id="amount_input">
-        <%= f.label :amount, "Please enter an amount (US dollars)" %>
+        <%= f.label :amount, "Please enter an amount (US dollars, $10 minimum)" %>
         <%= f.text_field :amount, :placeholder => "50.00", :class=>"text amount" %>
       </div>
     <% end %>
