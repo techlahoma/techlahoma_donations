@@ -20,3 +20,7 @@
 
 stripe-mock-server.log
 stripe-mock-server.pid
+
+.DS_Store
+
+coverage/
