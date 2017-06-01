@@ -45,7 +45,8 @@ class SubscriptionPlan
         :cost_in_dollars => plan_amount,
         :interval => ENV['STRIPE_SUBSCRIPTION_INTERVAL'] || 'month',
         :interval_count => 1,
-        :benefits => nil
+        :benefits => nil,
+        :type => "Membership"
       })
     end
     return all_plans
