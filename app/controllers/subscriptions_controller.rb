@@ -14,7 +14,7 @@ class SubscriptionsController < ApplicationController
 
   # GET /subscriptions/new
   def new
-    @plan = params[:plan_id] ? Plan.find_by_stripe_id(params[:plan_id]) : Plan.membership_list.first
+    @plan = params[:plan_id] ? SubscriptionPlan.find_by_stripe_id(params[:plan_id]) : SubscriptionPlan.membership_list.first
     @subscription = Subscription.new({
       :amount => (@plan[:cost_in_dollars] * 100).to_i,
       :stripe_plan_id => @plan[:id]
@@ -24,20 +24,22 @@ class SubscriptionsController < ApplicationController
   # POST /subscriptions
   # POST /subscriptions.json
   def create
-    @subscription = Subscription.new(subscription_params)
+    @subscription = SubscriptionCreator.new(subscription_params)
 
     respond_to do |format|
       if @subscription.save
         format.html { redirect_to @subscription, notice: 'Subscription was successfully created.' }
         format.json { render :show, status: :created, location: @subscription }
       else
+        @subscription = @subscription.model
         format.html { render :new }
         format.json { render json: @subscription.errors, status: :unprocessable_entity }
       end
     end
   rescue Stripe::CardError => e
-    @plan = Plan.find(params[:subscription][:plan_id])
-    @subscription.errors.add("Credit card", e)
+    @plan = SubscriptionPlan.find_by_stripe_id(params[:subscription][:stripe_plan_id])
+    @subscription = @subscription.model
+    @subscription.errors.add("Credit card: ", e.message)
     respond_to do |format|
       format.html { render :new, flash: { error: e.to_s } }
       format.json { render json: @subscription.errors, status: :unprocessable_entity }

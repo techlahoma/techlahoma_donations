@@ -44,6 +44,8 @@ Techlahoma.Subscriptions.init = function(){
 
   $('form').submit(Techlahoma.Subscriptions.formHandler);
 
+  $('#subscription_stripe_plan_id').change(Techlahoma.Subscriptions.stripePlanChanged);
+
   //console.log('setup the form handler');
 };
 
@@ -54,6 +56,14 @@ $(function() {
   }
 });
 
+
+Techlahoma.Subscriptions.stripePlanChanged = function(){
+  // This is kinda hacky, but it works...
+  var selectedPlanId = $('#subscription_stripe_plan_id').val();
+  var amountInDollars = parseInt(selectedPlanId.split("-")[2]);
+  var amountInPennies = amountInDollars * 100;
+  $('#subscription_amount').val(amountInPennies);
+}
 
 Techlahoma.Subscriptions.acceptGiftToggle = function(){
   var acceptGift = Techlahoma.Subscriptions.donorAcceptsGift();
@@ -102,7 +112,7 @@ Techlahoma.Subscriptions.preValidate = function(){
   var validateField = Techlahoma.Validations.validateField;
   var validatePresence = Techlahoma.Validations.validatePresence;
 
-  formIsValid = validateField('input#subscription_name',validatePresence) && formIsValid;
+  //formIsValid = validateField('input#subscription_name',validatePresence) && formIsValid;
 
   formIsValid = validateField('input.email',Techlahoma.Validations.validateEmail) && formIsValid;
 
@@ -120,6 +130,7 @@ Techlahoma.Subscriptions.preValidate = function(){
 
   formIsValid = validateField('input.cvc',$.payment.validateCardCVC) && formIsValid;
 
+  /*
   formIsValid = validateField('input#subscription_address1',validatePresence) && formIsValid;
 
   formIsValid = validateField('input#subscription_city',validatePresence) && formIsValid;
@@ -149,7 +160,7 @@ Techlahoma.Subscriptions.preValidate = function(){
   if( $('select#subscription_gift_selected').length && acceptGift ){
     formIsValid = validateField('select#subscription_gift_selected',validatePresence) && formIsValid;
   }
-
+  */
   return formIsValid;
 };
 

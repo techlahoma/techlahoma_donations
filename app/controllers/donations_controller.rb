@@ -16,6 +16,7 @@ class DonationsController < ApplicationController
   def new
     @plan = Plan.find(params[:plan_id])
     amount = @plan ? (@plan[:cost_in_dollars_per_year] * 100).to_i : 50
+    amount = params[:amount] if params[:amount]
     @donation = Donation.new({
       :amount => amount,
       :plan_id => params[:plan_id]
@@ -23,19 +24,19 @@ class DonationsController < ApplicationController
   end
 
   # GET /donations/1/edit
-  def edit
-  end
+  #def edit
+  #end
 
   # POST /donations
   # POST /donations.json
   def create
-    @donation = Donation.new(donation_params)
-
+    @donation = DonationCreator.new(donation_params)
     respond_to do |format|
       if @donation.save
         format.html { redirect_to @donation, notice: 'Donation was successfully created.' }
         format.json { render :show, status: :created, location: @donation }
       else
+        @donation = @donation.model
         @plan = Plan.find(params[:donation][:plan_id])
         format.html { render :new }
         format.json { render json: @donation.errors, status: :unprocessable_entity }
@@ -43,7 +44,8 @@ class DonationsController < ApplicationController
     end
   rescue Stripe::CardError => e
     @plan = Plan.find(params[:donation][:plan_id])
-    @donation.errors.add("Credit card", e)
+    @donation = @donation.model
+    @donation.errors.add("Credit card: ", e.message)
     respond_to do |format|
       format.html { render :new, flash: { error: e.to_s } }
       format.json { render json: @donation.errors, status: :unprocessable_entity }
@@ -52,27 +54,27 @@ class DonationsController < ApplicationController
 
   # PATCH/PUT /donations/1
   # PATCH/PUT /donations/1.json
-  def update
-    respond_to do |format|
-      if @donation.update(donation_params)
-        format.html { redirect_to @donation, notice: 'Donation was successfully updated.' }
-        format.json { render :show, status: :ok, location: @donation }
-      else
-        format.html { render :edit }
-        format.json { render json: @donation.errors, status: :unprocessable_entity }
-      end
-    end
-  end
+  #def update
+    #respond_to do |format|
+      #if @donation.update(donation_params)
+        #format.html { redirect_to @donation, notice: 'Donation was successfully updated.' }
+        #format.json { render :show, status: :ok, location: @donation }
+      #else
+        #format.html { render :edit }
+        #format.json { render json: @donation.errors, status: :unprocessable_entity }
+      #end
+    #end
+  #end
 
   # DELETE /donations/1
   # DELETE /donations/1.json
-  def destroy
-    @donation.destroy
-    respond_to do |format|
-      format.html { redirect_to donations_url, notice: 'Donation was successfully destroyed.' }
-      format.json { head :no_content }
-    end
-  end
+  #def destroy
+    #@donation.destroy
+    #respond_to do |format|
+      #format.html { redirect_to donations_url, notice: 'Donation was successfully destroyed.' }
+      #format.json { head :no_content }
+    #end
+  #end
 
   private
 

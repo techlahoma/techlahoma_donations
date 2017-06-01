@@ -6,7 +6,7 @@ class Chat
     Rails.logger.debug "CHAT: #{message}"
     return if ENV["SLACK_URL"].blank?
       notifier = regularteam
-      notifier.ping Slack::Notifier::LinkFormatter.format(message)
+      notifier.ping Slack::Notifier::Util::LinkFormatter.format(message)
   end
 
     private
