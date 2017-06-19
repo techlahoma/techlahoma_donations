@@ -88,6 +88,6 @@ Rails.application.configure do
     :enable_starttls_auto => true, # or false for unencrypted connection
   }
   config.action_mailer.default_url_options = {
-    :host => 'donate.techlahoma.org'
+    :host => ENV['DEFAULT_URL_HOST'] || 'donate.techlahoma.org'
   }
 end

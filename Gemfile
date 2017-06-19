@@ -2,11 +2,11 @@ source 'https://rubygems.org'
 ruby '2.3.1'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '~> 4.2.5.1'
+gem 'rails', '~> 4.2.8'
 # Use postgresql as the database for Active Record
 gem 'pg'
 # Use SCSS for stylesheets
-gem 'sass-rails', '~> 4.0.3'
+gem 'sass-rails', '~> 4.0.5'
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
 # Use CoffeeScript for .js.coffee assets and views
@@ -33,6 +33,9 @@ end
 
 # For the money.
 gem 'stripe', '~> 1.31.0'
+gem 'stripe_event' # for listening to Stripe webhooks
+
+gem 'sidekiq' # for background processing
 
 #exceptions
 gem 'rollbar'
@@ -59,14 +62,20 @@ group :development, :test do
 
   gem 'dotenv-rails'
   gem 'foreman' # for the procfile
+  gem 'forward' # for exposing localhost to get Stripe webhooks
 
   gem 'rspec-rails'
+  gem 'factory_girl_rails'
+
+  gem 'pry-byebug'
 end
 
 group :test do
   gem 'cucumber-rails', :require => false
   gem 'database_cleaner'
   gem 'selenium-webdriver'
+  gem 'webmock'
+  gem 'simplecov', :require => false
 end
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'

@@ -3,15 +3,12 @@ class Subscription < ActiveRecord::Base
   include GuidIds
 
   validates :email, :presence => true
+  has_many :donations
 
   def donor_name
     self.accept_recognition? ? name : "An Anonymous Donor"
   end
-  # Ideally the process of charging a card would happen
-  # in the bakground and in a service object of some sort.
-  # This is the quick and dirty method that doesn't require background workers.
-  before_create :charge_the_token, :populate_plan_data
-  after_create :send_thank_you_email, :notify_slack, :notify_techlahomies
+
   def charge_the_token
     customer = Stripe::Customer.create(
       :source => self.token_id,
@@ -26,9 +23,9 @@ class Subscription < ActiveRecord::Base
   end
 
   def populate_plan_data
-    self.plan_name = plan[:name]
-    self.interval = plan[:interval]
-    self.interval_count = plan[:interval_count]
+    #self.plan_name = plan[:name]
+    #self.interval = plan[:interval]
+    #self.interval_count = plan[:interval_count]
   end
 
   def cancel
@@ -42,20 +39,8 @@ class Subscription < ActiveRecord::Base
     stripe_status == 'canceled'
   end
 
-  def send_thank_you_email
-    SubscriptionMailer.thank_you_email(self).deliver_later
-  end
-
-  def notify_slack
-    Chat.slack_message("New Subscription: $#{self.amount.to_i} by #{self.email}")
-  end
-
-  def notify_techlahomies
-    #p 'email techlahoma@gmail.com about subscription posting'
-  end
-
   def plan
-    Plan.find_by_stripe_id(stripe_plan_id)
+    SubscriptionPlan.find_by_stripe_id(stripe_plan_id)
   end
 
 end

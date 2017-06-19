@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
 
   get 'sponsorship' => 'home#sponsorship'
-  #get 'membership' => 'home#membership'
+  get 'membership' => 'home#membership'
   get 'giftpolicy' => 'home#giftpolicy'
 
   namespace :admin do
@@ -11,12 +11,18 @@ Rails.application.routes.draw do
         get :csv, :as => :csv
       end
     end
-    #resources :subscriptions, :except => [:edit,:update]
+    resources :subscriptions, :except => [:edit,:update,:new,:create]
   end
-  resources :donations, :except => [:edit,:update,:delete]
-  #resources :subscriptions, :except => [:edit,:update]
+  resources :donations, :except => [:edit,:update,:destroy]
+  resources :subscriptions, :except => [:edit,:update]
   root 'home#index'
 
+  mount StripeEvent::Engine, at: "/stripe_webhooks"
+
+  require 'sidekiq/web'
+  constraints lambda {|request| AuthConstraint.admin?(request) } do
+    mount Sidekiq::Web => '/admin/sidekiq'
+  end
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

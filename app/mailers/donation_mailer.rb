@@ -1,8 +1,6 @@
-class DonationMailer < ActionMailer::Base
+class DonationMailer < ApplicationMailer
   add_template_helper DonationsHelper
   add_template_helper SubscriptionsHelper
-
-  default from: "Techlahoma <donate@techlahoma.org>"
 
   def thank_you_email(donation)
     @donation = donation

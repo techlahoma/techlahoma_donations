@@ -21,10 +21,9 @@ require 'rails_helper'
 RSpec.describe SubscriptionsController, type: :controller do
 
   before :each do
-    skip "subscriptions are disabled"
     StripeMock.start
-    @plan = Plan.membership_list.first
-    Plan.create_stripe_plan(@plan)
+    SubscriptionPlan.create_stripe_plan(42)
+    @plan_id = SubscriptionPlan.plan_stripe_id(42)
   end
 
   after :each do
@@ -37,14 +36,14 @@ RSpec.describe SubscriptionsController, type: :controller do
   let(:valid_attributes) {{
     :name => "test person",
     :email => "test@person.com",
-    :stripe_plan_id => @plan[:id],
+    :stripe_plan_id => @plan_id,
     :token_id => StripeMock.generate_card_token(last4: "9191", exp_year: 1984)
   }}
 
   let(:invalid_attributes) {{
     :name => "test person",
     :email => nil,
-    :stripe_plan_id => @plan[:id],
+    :stripe_plan_id => @plan_id,
     :token_id => StripeMock.generate_card_token(last4: "9191", exp_year: 1984)
   }}
 
@@ -94,7 +93,7 @@ RSpec.describe SubscriptionsController, type: :controller do
 
       it "assigns a newly created subscription as @subscription" do
         post :create, {:subscription => valid_attributes}, valid_session
-        expect(assigns(:subscription)).to be_a(Subscription)
+        expect(assigns(:subscription)).to be_a(SubscriptionCreator)
         expect(assigns(:subscription)).to be_persisted
       end
 
@@ -107,7 +106,7 @@ RSpec.describe SubscriptionsController, type: :controller do
     context "with invalid params" do
       it "assigns a newly created but unsaved subscription as @subscription" do
         post :create, {:subscription => invalid_attributes}, valid_session
-        expect(assigns(:subscription)).to be_a_new(Subscription)
+        expect(assigns(:subscription)).to be_a_new(SubscriptionCreator)
       end
 
       it "re-renders the 'new' template" do
@@ -161,6 +160,7 @@ RSpec.describe SubscriptionsController, type: :controller do
   describe "DELETE #destroy" do
     it "cancels the requested subscription" do
       subscription = Subscription.create! valid_attributes
+      expect_any_instance_of(Subscription).to receive(:cancel).and_return(nil)
       expect {
         delete :destroy, {:id => subscription.to_param}, valid_session
       }.to change(Subscription, :count).by(0)
@@ -168,6 +168,7 @@ RSpec.describe SubscriptionsController, type: :controller do
 
     it "redirects to the subscription" do
       subscription = Subscription.create! valid_attributes
+      expect_any_instance_of(Subscription).to receive(:cancel).and_return(nil)
       delete :destroy, {:id => subscription.to_param}, valid_session
       expect(response).to redirect_to(subscription)
     end

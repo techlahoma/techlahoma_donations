@@ -90,7 +90,7 @@ RSpec.describe DonationsController, type: :controller do
 
       it "assigns a newly created donation as @donation" do
         post :create, {:donation => valid_attributes}, valid_session
-        expect(assigns(:donation)).to be_a(Donation)
+        expect(assigns(:donation)).to be_a(DonationCreator)
         expect(assigns(:donation)).to be_persisted
       end
 
@@ -103,7 +103,7 @@ RSpec.describe DonationsController, type: :controller do
     context "with invalid params" do
       it "assigns a newly created but unsaved donation as @donation" do
         post :create, {:donation => invalid_attributes}, valid_session
-        expect(assigns(:donation)).to be_a_new(Donation)
+        expect(assigns(:donation)).to be_a_new(DonationCreator)
       end
 
       it "re-renders the 'new' template" do
@@ -154,19 +154,19 @@ RSpec.describe DonationsController, type: :controller do
     #end
   #end
 
-  describe "DELETE #destroy" do
-    it "destroys the requested donation" do
-      donation = Donation.create! valid_attributes
-      expect {
-        delete :destroy, {:id => donation.to_param}, valid_session
-      }.to change(Donation, :count).by(-1)
-    end
+  #describe "DELETE #destroy" do
+    #it "destroys the requested donation" do
+      #donation = Donation.create! valid_attributes
+      #expect {
+        #delete :destroy, {:id => donation.to_param}, valid_session
+      #}.to change(Donation, :count).by(-1)
+    #end
 
-    it "redirects to the donations list" do
-      donation = Donation.create! valid_attributes
-      delete :destroy, {:id => donation.to_param}, valid_session
-      expect(response).to redirect_to(donations_url)
-    end
-  end
+    #it "redirects to the donations list" do
+      #donation = Donation.create! valid_attributes
+      #delete :destroy, {:id => donation.to_param}, valid_session
+      #expect(response).to redirect_to(donations_url)
+    #end
+  #end
 
 end

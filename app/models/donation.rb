@@ -9,15 +9,13 @@ class Donation < ActiveRecord::Base
   scope :true_believers, -> { where("created_at < ?",Date.parse("Feb 25, 2016")) }
   scope :in_campaign, -> { where("created_at > ?",Date.parse("Feb 25, 2016")) }
 
+  belongs_to :subscription
+
+  SUGGESTED_AMOUNTS = [16,32,64,128,256,512,1024,2048,4096]
 
   def donor_name
     self.accept_recognition? ? name : "An Anonymous Donor"
   end
-  # Ideally the process of charging a card would happen
-  # in the bakground and in a service object of some sort.
-  # This is the quick and dirty method that doesn't require background workers.
-  before_create :populate_plan_data, :charge_the_token
-  after_create :send_thank_you_email, :notify_slack, :notify_techlahomies
 
   def populate_plan_data
     plan = Plan.find(plan_id)
@@ -26,7 +24,6 @@ class Donation < ActiveRecord::Base
     self.amount = plan[:cost_in_dollars_per_year]
     self.plan_type = plan[:type]
   end
-
 
   def charge_the_token
     return unless token_id.present?
@@ -39,30 +36,6 @@ class Donation < ActiveRecord::Base
     self.stripe_id = charge["id"]
     self.stripe_status = charge["status"]
     self.stripe_response = charge.to_json
-  end
-
-  def send_thank_you_email
-    DonationMailer.thank_you_email(self).deliver_later
-  end
-
-  def notify_slack
-    Chat.slack_message(slack_message)
-  end
-
-  def slack_message
-    if plan.blank?
-      "New Donation: $#{self.amount.to_i} by #{self.donor_name}"
-    elsif plan[:type] == "Membership"
-      "New Member: #{plan[:name]} - $#{self.amount.to_i} by #{self.donor_name}"
-    elsif plan[:type] == "Sponsorship"
-      "New Sponsor: #{plan[:name]} - $#{self.amount.to_i} by #{self.donor_name}"
-    else
-      "Unknown Donation Type: $#{self.amount.to_i} by #{self.donor_name} (How did this even happen!?)"
-    end
-  end
-
-  def notify_techlahomies
-    #p 'email techlahoma@gmail.com about donation posting'
   end
 
   def plan
