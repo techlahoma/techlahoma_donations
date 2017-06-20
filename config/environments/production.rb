@@ -77,16 +77,6 @@ Rails.application.configure do
   config.active_record.dump_schema_after_migration = false
 
 
-  config.action_mailer.delivery_method = :smtp
-  config.action_mailer.smtp_settings = {
-    :port           => '25', # or 2525
-    :address        => ENV['POSTMARK_SMTP_SERVER'],
-    :user_name      => ENV['POSTMARK_API_TOKEN'],
-    :password       => ENV['POSTMARK_API_TOKEN'],
-    :domain         => 'donate.techlahoma.org',
-    :authentication => :cram_md5, # or :plain for plain-text authentication
-    :enable_starttls_auto => true, # or false for unencrypted connection
-  }
   config.action_mailer.default_url_options = {
     :host => ENV['DEFAULT_URL_HOST'] || 'donate.techlahoma.org'
   }
