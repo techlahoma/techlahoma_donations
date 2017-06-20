@@ -24,14 +24,15 @@ module TechlahomaDonations
     config.active_record.raise_in_transactional_callbacks = true
 
     config.action_mailer.smtp_settings = {
-      :port           => '25', # or 2525
-      :address        => ENV['POSTMARK_SMTP_SERVER'],
-      :user_name      => ENV['POSTMARK_API_TOKEN'],
-      :password       => ENV['POSTMARK_API_TOKEN'],
+      :port           => '587', # or 2525
+      :address        => 'smtp.sendgrid.net',
+      :user_name      => ENV['SENDGRID_USERNAME'],
+      :password       => ENV['SENDGRID_PASSWORD'],
       :domain         => 'donate.techlahoma.org',
-      :authentication => :cram_md5, # or :plain for plain-text authentication
+      :authentication => :plain, # or :plain for plain-text authentication
       :enable_starttls_auto => true, # or false for unencrypted connection
     }
+
     config.action_mailer.delivery_method = :smtp
   end
 end
