@@ -96,7 +96,9 @@ Techlahoma.Donations.preValidate = function(){
 
   formIsValid = validateField('input#donation_name',validatePresence) && formIsValid;
 
-  formIsValid = validateField('select#amount_select',validatePresence) && formIsValid;
+  if($('select#amount_select').length){
+    formIsValid = validateField('select#amount_select',validatePresence) && formIsValid;
+  }
 
   formIsValid = validateField('input#donation_amount',validateMinimumAmount) && formIsValid;
 

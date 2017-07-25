@@ -78,13 +78,14 @@
 
   <fieldset>
     <legend>Your Contribution</legend>
-    <%= select_tag :amount_select, options_for_donation_select, prompt: 'Please select an amount' %>
     <% if @plan %>
       <p>
         You are signing up for <strong><%= @plan[:name] %></strong>
         at <strong><%= cents_to_dollars(@plan[:cost_in_dollars_per_year] * 100) %></strong>
+        <%= f.hidden_field :amount, :value => (@plan[:cost_in_dollars_per_year] * 100), :placeholder => "50.00", :class=>"text amount" %>
       </p>
     <% else %>
+      <%= select_tag :amount_select, options_for_donation_select, prompt: 'Please select an amount' %>
       <div class="form-group" style="display:none;" id="amount_input">
         <%= f.label :amount, "Please enter an amount (US dollars, $10 minimum)" %>
         <%= f.text_field :amount, :placeholder => "50.00", :class=>"text amount" %>
