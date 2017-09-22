@@ -1,6 +1,7 @@
 class Subscription < ActiveRecord::Base
 
   include GuidIds
+  include ActionView::Helpers::NumberHelper # for number_to_currency
 
   validates :email, :presence => true
   has_many :donations
@@ -41,6 +42,11 @@ class Subscription < ActiveRecord::Base
 
   def plan
     SubscriptionPlan.find_by_stripe_id(stripe_plan_id)
+  end
+
+  def friendly_amount
+    f_amount = self.amount.present? ? self.amount.to_f / 100 : 0
+    return number_to_currency f_amount
   end
 
 end
