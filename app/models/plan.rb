@@ -2,40 +2,49 @@ class Plan
 
   MEMBERSHIP_BASES = [
     {
-      :name => "Founding Member",
-      :id => "founding-member",
+      :name => "Member",
+      :id => "member-64",
+      :type => "Membership",
+      :cost_in_dollars_per_year => 64,
+      :gift => ["Small 2017 Techlahoma Supporting Member Coffee Mug"],
+      :benefits => "Stratified Website Recognition",
+      :image => "small-mug.jpg"
+    },
+    {
+      :name => "Member",
+      :id => "member-128",
       :type => "Membership",
       :cost_in_dollars_per_year => 128,
-      :gift => ["Techlahoma Founding Member T-Shirt"],
+      :gift => ["Large 2017 Techlahoma Supporting Member Coffee Mug"],
       :benefits => "Stratified Website Recognition",
-      :image => "tshirt.jpg"
+      :image => "large-mug.jpg"
     },
     {
-      :name => "Founding Leader",
-      :id => "founding-leader",
+      :name => " Leader",
+      :id => "leader",
       :type => "Membership",
       :cost_in_dollars_per_year => 256,
-      :gift => ["Techlahoma Founding Member T-Shirt", "Techlahoma Founding Member Polo"],
+      :gift => ["Large 2017 Techlahoma Supporting Member Coffee Mug", "10x10 2017 Techlahoma Supporting Member Framed Poster"],
       :benefits => "Stratified Website Recognition",
-      :image => "tshirt_and_polo.jpg"
+      :image => "leader2017.jpg"
     },
     {
-      :name => "Founding Champion",
-      :id => "founding-champion",
+      :name => " Champion",
+      :id => "champion",
       :type => "Membership",
       :cost_in_dollars_per_year => 512,
-      :gift => ["Techlahoma Founding Member T-Shirt", ["Techlahoma Founding Member Hoodie", "Techlahoma Founding Member Yeti Mug"]],
+      :gift => ["Large 2017 Techlahoma Supporting Member Coffee Mug", "10x10 2017 Techlahoma Supporting Member Framed Poster", "2017 Techlahoma Supporting Member T-shirt"],
       :benefits => "Stratified Website Recognition",
-      :image => "champion2.jpg"
+      :image => "champion2017.jpg"
     },
     {
-      :name => "Founding Early Adopter",
-      :id => "founding-early-adopter",
+      :name => " Early Adopter",
+      :id => "early-adopter",
       :type => "Membership",
       :cost_in_dollars_per_year => 1024,
-      :gift => ["Techlahoma Founding Member T-Shirt", "Techlahoma Founding Member Polo", ["Techlahoma Founding Member Hoodie", "Techlahoma Founding Member Yeti Mug"]],
+      :gift => ["Large 2017 Techlahoma Supporting Member Coffee Mug", "10x10 2017 Techlahoma Supporting Member Framed Poster", "2017 Techlahoma Supporting Member T-shirt", "2017 Techlahoma Supporting Member Hoodie"],
       :benefits => "Stratified Website Recognition",
-      :image => "early_adopter.jpg"
+      :image => "early-adopter2017.jpg"
     }
   ]
 
