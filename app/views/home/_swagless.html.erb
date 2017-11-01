@@ -1,0 +1,26 @@
+<div class="row">
+  <section class="6u 12u(narrower) feature single-col-buttons">
+    <div class="plan">
+      <h3>Single Payment</h3>
+      <p>Surprise members-only end of year gift.</p>
+      <p>Stratified Website Recognition</p>
+      <%= link_to "Join Today!", new_donation_path, :class => "button cta" %>
+      <br/>
+      <%#= link_to "Or pay monthly at #{number_to_currency membership_base[:cost_in_dollars_per_year].to_f/12} / month.", new_subscription_path(:plan_id => Plan.id_for_membership_base(membership_base,'monthly')), :class => "small" %>
+    </div>
+  </section>
+  <section class="6u 12u(narrower) feature single-col-buttons">
+    <div class="plan">
+      <h3>Monthly Payment</h3>
+      <p>Surprise members-only end of year gift.</p>
+      <p>Stratified Website Recognition</p>
+      <%= link_to "Subscribe today!", new_subscription_path, :class => "button cta" %>
+      <br/>
+      <%#= link_to "Or pay monthly at #{number_to_currency membership_base[:cost_in_dollars_per_year].to_f/12} / month.", new_subscription_path(:plan_id => Plan.id_for_membership_base(membership_base,'monthly')), :class => "small" %>
+    </div>
+  </section>
+</div>
+
+<p class="alternate-donation-link">
+  Gifts will be sent near the end of the year and will be based upon your level of contribution.
+</p>

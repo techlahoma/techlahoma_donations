@@ -11,46 +11,8 @@
   </section>
 <% end %>
 
-<div class="row">
-<% Plan.membership_bases.each do |membership_base| %>
-  <section class="6u 12u(narrower) feature">
-    <div class="plan">
-    <h3><%= membership_base[:name] %></h3>
-    <h3>$<%= membership_base[:cost_in_dollars_per_year] %> in 2017</h3>
-    <%= link_to image_tag(membership_base[:image]), new_donation_path(:plan_id => membership_base[:id]), :class=>'img' %>
-    <p><%= gift_text membership_base[:gift] %></p>
-    <p><%= membership_base[:benefits] %></p>
-    <%= link_to "Join Now as a<br/>#{membership_base[:name]}!".html_safe, new_donation_path(:plan_id => membership_base[:id]), :class => "button cta" %>
-    <br/>
-    <%#= link_to "Or pay monthly at #{number_to_currency membership_base[:cost_in_dollars_per_year].to_f/12} / month.", new_subscription_path(:plan_id => Plan.id_for_membership_base(membership_base,'monthly')), :class => "small" %>
-    </div>
-  </section>
-<% end %>
-</div>
+<%= render 'swagful' %>
 
-<div class="row">
-  <section class="6u 12u(narrower) feature single-col-buttons">
-    <div class="plan">
-      <h3>Single Payment</h3>
-      <p>Surprise members-only end of year gift.</p>
-      <p>Stratified Website Recognition</p>
-      <%= link_to "Join Today!", new_donation_path, :class => "button cta" %>
-      <br/>
-      <%#= link_to "Or pay monthly at #{number_to_currency membership_base[:cost_in_dollars_per_year].to_f/12} / month.", new_subscription_path(:plan_id => Plan.id_for_membership_base(membership_base,'monthly')), :class => "small" %>
-    </div>
-  </section>
-  <section class="6u 12u(narrower) feature single-col-buttons">
-    <div class="plan">
-      <h3>Monthly Payment</h3>
-      <p>Surprise members-only end of year gift.</p>
-      <p>Stratified Website Recognition</p>
-      <%= link_to "Subscribe today!", new_subscription_path, :class => "button cta" %>
-      <br/>
-      <%#= link_to "Or pay monthly at #{number_to_currency membership_base[:cost_in_dollars_per_year].to_f/12} / month.", new_subscription_path(:plan_id => Plan.id_for_membership_base(membership_base,'monthly')), :class => "small" %>
-    </div>
-  </section>
-</div>
+<%#= render 'swagless' %>
 
-<p class="alternate-donation-link">
-  Gifts will be sent near the end of the year and will be based upon your level of contribution.
-</p>
+
