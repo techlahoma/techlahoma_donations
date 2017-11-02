@@ -12,7 +12,7 @@
 <% if plan_gets_a_gift(@donation.plan) && @donation.accept_gift %>
   <p>
     This donation is fully tax deductible and no goods or services were provided
-    to the donor except for a small gift whose value is approximated below.
+    to the donor except for a small gift whose value will be approximated in your year-end receipt.
   </p>
 <% else %>
 <% end %>
@@ -22,45 +22,6 @@
   <p>You'll be listed on our donors page as <%= @donation.donor_name %></p>
 <% else %>
   <p>You have chosen to remain anonymous.</p>
-<% end %>
-
-<% if plan_gets_a_gift(@donation.plan) %>
-  <h3>Your Gift</h3>
-  <% if @donation.accept_gift %>
-    <% if plan_gets_tee_shirt(@donation.plan) %>
-      <p>
-      Techlahoma Members-Only Tee-Shirt<br/>
-      Size: <%= @donation.tee_shirt_size %><br/>
-      Color: <%= @donation.tee_shirt_color %><br/>
-      Estimated Value*: <%= number_to_currency TeeShirt::VALUE %>
-      </p>
-    <% end %>
-    <% if plan_gets_polo(@donation.plan) %>
-      <p>
-      Techlahoma Members-Only Polo<br/>
-      Size: <%= @donation.polo_size %><br/>
-      Color: <%= @donation.polo_color %><br/>
-      Estimated Value*: <%= number_to_currency Polo::VALUE %>
-      </p>
-    <% end %>
-    <% if donation_gets_hoodie(@donation) %>
-      <p>
-      Techlahoma Members-Only Hoodie<br/>
-      Size: <%= @donation.hoodie_size %><br/>
-      Color: <%= @donation.hoodie_color %><br/>
-      Estimated Value*: <%= number_to_currency Hoodie::VALUE %>
-      </p>
-    <% end %>
-    <% if donation_gets_yeti(@donation) %>
-      <p>
-      Techlahoma Members-Only Yeti Rambler Tumbler<br/>
-      Estimated Value: <%= number_to_currency Yeti::VALUE %>
-      </p>
-    <% end %>
-      <p>* Exact value of your gift will be provided in your year end receipt.</p>
-  <% else %>
-      <p>You have elected not to receive a gift.</p>
-  <% end %>
 <% end %>
 
 <% if donation_gets_a_gift(@donation) %>

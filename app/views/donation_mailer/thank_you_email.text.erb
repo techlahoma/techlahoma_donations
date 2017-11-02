@@ -10,53 +10,18 @@ Public Recognition:
 <% end %>
 
 <% if plan_gets_a_gift(@donation.plan) && @donation.accept_gift %>
-This donation is fully tax deductible and no goods or services were provided to the donor except for a small gift whose value is approximated below.
+This donation is fully tax deductible and no goods or services were provided to the donor except for a small gift whose value will be approximated in your year-end receipt.
 <% else %>
-<% end %>
-
-<% if plan_gets_a_gift(@donation.plan) %>
-Your Gift:
-<% if @donation.accept_gift %>
-<% if plan_gets_tee_shirt(@donation.plan) %>
-  Techlahoma Members-Only Tee-Shirt
-  Size: <%= @donation.tee_shirt_size %>
-  Color: <%= @donation.tee_shirt_color %>
-  Value: <%= number_to_currency TeeShirt::VALUE %>
-<% end %>
-<% if plan_gets_polo(@donation.plan) %>
-  Techlahoma Members-Only Polo
-  Size: <%= @donation.polo_size %>
-  Color: <%= @donation.polo_color %>
-  Value: <%= number_to_currency Polo::VALUE %>
-<% end %>
-<% if donation_gets_hoodie(@donation) %>
-  Techlahoma Members-Only Hoodie
-  Size: <%= @donation.hoodie_size %>
-  Color: <%= @donation.hoodie_color %>
-  Value: <%= number_to_currency Hoodie::VALUE %>
-<% end %>
-<% if donation_gets_yeti(@donation) %>
-  Techlahoma Members-Only Yeti Rambler Tumbler
-  Value: <%= number_to_currency Yeti::VALUE %>
-<% end %>
-<% else %>
-  You have elected not to receive a gift.
-<% end %>
 <% end %>
 
 <% if donation_gets_a_gift(@donation) %>
 Gift Delivery:
 
-We are currently planning to throw celebration parties simultaneously in OKC and in Tulsa sometime in early summer. You can pick up your gift there if you can attend.
+At the end of the year we'll total up all of your donations and/or payments on a subscription in 2017 and that will determine your membership level.
 
-If you cannot attend either party, your gift will be mailed after the party to:
+Then we'll send you a secret code that you can redeem in our members-only store for your gift(s).
 
-  <%= @donation.name %>
-  <%= @donation.address1 %>
-  <% if @donation.address2.present? %>
-  <%= @donation.address2 %>
-  <% end %>
-  <%= @donation.city %> <%= @donation.state %>, <%= @donation.zipcode %>
+Your code will cover the entire cost of the suggested gifts for your membership level, but you can choose any gift(s) you'd like. You can also purchase additional items.
 <% end %>
 
 
