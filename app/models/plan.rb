@@ -70,7 +70,7 @@ class Plan
       :gift => nil,
       :benefits => [
         "Stratified Website Recognition",
-        "Recognition at all Tulsa or OKC based Techlahoma technology groups from May 2016 - April 2017"
+        "Recognition at all Tulsa or OKC based Techlahoma technology groups from May 2017 - April 2018"
       ]
     },
     {
@@ -82,7 +82,7 @@ class Plan
       :gift => nil,
       :benefits => [
         "Stratified Website Recognition",
-        "Recognition as an Angel Investor at all Techlahoma Technology Group meetings taking place from May 2016 - April 2017. Sponsor can elect to send a representative to speak briefly up to 3 times per Techlahoma Technology Group."
+        "Recognition as an Angel Investor at all Techlahoma Technology Group meetings taking place from May 2017 - April 2018. Sponsor can elect to send a representative to speak briefly up to 3 times per Techlahoma Technology Group."
       ]
     }
   ]
