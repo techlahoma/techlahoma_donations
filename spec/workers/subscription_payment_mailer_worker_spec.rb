@@ -5,9 +5,10 @@ RSpec.describe SubscriptionPaymentMailerWorker, type: :worker do
     Sidekiq::Testing.inline!
   end
   let(:worker){ SubscriptionPaymentMailerWorker.new }
+  let(:subscription){ create :subscription }
+  let(:donation){ create :donation, subscription: subscription}
   describe "perform" do
     it "should call the mailer" do
-      donation = create :donation
       worker.perform(donation.id)
       expect(ActionMailer::Base.deliveries.count).to eq(1)
     end

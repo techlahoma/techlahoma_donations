@@ -12,7 +12,7 @@ RSpec.describe SubscriptionMailer, type: :mailer do
     end
 
     it "renders the body" do
-      expect(mail.body.encoded).to match("SubscriptionMailer#thank_you_email")
+      expect(mail.body.encoded).to match("Thank you for supporting Techlahoma")
     end
   end
 end

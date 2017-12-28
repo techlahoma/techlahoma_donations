@@ -2,7 +2,8 @@ require "rails_helper"
 
 RSpec.describe SubscriptionPaymentMailer, type: :mailer do
   describe "thank_you_email" do
-    let(:donation){ create :donation }
+    let(:subscription){ create :subscription }
+    let(:donation){ create :donation, subscription: subscription}
     let(:mail) { SubscriptionPaymentMailer.thank_you_email(donation) }
 
     it "renders the headers" do

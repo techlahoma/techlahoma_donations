@@ -106,7 +106,7 @@ RSpec.describe SubscriptionsController, type: :controller do
     context "with invalid params" do
       it "assigns a newly created but unsaved subscription as @subscription" do
         post :create, {:subscription => invalid_attributes}, valid_session
-        expect(assigns(:subscription)).to be_a_new(SubscriptionCreator)
+        expect(assigns(:subscription)).to be_a_new(Subscription)
       end
 
       it "re-renders the 'new' template" do
