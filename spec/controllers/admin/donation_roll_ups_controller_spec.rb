@@ -52,108 +52,108 @@ RSpec.describe Admin::DonationRollUpsController, type: :controller do
     end
   end
 
-  describe "GET #new" do
-    it "assigns a new donation_roll_up as @donation_roll_up" do
-      get :new, params: {}, session: valid_session
-      expect(assigns(:donation_roll_up)).to be_a_new(DonationRollUp)
-    end
-  end
+  #describe "GET #new" do
+    #it "assigns a new donation_roll_up as @donation_roll_up" do
+      #get :new, params: {}, session: valid_session
+      #expect(assigns(:donation_roll_up)).to be_a_new(DonationRollUp)
+    #end
+  #end
 
-  describe "GET #edit" do
-    it "assigns the requested donation_roll_up as @donation_roll_up" do
-      donation_roll_up = DonationRollUp.create! valid_attributes
-      get :edit, params: {id: donation_roll_up.to_param}, session: valid_session
-      expect(assigns(:donation_roll_up)).to eq(donation_roll_up)
-    end
-  end
+  #describe "GET #edit" do
+    #it "assigns the requested donation_roll_up as @donation_roll_up" do
+      #donation_roll_up = DonationRollUp.create! valid_attributes
+      #get :edit, params: {id: donation_roll_up.to_param}, session: valid_session
+      #expect(assigns(:donation_roll_up)).to eq(donation_roll_up)
+    #end
+  #end
 
-  describe "POST #create" do
-    context "with valid params" do
-      it "creates a new DonationRollUp" do
-        expect {
-          post :create, params: {donation_roll_up: valid_attributes}, session: valid_session
-        }.to change(DonationRollUp, :count).by(1)
-      end
+  #describe "POST #create" do
+    #context "with valid params" do
+      #it "creates a new DonationRollUp" do
+        #expect {
+          #post :create, params: {donation_roll_up: valid_attributes}, session: valid_session
+        #}.to change(DonationRollUp, :count).by(1)
+      #end
 
-      it "assigns a newly created donation_roll_up as @donation_roll_up" do
-        post :create, params: {donation_roll_up: valid_attributes}, session: valid_session
-        expect(assigns(:donation_roll_up)).to be_a(DonationRollUp)
-        expect(assigns(:donation_roll_up)).to be_persisted
-      end
+      #it "assigns a newly created donation_roll_up as @donation_roll_up" do
+        #post :create, params: {donation_roll_up: valid_attributes}, session: valid_session
+        #expect(assigns(:donation_roll_up)).to be_a(DonationRollUp)
+        #expect(assigns(:donation_roll_up)).to be_persisted
+      #end
 
-      it "redirects to the created donation_roll_up" do
-        post :create, params: {donation_roll_up: valid_attributes}, session: valid_session
-        expect(response).to redirect_to(DonationRollUp.last)
-      end
-    end
+      #it "redirects to the created donation_roll_up" do
+        #post :create, params: {donation_roll_up: valid_attributes}, session: valid_session
+        #expect(response).to redirect_to(DonationRollUp.last)
+      #end
+    #end
 
-    context "with invalid params" do
-      it "assigns a newly created but unsaved donation_roll_up as @donation_roll_up" do
-        post :create, params: {donation_roll_up: invalid_attributes}, session: valid_session
-        expect(assigns(:donation_roll_up)).to be_a_new(DonationRollUp)
-      end
+    #context "with invalid params" do
+      #it "assigns a newly created but unsaved donation_roll_up as @donation_roll_up" do
+        #post :create, params: {donation_roll_up: invalid_attributes}, session: valid_session
+        #expect(assigns(:donation_roll_up)).to be_a_new(DonationRollUp)
+      #end
 
-      it "re-renders the 'new' template" do
-        post :create, params: {donation_roll_up: invalid_attributes}, session: valid_session
-        expect(response).to render_template("new")
-      end
-    end
-  end
+      #it "re-renders the 'new' template" do
+        #post :create, params: {donation_roll_up: invalid_attributes}, session: valid_session
+        #expect(response).to render_template("new")
+      #end
+    #end
+  #end
 
-  describe "PUT #update" do
-    context "with valid params" do
-      let(:new_attributes) {
-        skip("Add a hash of attributes valid for your model")
-      }
+  #describe "PUT #update" do
+    #context "with valid params" do
+      #let(:new_attributes) {
+        #skip("Add a hash of attributes valid for your model")
+      #}
 
-      it "updates the requested donation_roll_up" do
-        donation_roll_up = DonationRollUp.create! valid_attributes
-        put :update, params: {id: donation_roll_up.to_param, donation_roll_up: new_attributes}, session: valid_session
-        donation_roll_up.reload
-        skip("Add assertions for updated state")
-      end
+      #it "updates the requested donation_roll_up" do
+        #donation_roll_up = DonationRollUp.create! valid_attributes
+        #put :update, params: {id: donation_roll_up.to_param, donation_roll_up: new_attributes}, session: valid_session
+        #donation_roll_up.reload
+        #skip("Add assertions for updated state")
+      #end
 
-      it "assigns the requested donation_roll_up as @donation_roll_up" do
-        donation_roll_up = DonationRollUp.create! valid_attributes
-        put :update, params: {id: donation_roll_up.to_param, donation_roll_up: valid_attributes}, session: valid_session
-        expect(assigns(:donation_roll_up)).to eq(donation_roll_up)
-      end
+      #it "assigns the requested donation_roll_up as @donation_roll_up" do
+        #donation_roll_up = DonationRollUp.create! valid_attributes
+        #put :update, params: {id: donation_roll_up.to_param, donation_roll_up: valid_attributes}, session: valid_session
+        #expect(assigns(:donation_roll_up)).to eq(donation_roll_up)
+      #end
 
-      it "redirects to the donation_roll_up" do
-        donation_roll_up = DonationRollUp.create! valid_attributes
-        put :update, params: {id: donation_roll_up.to_param, donation_roll_up: valid_attributes}, session: valid_session
-        expect(response).to redirect_to(donation_roll_up)
-      end
-    end
+      #it "redirects to the donation_roll_up" do
+        #donation_roll_up = DonationRollUp.create! valid_attributes
+        #put :update, params: {id: donation_roll_up.to_param, donation_roll_up: valid_attributes}, session: valid_session
+        #expect(response).to redirect_to(donation_roll_up)
+      #end
+    #end
 
-    context "with invalid params" do
-      it "assigns the donation_roll_up as @donation_roll_up" do
-        donation_roll_up = DonationRollUp.create! valid_attributes
-        put :update, params: {id: donation_roll_up.to_param, donation_roll_up: invalid_attributes}, session: valid_session
-        expect(assigns(:donation_roll_up)).to eq(donation_roll_up)
-      end
+    #context "with invalid params" do
+      #it "assigns the donation_roll_up as @donation_roll_up" do
+        #donation_roll_up = DonationRollUp.create! valid_attributes
+        #put :update, params: {id: donation_roll_up.to_param, donation_roll_up: invalid_attributes}, session: valid_session
+        #expect(assigns(:donation_roll_up)).to eq(donation_roll_up)
+      #end
 
-      it "re-renders the 'edit' template" do
-        donation_roll_up = DonationRollUp.create! valid_attributes
-        put :update, params: {id: donation_roll_up.to_param, donation_roll_up: invalid_attributes}, session: valid_session
-        expect(response).to render_template("edit")
-      end
-    end
-  end
+      #it "re-renders the 'edit' template" do
+        #donation_roll_up = DonationRollUp.create! valid_attributes
+        #put :update, params: {id: donation_roll_up.to_param, donation_roll_up: invalid_attributes}, session: valid_session
+        #expect(response).to render_template("edit")
+      #end
+    #end
+  #end
 
-  describe "DELETE #destroy" do
-    it "destroys the requested donation_roll_up" do
-      donation_roll_up = DonationRollUp.create! valid_attributes
-      expect {
-        delete :destroy, params: {id: donation_roll_up.to_param}, session: valid_session
-      }.to change(DonationRollUp, :count).by(-1)
-    end
+  #describe "DELETE #destroy" do
+    #it "destroys the requested donation_roll_up" do
+      #donation_roll_up = DonationRollUp.create! valid_attributes
+      #expect {
+        #delete :destroy, params: {id: donation_roll_up.to_param}, session: valid_session
+      #}.to change(DonationRollUp, :count).by(-1)
+    #end
 
-    it "redirects to the donation_roll_ups list" do
-      donation_roll_up = DonationRollUp.create! valid_attributes
-      delete :destroy, params: {id: donation_roll_up.to_param}, session: valid_session
-      expect(response).to redirect_to(donation_roll_ups_url)
-    end
-  end
+    #it "redirects to the donation_roll_ups list" do
+      #donation_roll_up = DonationRollUp.create! valid_attributes
+      #delete :destroy, params: {id: donation_roll_up.to_param}, session: valid_session
+      #expect(response).to redirect_to(donation_roll_ups_url)
+    #end
+  #end
 
 end
