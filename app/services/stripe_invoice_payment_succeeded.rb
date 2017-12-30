@@ -32,6 +32,7 @@ class StripeInvoicePaymentSucceeded
       d.subscription_id = subscription.id
       d.token_id = 'invoice'
       d.amount = invoice.total.to_f / 100 # we store decimal
+      d.stripe_id = invoice.payment
     end
   end
 end
