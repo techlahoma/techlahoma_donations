@@ -32,7 +32,7 @@ group :production do
 end
 
 # For the money.
-gem 'stripe', '~> 1.31.0'
+gem 'stripe', '~> 1.58.0'
 gem 'stripe_event' # for listening to Stripe webhooks
 
 gem 'sidekiq' # for background processing
@@ -57,7 +57,7 @@ group :development, :test do
   gem 'spring'
   gem 'thin'
 
-  gem 'stripe-ruby-mock', '~> 2.2.1', :require => 'stripe_mock'
+  gem 'stripe-ruby-mock', '~> 2.3.0', :require => 'stripe_mock'
   gem 'mocha'
 
   gem 'dotenv-rails'
