@@ -11,10 +11,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170313070433) do
+ActiveRecord::Schema.define(version: 20171228160534) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "donation_roll_ups", force: :cascade do |t|
+    t.string   "email"
+    t.decimal  "amount"
+    t.datetime "start_time"
+    t.datetime "end_time"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "donations", force: :cascade do |t|
     t.string   "first_name",         limit: 255
