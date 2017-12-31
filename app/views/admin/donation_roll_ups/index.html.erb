@@ -6,28 +6,31 @@
   <thead>
     <tr>
       <th>Email</th>
-      <th>Amount</th>
-      <th>Start time</th>
-      <th>End time</th>
-      <th colspan="3"></th>
+      <th>Total Donated</th>
+      <th>Membership Tier</th>
+      <th>Coupon Code</th>
+      <th>Coupon Amount</th>
+      <th>Coupon ID</th>
+      <th>Period</th>
     </tr>
   </thead>
 
   <tbody>
     <% @donation_roll_ups.each do |donation_roll_up| %>
       <tr>
-        <td><%= donation_roll_up.email %></td>
-        <td><%= donation_roll_up.amount %></td>
-        <td><%= donation_roll_up.start_time %></td>
-        <td><%= donation_roll_up.end_time %></td>
-        <td><%= link_to 'Show', donation_roll_up %></td>
-        <td><%= link_to 'Edit', edit_donation_roll_up_path(donation_roll_up) %></td>
-        <td><%= link_to 'Destroy', donation_roll_up, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to donation_roll_up.email, [:admin, donation_roll_up] %></td>
+        <td>$<%= donation_roll_up.amount.to_i %></td>
+        <td><%= donation_roll_up.plan_name %> ($<%= donation_roll_up.plan_cost_in_dollars_per_year.to_i %>)</td>
+        <td><%= donation_roll_up.ecwid_discount_coupon_code_for_display %></td>
+        <td>$<%= donation_roll_up.ecwid_discount_coupon_amount.to_i %></td>
+        <td><%= donation_roll_up.ecwid_discount_coupon_id %></td>
+        <td>
+          <%= donation_roll_up.start_time.to_date.to_s(:long) %> -
+          <%= donation_roll_up.end_time.to_date.to_s(:long) %>
+        </td>
       </tr>
     <% end %>
   </tbody>
 </table>
 
-<br>
 
-<%= link_to 'New Donation roll up', new_donation_roll_up_path %>

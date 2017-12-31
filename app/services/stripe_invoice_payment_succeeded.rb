@@ -28,11 +28,13 @@ class StripeInvoicePaymentSucceeded
 
   def create_donation(subscription, invoice)
     Donation.new do |d|
+      d.name = subscription.name
       d.email = subscription.email
       d.subscription_id = subscription.id
       d.token_id = 'invoice'
       d.amount = invoice.total.to_f / 100 # we store decimal
       d.stripe_id = invoice.payment
+      d.notes = "StripeInvoicePaymentSucceeded"
     end
   end
 end

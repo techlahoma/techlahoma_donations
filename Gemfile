@@ -52,6 +52,10 @@ gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0',          group: :doc
 
 
+gem 'ecwid_api'
+
+gem 'haikunator', '~> 1.1'
+
 group :development, :test do
   gem 'quiet_assets'
   gem 'spring'

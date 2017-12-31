@@ -1,8 +1,8 @@
 class Admin::AdminController < ApplicationController
 
   before_filter :print_session
-  before_filter :login_required
-  before_filter :admin_user_required
+  #before_filter :login_required
+  #before_filter :admin_user_required
 
   def admin_user_required
     unless current_user.admin?

@@ -44,12 +44,16 @@ class StripeSubscriptionPaymentBackfiller
       if stripe_invoice.paid?
         charge = Stripe::Charge.retrieve stripe_invoice.payment
         donation = Donation.find_by(stripe_id: charge.id)
-        if donation.present?
-          puts "    found a donation!"
-        else
-          puts "    need to create a donation!"
-          donation = StripeInvoicePaymentSucceeded.new.create_donation(local_sub, stripe_invoice)
-          donation.save!
+        if charge.paid? && !charge.refunded?
+          if donation.present?
+            puts "    found a donation!"
+          else
+            puts "    need to create a donation!"
+            donation = StripeInvoicePaymentSucceeded.new.create_donation(local_sub, stripe_invoice)
+            donation.created_at = Time.at(charge.created)
+            donation.notes = "StripeSubscriptionPaymentBackfiller"
+            donation.save!
+          end
         end
       end
     end

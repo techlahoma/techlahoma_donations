@@ -4,7 +4,7 @@ class Admin::DonationRollUpsController < Admin::AdminController
   # GET /donation_roll_ups
   # GET /donation_roll_ups.json
   def index
-    @donation_roll_ups = DonationRollUp.all
+    @donation_roll_ups = DonationRollUp.all.order("amount desc")
   end
 
   # GET /donation_roll_ups/1
