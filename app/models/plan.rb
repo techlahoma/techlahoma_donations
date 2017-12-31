@@ -8,7 +8,8 @@ class Plan
       :cost_in_dollars_per_year => 64,
       :gift => ["Small 2017 Techlahoma Supporting Member Coffee Mug"],
       :benefits => "Stratified Website Recognition",
-      :image => "small-mug.jpg"
+      :image => "small-mug.jpg",
+      :ecwid_discount_coupon_amount => 27
     },
     {
       :name => "Member",
@@ -17,7 +18,8 @@ class Plan
       :cost_in_dollars_per_year => 128,
       :gift => ["Large 2017 Techlahoma Supporting Member Coffee Mug"],
       :benefits => "Stratified Website Recognition",
-      :image => "large-mug.jpg"
+      :image => "large-mug.jpg",
+      :ecwid_discount_coupon_amount => 45
     },
     {
       :name => " Leader",
@@ -26,7 +28,8 @@ class Plan
       :cost_in_dollars_per_year => 256,
       :gift => ["Large 2017 Techlahoma Supporting Member Coffee Mug", "10x10 2017 Techlahoma Supporting Member Framed Poster"],
       :benefits => "Stratified Website Recognition",
-      :image => "leader2017.jpg"
+      :image => "leader2017.jpg",
+      :ecwid_discount_coupon_amount => 111
     },
     {
       :name => " Champion",
@@ -35,7 +38,8 @@ class Plan
       :cost_in_dollars_per_year => 512,
       :gift => ["Large 2017 Techlahoma Supporting Member Coffee Mug", "10x10 2017 Techlahoma Supporting Member Framed Poster", "2017 Techlahoma Supporting Member T-shirt"],
       :benefits => "Stratified Website Recognition",
-      :image => "champion2017.jpg"
+      :image => "champion2017.jpg",
+      :ecwid_discount_coupon_amount => 156
     },
     {
       :name => " Early Adopter",
@@ -44,7 +48,8 @@ class Plan
       :cost_in_dollars_per_year => 1024,
       :gift => ["Large 2017 Techlahoma Supporting Member Coffee Mug", "10x10 2017 Techlahoma Supporting Member Framed Poster", "2017 Techlahoma Supporting Member T-shirt", "2017 Techlahoma Supporting Member Hoodie"],
       :benefits => "Stratified Website Recognition",
-      :image => "early-adopter2017.jpg"
+      :image => "early-adopter2017.jpg",
+      :ecwid_discount_coupon_amount => 255
     }
   ]
 
