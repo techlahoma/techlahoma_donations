@@ -39,4 +39,8 @@ class DonationRollUp < ActiveRecord::Base
       end while self.class.where(ecwid_discount_coupon_code: self.ecwid_discount_coupon_code).count > 0
     end
   end
+
+  def ecwid_discount_coupon_code_for_display
+    plan.present? ? ecwid_discount_coupon_code : "--"
+  end
 end
