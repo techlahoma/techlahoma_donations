@@ -1,0 +1,15 @@
+Hey friend, thanks for donating. Based on your donations in 2017 of $<%= @donation_roll_up.amount.to_i %> we're recognizing you as a Techlahoma <%= @donation_roll_up.plan_name.strip %>.
+
+To say thanks here's a coupon code you can use in our members-only store for $<%= @donation_roll_up.ecwid_discount_coupon_amount.to_i %> worth of credit. Use it to buy any items that you want, and if you'd like to spend more than that you're welcome to. Then use this coupon code when you check out and we'll cover up to $<%= @donation_roll_up.ecwid_discount_coupon_amount.to_i %> worth of your merchandise AND we'll pay for the shipping.
+
+Secret store link: https://www.techlahoma.org/store#!/2017-Supporting-Members/c/25486506
+
+Your coupon code: <%= @donation_roll_up.ecwid_discount_coupon_code.upcase %>
+
+Thanks again!
+
+Techlahoma
+
+PS. If you don't want to use your coupon code and would like to deduct the full amount of your donation from your 2017 taxes, please visit the following link by Feb 1, 2018.
+
+<%= @donation_roll_up.id %>
