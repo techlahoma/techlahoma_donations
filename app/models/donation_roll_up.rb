@@ -1,5 +1,7 @@
 class DonationRollUp < ActiveRecord::Base
 
+  include GuidIds
+
   def plan
     return @plan if @plan
     @plan = nil
