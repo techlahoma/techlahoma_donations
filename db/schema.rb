@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180103015135) do
+ActiveRecord::Schema.define(version: 20180103020809) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -29,6 +29,7 @@ ActiveRecord::Schema.define(version: 20180103015135) do
     t.string   "ecwid_discount_coupon_code"
     t.integer  "ecwid_discount_coupon_id"
     t.string   "guid"
+    t.datetime "gift_declined_at"
   end
 
   create_table "donations", force: :cascade do |t|

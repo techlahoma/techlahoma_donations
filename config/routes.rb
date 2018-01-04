@@ -16,6 +16,7 @@ Rails.application.routes.draw do
   end
   resources :donations, :except => [:edit,:update,:destroy]
   resources :subscriptions, :except => [:edit,:update]
+  resources :coupons, :only => [:show, :destroy]
   root 'home#index'
 
   mount StripeEvent::Engine, at: "/stripe_webhooks"
