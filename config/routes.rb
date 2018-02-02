@@ -5,7 +5,11 @@ Rails.application.routes.draw do
   get 'giftpolicy' => 'home#giftpolicy'
 
   namespace :admin do
-    resources :donation_roll_ups, :except => [:new, :create, :edit, :update, :destroy]
+    resources :donation_roll_ups, :except => [:new, :create, :edit, :update, :destroy] do
+      collection do
+        get :csv, :as => :csv
+      end
+    end
     resources :donations, :except => [:edit,:update,:delete] do
       collection do
         get :choose, :as => :choose

@@ -39,4 +39,15 @@ RSpec.describe DonationRollUp, type: :model do
       expect(donation_roll_up.valid?).to be_falsey
     end
   end
+
+  describe "csv" do
+    it "produces records for each DonationRollUp in the DB" do
+      create :donation_roll_up, email: 'person1@somewhere.com'
+      create :donation_roll_up, email: 'person2@somewhere.com'
+      csv = DonationRollUp.to_csv
+      expect(csv).to match 'person1'
+      expect(csv).to match 'person2'
+    end
+  end
+
 end

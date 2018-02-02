@@ -1,5 +1,7 @@
 class DonationRollUp < ActiveRecord::Base
 
+  require 'csv'
+
   include GuidIds
 
   def plan
@@ -44,5 +46,21 @@ class DonationRollUp < ActiveRecord::Base
 
   def ecwid_discount_coupon_code_for_display
     plan.present? ? ecwid_discount_coupon_code : "--"
+  end
+
+  def self.to_csv
+    CSV.generate do |csv|
+      headers = column_names
+      headers.push("ecwid_actual_gift_value")
+      headers.push("tax_deductible_amount")
+      csv << headers
+      all.each do |obj|
+        row_data = obj.attributes.values_at(*column_names)
+        gift_value = obj.plan.present? ? obj.plan[:ecwid_actual_gift_value] : 0
+        row_data.push(gift_value)
+        row_data.push(obj.gift_declined_at.present? ? obj.amount : obj.amount - gift_value)
+        csv << row_data
+      end
+    end
   end
 end

@@ -11,13 +11,13 @@ RSpec.describe CouponsController, type: :controller do
     end
   end
 
-  describe "GET #destroy" do
-    it "returns http success" do
-      delete :destroy, id: donation_roll_up.guid
-      expect(response).to redirect_to(coupon_path(donation_roll_up))
-      donation_roll_up.reload
-      expect(donation_roll_up.gift_declined_at).not_to be_nil
-    end
-  end
+  #describe "GET #destroy" do
+    #it "returns http success" do
+      #delete :destroy, id: donation_roll_up.guid
+      #expect(response).to redirect_to(coupon_path(donation_roll_up))
+      #donation_roll_up.reload
+      #expect(donation_roll_up.gift_declined_at).not_to be_nil
+    #end
+  #end
 
 end

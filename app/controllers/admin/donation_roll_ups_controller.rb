@@ -7,6 +7,13 @@ class Admin::DonationRollUpsController < Admin::AdminController
     @donation_roll_ups = DonationRollUp.all.order("amount desc")
   end
 
+  def csv
+    @donation_roll_ups = DonationRollUp.all.order("amount desc")
+    response.headers['Content-Type'] = 'text/csv'
+    response.headers['Content-Disposition'] = 'attachment; filename=techlahoma_donation_roll_ups.csv'
+    render text: @donation_roll_ups.to_csv
+  end
+
   # GET /donation_roll_ups/1
   # GET /donation_roll_ups/1.json
   def show

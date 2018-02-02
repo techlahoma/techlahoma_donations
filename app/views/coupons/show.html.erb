@@ -3,7 +3,11 @@
   <p>When tax receipts are mailed you will be credited for the full amount of your donation.</p>
   <p>Thanks for donating so generously to Techlahoma!</p>
 <% else %>
+  <h1>We're sorry, the window to decline your gift is closed.</h1>
+  <p>You don't have to use your coupon code, of course, but the deadline to be credited with the full donation amount on your tax receipt has passed.</p>
+  <!--
   <h1>Would you like to decline your thank you gift?</h1>
   <p>If you'd like to deduct the full value of your donation to Techlahoma from your 2017 taxes you can decline your gift by clicking the button below.</p>
-  <%= link_to 'Decline gift', coupon_path(@donation_roll_up), method: :delete, data: { confirm: 'Are you sure?' }, :class => "button cta" %>
+  -->
+  <%#= link_to 'Decline gift', coupon_path(@donation_roll_up), method: :delete, data: { confirm: 'Are you sure?' }, :class => "button cta" %>
 <% end %>
