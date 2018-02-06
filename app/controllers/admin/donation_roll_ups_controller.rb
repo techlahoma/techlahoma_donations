@@ -22,7 +22,7 @@ class Admin::DonationRollUpsController < Admin::AdminController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_donation_roll_up
-      @donation_roll_up = DonationRollUp.find(params[:id])
+      @donation_roll_up = DonationRollUp.find_by_guid(params[:id])
     end
 
 end
