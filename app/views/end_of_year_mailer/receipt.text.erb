@@ -1,0 +1,28 @@
+Techlahoma Foundation
+Receipt of charitable giving
+
+Techlahoma acknowledges and expresses appreciation for the following donation:
+
+<% @donations.each_with_index do |donation, i| %>
+Donation #<%= i + 1 %>
+Date of Donation: <%= donation.created_at.to_date.to_s :long %>
+Donation received from: <%= donation.name %>
+Cash donation in the amount of: <%= number_to_currency donation.amount %>
+
+<% end %>
+
+Total Donations: <%= number_to_currency @donation_roll_up.amount %>
+Electronic Signature of authorized representative: Vance Lucas, Treasurer
+
+Goods Received
+<% if @donation_roll_up.gift_declined_at.present? %>
+No goods or services were received for this donation.
+<% else %>
+A coupon code for the Techlahoma Members-Only store was provided for items worth: <%= number_to_currency @donation_roll_up.gift_value %>
+<% end %>
+
+Your charitable deduction for federal income tax purposes is limited to the excess of the amount of money contributed over the value of the goods or services provided by the charity.
+
+About the Techlahoma Foundation
+The Techlahoma Foundation, otherwise known as Techlahoma, is a federally recognized
+501 (c) (3) registered non-profit organization; Federal ID Number 46-5519987.
