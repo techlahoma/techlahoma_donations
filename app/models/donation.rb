@@ -31,7 +31,7 @@ class Donation < ActiveRecord::Base
       amount:      (amount * 100).to_i,
       currency:    "usd",
       card:        token_id,
-      description: email
+      description: "Website donation from #{name} #{email}"
     )
     self.stripe_id = charge["id"]
     self.stripe_status = charge["status"]
