@@ -14,7 +14,8 @@ class Subscription < ActiveRecord::Base
     customer = Stripe::Customer.create(
       :source => self.token_id,
       :plan => self.stripe_plan_id,
-      :email => self.email
+      :email => self.email,
+      :description => "Website subscription for #{name} #{email}"
     )
     self.stripe_customer_id = customer["id"]
     self.stripe_subscription_id = customer["subscriptions"]["data"].first["id"]
