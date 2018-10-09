@@ -28,14 +28,13 @@
     <p><%= benefits_text @plan[:benefits] %></p>
   <% else %>
     <p>You are joining Techlahoma as a member.</p>
-    <p>In return for your generous contribution you will receive a surprise gift at the end of the year.</p>
   <% end %>
 
   <%= render 'subscriptions/your_info', :f => f %>
 
   <%= render 'subscriptions/donor_recognition', :f => f %>
 
-  <%# if plan_gets_a_gift(@plan) %>
+  <% if plan_gets_a_gift(@plan) %>
     <fieldset>
       <legend>Donor Gift</legend>
       <div class="form-group inline">
@@ -60,7 +59,7 @@
       <p>We certainly welcome donations less than $64, and we'll still send you a nice thank you note, and maybe a sticker or something. :)</p>
       <%#= render 'subscriptions/address', :f => f %>
     </fieldset>
-  <%# end %>
+  <% end %>
 
   <% unless skip_stripe %>
     <%= render 'subscriptions/billing' %>
