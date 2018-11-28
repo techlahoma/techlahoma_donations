@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   get 'sponsorship' => 'home#sponsorship'
   get 'membership' => 'home#membership'
   get 'giftpolicy' => 'home#giftpolicy'
+  get 'update-subscription' => 'home#update_subscription'
 
   namespace :admin do
     resources :donation_roll_ups, :except => [:new, :create, :edit, :update, :destroy] do
