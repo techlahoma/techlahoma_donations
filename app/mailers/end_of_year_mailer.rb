@@ -12,7 +12,7 @@ class EndOfYearMailer < ApplicationMailer
                          .order("created_at asc")
     mail({
       to: donation_roll_up.email,
-      subject: "Your 2017 Techlahoma Donation Tax Receipt"
+      subject: "Your 2018 Techlahoma Donation Tax Receipt"
     })
   end
 end

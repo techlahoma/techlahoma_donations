@@ -17,7 +17,7 @@ Total Donations: <%= number_to_currency @donation_roll_up.amount %>
 Electronic Signature of authorized representative: Vance Lucas, President & Interim Treasurer
 
 Goods Received
-<% if @donation_roll_up.gift_declined_at.present? %>
+<% if true #@donation_roll_up.gift_declined_at.present? %>
 No goods or services were received for this donation.
 <% else %>
 A coupon code for the Techlahoma Members-Only store was provided for items worth: <%= number_to_currency @donation_roll_up.gift_value %>
